@@ -18,6 +18,8 @@ public class CrossGameState : MonoBehaviour
 	private string  _gameOverScene;
 	[SerializeField]
 	private string _gameStartScene;
+
+	[SerializeField] private string _hudScene;
 	[SerializeField]
 	private string _mainGameScene;
 
@@ -43,6 +45,7 @@ public class CrossGameState : MonoBehaviour
 
 	IEnumerator showScoreAfterwards(TrackedMaxInfo scoreAfterPlaying)
 	{
+		SceneManager.UnloadSceneAsync(_hudScene);
 		unloadAndLoadScene(_mainGameScene,_gameOverScene);
 		yield return null; //I don't think this is needed anymore
 #warning "re-enable communication to scoreToShow"
@@ -55,6 +58,7 @@ public class CrossGameState : MonoBehaviour
 	public void OnStartNewGame()
 	{
 		unloadAndLoadScene(_gameStartScene, _mainGameScene);
+		SceneManager.LoadScene(_hudScene);
 	}
 
 }

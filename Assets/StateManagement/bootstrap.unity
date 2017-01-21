@@ -131,6 +131,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec7fcb6706cdab24faa4ccda5eb6b858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameOverScene: EndGame
+  _gameStartScene: StartGame
+  _hudScene: StubMainGameScene
+  _mainGameScene: Game
   _timeToShowGameOverScene: 3
   maxPlayInfo:
     MaxScoreThisRun: 0
