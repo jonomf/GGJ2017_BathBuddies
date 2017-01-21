@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GlobalState : MonoBehaviour
+public class CrossGameState : MonoBehaviour
 {
 	[Serializable]
 	public class TrackedMaxInfo
@@ -13,9 +13,13 @@ public class GlobalState : MonoBehaviour
 	}
 
 	//FIXME: I think you can drag scenes as assets now...
-	private string _gameOverSceneName = "GameOverScene";
-	private string _gameStartSceneName = "GameStartScene";
-	private string _mainGameScene = "GameScene";
+
+	[SerializeField]
+	private string  _gameOverScene;
+	[SerializeField]
+	private string _gameStartScene;
+	[SerializeField]
+	private string _mainGameScene;
 
 	[SerializeField] private float _timeToShowGameOverScene;
 
@@ -31,23 +35,26 @@ public class GlobalState : MonoBehaviour
 		StartCoroutine(showScoreAfterwards(lastPlayInfo));
 	}
 
+	private void unloadAndLoadScene(string toUnload, string toLoad)
+	{
+		SceneManager.UnloadSceneAsync(toUnload);
+		SceneManager.LoadScene(toLoad, LoadSceneMode.Additive);
+	}
+
 	IEnumerator showScoreAfterwards(TrackedMaxInfo scoreAfterPlaying)
 	{
-		SceneManager.UnloadSceneAsync(_mainGameScene);
-		SceneManager.LoadScene(_gameOverSceneName, LoadSceneMode.Additive);
+		unloadAndLoadScene(_mainGameScene,_gameOverScene);
 		yield return null; //I don't think this is needed anymore
-#pragma warning "re-enable communication to scoreToShow"
+#warning "re-enable communication to scoreToShow"
 		//GameObject.FindObjectOfType<GameOverScreen>().ScoreToShow(scoreAfterPlaying);
 		//The scene should read from this, I suppose
 		yield return new WaitForSeconds(_timeToShowGameOverScene);
-		SceneManager.UnloadSceneAsync(_gameOverSceneName);
-		SceneManager.LoadScene(_gameStartSceneName,LoadSceneMode.Additive);
+		unloadAndLoadScene(_gameOverScene,_gameStartScene);
 	}
 
 	public void OnStartNewGame()
 	{
-		SceneManager.UnloadSceneAsync(_gameStartSceneName);
-		SceneManager.LoadScene(_mainGameScene);
+		unloadAndLoadScene(_gameStartScene, _mainGameScene);
 	}
 
 }
