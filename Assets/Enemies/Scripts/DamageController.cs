@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DamageController : MonoBehaviour {
-    public delegate void ClickAction(GameObject target, AttackType attack);
-    public event ClickAction OnClicked;
+
     // Use this for initialization
     void Start ()
     {
-        OnClicked += TakeDamage;
+        EnemyStats.Hit += TakeDamage;
+        BaseStats.Hit += TakeDamage;
     }
 	
 	// Update is called once per frame
@@ -16,13 +16,14 @@ public class DamageController : MonoBehaviour {
 		
 	}
 
-    public void DoAttack()
+    public void DoAttack(GameObject attacker, GameObject target, AttackType attack)
     {
         
     }
 
     public void TakeDamage(GameObject target, AttackType attack)
     {
+        Debug.Log("Target is taking damage!");
         
     }
 }

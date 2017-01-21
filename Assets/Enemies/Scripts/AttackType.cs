@@ -6,6 +6,7 @@ public class AttackType : ScriptableObject
 {
     public int damage;
     public int range;
+    public string originator;
     public GameObject projectile;
     public GameObject fireEffect;
     public GameObject hitEffect;
