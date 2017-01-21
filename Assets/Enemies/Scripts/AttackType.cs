@@ -10,7 +10,8 @@ public class AttackType : ScriptableObject
     public GameObject projectile;
     public GameObject fireEffect;
     public GameObject hitEffect;
-
+    public float attackForce;
+    public float attackCooldown;
 	// Use this for initialization
 	void Start () {
 		
