@@ -10,20 +10,23 @@ public class EnemyStats : Stats
 
     // Use this for initialization
     void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+        base.Start();
 	}
 
-    private void OnCollisionEnter(Collision enter)
+    // Update is called once per frame
+    override protected void Update()
     {
-        if(enter.gameObject.tag == "Player")
+        base.Update();
+    }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        AttackType attack = collision.gameObject.GetComponent<AttackType>();
+        if (attack != null && attack.originator == enemyProjectileTag)
         {
-            AttackType attack = enter.gameObject.GetComponent<AttackType>();
-            Hit(gameObject,attack);
+            Hit(gameObject, attack);
+            DestroyObject(collision.gameObject);
         }
     }
 }

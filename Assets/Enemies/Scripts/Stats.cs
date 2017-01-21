@@ -5,35 +5,66 @@ using UnityEngine;
 public abstract class Stats : MonoBehaviour {
     public int health;
     public float moveSpeed;
-    public GameObject[] TargetsInRange = null;
     protected float cooldown;
     public AttackType attackType;
     public DamageController damageController;
+    public RangeVolume rangeVolume;
+    public int curHealth;
+    public string enemyProjectileTag;
     // Use this for initialization
-    void Start ()
+    protected virtual void Start ()
     {
+        curHealth = health;
         //damageController = FindObjectOfType<DamageController>();
     }
 	
 	// Update is called once per frame
-	void Update () {
-		if(TargetsInRange.Length >= 1)
+	protected virtual void Update () {
+
+        GameObject target = GetTarget();
+        if (target && cooldown <= 0)
         {
-            Attack(TargetsInRange[0], attackType);
+
+            cooldown = Attack(target, attackType);
+        }
+        if(cooldown >= 0)
+        {
+            
+            if (cooldown <= Time.deltaTime)
+            {
+                cooldown = 0;
+            }else
+            {
+                cooldown -= Time.deltaTime;
+            }
+            
+        }
+        if(curHealth <= 0)
+        {
+            Die();
         }
 	}
-    public GameObject[] GetTargetsInRange()
+    public GameObject GetTarget()
     {
+        if(rangeVolume != null && rangeVolume.activeTargets.Count > 0)
+        {
+            foreach(GameObject target in rangeVolume.activeTargets)
+            {
 
+                return target;
+            }
+        }
+        return null;
     }
-    public void Attack(GameObject target, AttackType attack)
+    public float Attack(GameObject target, AttackType attack)
     {
-        damageController.DoAttack(gameObject, target, attack);
+        return damageController.DoAttack(gameObject, target, attack);
     }
     public virtual void Die()
     {
         Debug.Log("I'm DEAADDD");
         Destroy(gameObject);
     }
+
   
 }

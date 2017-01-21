@@ -12,18 +12,22 @@ public class DamageController : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    public void DoAttack(GameObject attacker, GameObject target, AttackType attack)
+	
+    public float DoAttack(GameObject attacker, GameObject target, AttackType attack)
     {
-        
+        GameObject projectile = Instantiate(attack.projectile);
+        projectile.transform.position = attacker.transform.position;
+        Rigidbody rb = projectile.GetComponent<Rigidbody>();
+        Vector3 directionalVector = (target.transform.position - projectile.transform.position).normalized;
+        rb.AddForce(directionalVector * attack.attackForce);
+        projectile.GetComponent<Projectile>().attack = attack;
+        return attack.attackCooldown;
     }
 
     public void TakeDamage(GameObject target, AttackType attack)
     {
-        Debug.Log("Target is taking damage!");
-        
+
+        Stats stats = target.GetComponent<Stats>();
+        stats.curHealth -= attack.damage;
     }
 }
