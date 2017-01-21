@@ -15,6 +15,9 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 	public int WaveNumber = 0;
 	public State GameState = State.Playing;
 
+	public List<GameObject> SpawnPointsAir = new List<GameObject>();
+	public List<GameObject> SpawnPointsUnderWater = new List<GameObject>();
+
 	public static float GameTime()
 	{
 		return Time.time;
@@ -50,9 +53,21 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 		//if(Waves[WaveNumber]
 	}
 
-	void SpawnEnemy(GameObject g)
+	void SpawnEnemy(EnemySpec spec, Collider spawnBoundsAir, Collider spawnBoundsWater)
 	{
-		GameObject.Instantiate(g);
+		Collider spawnBounds = null;
+
+		if(!spec.underwater)
+		{
+			spawnBounds = spawnBoundsAir;
+		}
+		else
+		{
+			spawnBounds = spawnBoundsWater;
+		}
+
+		var randomPos = RandomEx.InsideBounds(spawnBounds.bounds);
+		GameObject.Instantiate( spec.prefab, randomPos, Quaternion.identity);
 	}
 
 	void TriggerNextWave()
@@ -63,6 +78,23 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 
 		//todo: display Wave number to user.
 
+
+		// find wave start. both air and water, since wave can be mixed.
+		Collider spawnBoundAir = null;
+		Collider spawnBoundWater = null;
+
+		{
+			var spawnPointGO = this.SpawnPointsAir[Random.Range(0, this.SpawnPointsAir.Count)];
+			var allSpawns = spawnPointGO.GetComponentsInChildren<Collider>();
+			spawnBoundAir = allSpawns[Random.Range(0, allSpawns.Length)];
+		}
+		{
+			var spawnPointGO = this.SpawnPointsUnderWater[Random.Range(0, this.SpawnPointsUnderWater.Count)];
+			var allSpawns = spawnPointGO.GetComponentsInChildren<Collider>();
+			spawnBoundWater = allSpawns[Random.Range(0, allSpawns.Length)];
+		}
+
+
 		for(var i = 0; i < thisWave.NumEnemies; i++)
 		{
 			int totalWeight = thisWave.EnemyWeights.Sum(w => w.weight);
@@ -72,7 +104,7 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 			{
 				if(randomSelect < e.weight)
 				{
-					SpawnEnemy(e.prefab);
+					SpawnEnemy(e, spawnBoundAir, spawnBoundWater);
 				}
 
 				randomSelect -= e.weight;
