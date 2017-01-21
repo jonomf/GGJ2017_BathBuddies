@@ -452,8 +452,10 @@ PlayerSettings:
   XboxOneAllowedProductIds: []
   XboxOnePersistentLocalStorageSize: 0
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
-  cloudProjectId: 
-  projectName: 
-  organizationId: 
+  cloudServicesEnabled:
+    Build: 1
+    UNet: 1
+  cloudProjectId: ce9d9cda-01d4-41da-a91b-c86b274c17a9
+  projectName: BathBuddies
+  organizationId: hardcoded2
   cloudEnabled: 0
