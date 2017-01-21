@@ -19,4 +19,5 @@ public class WaveSpec {
 public class EnemySpec {
 	public GameObject prefab;
 	public int weight = 1;
+	public bool underwater = false;
 }
