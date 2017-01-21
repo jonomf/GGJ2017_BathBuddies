@@ -22,10 +22,10 @@ public abstract class Stats : MonoBehaviour {
             Attack(TargetsInRange[0], attackType);
         }
 	}
-    public GameObject[] GetTargetsInRange()
-    {
+    //public GameObject[] GetTargetsInRange()
+    //{
 
-    }
+    //}
     public void Attack(GameObject target, AttackType attack)
     {
         damageController.DoAttack(gameObject, target, attack);

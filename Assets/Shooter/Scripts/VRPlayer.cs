@@ -11,14 +11,10 @@ public class VRPlayer : MonoBehaviour
 
     void Update()
     {
-        var leftHandPosition = InputTracking.GetLocalPosition(VRNode.LeftHand);
-        var leftHandForward = InputTracking.GetLocalRotation(VRNode.LeftHand);
-        var rightHandPosition = InputTracking.GetLocalPosition(VRNode.RightHand);
-        var rightHandForward = InputTracking.GetLocalRotation(VRNode.RightHand);
-        m_LeftHand.localPosition = leftHandPosition;
-        m_LeftHand.localRotation = leftHandForward;
-        m_RightHand.localPosition = rightHandPosition;
-        m_RightHand.localRotation = rightHandForward;
+        m_LeftHand.localPosition = InputTracking.GetLocalPosition(VRNode.LeftHand);
+        m_LeftHand.localRotation = InputTracking.GetLocalRotation(VRNode.LeftHand);
+        m_RightHand.localPosition = InputTracking.GetLocalPosition(VRNode.RightHand);
+        m_RightHand.localRotation = InputTracking.GetLocalRotation(VRNode.RightHand);
         if (Input.GetButtonDown("Fire1"))
         {
             m_ActiveWeapon.Fire(m_RightHand.position, m_RightHand.forward);
