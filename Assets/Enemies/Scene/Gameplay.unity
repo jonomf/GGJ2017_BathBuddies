@@ -122,13 +122,13 @@ MonoBehaviour:
   - StartTime_s: 0
     NumEnemies: 10
     EnemyWeights:
-    - prefab: {fileID: 0}
+    - prefab: {fileID: 1751762888535412, guid: 787fb5c06d3f59245af3b9ab2e4ed20a, type: 2}
       weight: 1
       underwater: 0
   - StartTime_s: 15
     NumEnemies: 10
     EnemyWeights:
-    - prefab: {fileID: 0}
+    - prefab: {fileID: 1751762888535412, guid: 787fb5c06d3f59245af3b9ab2e4ed20a, type: 2}
       weight: 1
       underwater: 0
     - prefab: {fileID: 1621068116860610, guid: dacf766e9443d4d09a1dbe514dd84421, type: 2}
@@ -137,54 +137,27 @@ MonoBehaviour:
   - StartTime_s: 30
     NumEnemies: 20
     EnemyWeights:
-    - prefab: {fileID: 0}
+    - prefab: {fileID: 1751762888535412, guid: 787fb5c06d3f59245af3b9ab2e4ed20a, type: 2}
       weight: 1
       underwater: 0
-    - prefab: {fileID: 0}
+    - prefab: {fileID: 1621068116860610, guid: dacf766e9443d4d09a1dbe514dd84421, type: 2}
       weight: 1
       underwater: 1
   - StartTime_s: 45
     NumEnemies: 30
     EnemyWeights:
-    - prefab: {fileID: 0}
+    - prefab: {fileID: 1751762888535412, guid: 787fb5c06d3f59245af3b9ab2e4ed20a, type: 2}
       weight: 1
       underwater: 0
   - StartTime_s: 60
     NumEnemies: 40
     EnemyWeights:
-    - prefab: {fileID: 0}
+    - prefab: {fileID: 1751762888535412, guid: 787fb5c06d3f59245af3b9ab2e4ed20a, type: 2}
       weight: 1
       underwater: 0
-  - StartTime_s: 75
-    NumEnemies: 50
-    EnemyWeights:
-    - prefab: {fileID: 0}
+    - prefab: {fileID: 1621068116860610, guid: dacf766e9443d4d09a1dbe514dd84421, type: 2}
       weight: 1
-      underwater: 0
-  - StartTime_s: 90
-    NumEnemies: 60
-    EnemyWeights:
-    - prefab: {fileID: 0}
-      weight: 1
-      underwater: 0
-  - StartTime_s: 105
-    NumEnemies: 70
-    EnemyWeights:
-    - prefab: {fileID: 0}
-      weight: 1
-      underwater: 0
-  - StartTime_s: 120
-    NumEnemies: 80
-    EnemyWeights:
-    - prefab: {fileID: 0}
-      weight: 1
-      underwater: 0
-  - StartTime_s: 135
-    NumEnemies: 90
-    EnemyWeights:
-    - prefab: {fileID: 0}
-      weight: 1
-      underwater: 0
+      underwater: 1
   WaveNumber: 0
   GameState: 0
   SpawnPointsAir:
