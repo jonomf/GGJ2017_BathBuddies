@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class CrossGameState : MonoBehaviour
 {
 	[Serializable]
-	public class TrackedMaxInfo
+	public class ScoreInfo
 	{
 		public int MaxScoreThisRun = 0;
 		public float MaxTimeAlive = 0f;
@@ -26,13 +26,18 @@ public class CrossGameState : MonoBehaviour
 	[SerializeField] private float _timeToShowGameOverScene;
 
 	[SerializeField] //for debugging sake
-	private TrackedMaxInfo maxPlayInfo = new TrackedMaxInfo();
+	private ScoreInfo _highScoreInfo = new ScoreInfo();
 
-	public void OnGameOver(TrackedMaxInfo lastPlayInfo)
+	public ScoreInfo GetHighScoreInfo()
 	{
-		if(maxPlayInfo.MaxScoreThisRun < lastPlayInfo.MaxScoreThisRun)
+		return _highScoreInfo;
+	}
+
+	public void OnGameOver(ScoreInfo lastPlayInfo)
+	{
+		if(_highScoreInfo.MaxScoreThisRun < lastPlayInfo.MaxScoreThisRun)
 		{
-			maxPlayInfo = lastPlayInfo;
+			_highScoreInfo = lastPlayInfo;
 		}
 		StartCoroutine(showScoreAfterwards(lastPlayInfo));
 	}
@@ -43,7 +48,7 @@ public class CrossGameState : MonoBehaviour
 		SceneManager.LoadScene(toLoad, LoadSceneMode.Additive);
 	}
 
-	IEnumerator showScoreAfterwards(TrackedMaxInfo scoreAfterPlaying)
+	IEnumerator showScoreAfterwards(ScoreInfo scoreAfterPlaying)
 	{
 		SceneManager.UnloadSceneAsync(_hudScene);
 		unloadAndLoadScene(_mainGameScene,_gameOverScene);
