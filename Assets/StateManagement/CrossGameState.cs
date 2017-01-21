@@ -27,6 +27,7 @@ public class CrossGameState : MonoBehaviour
 
 	[SerializeField] //for debugging sake
 	private ScoreInfo _highScoreInfo = new ScoreInfo();
+	public ScoreInfo LastScore = new ScoreInfo();
 
 	public ScoreInfo GetHighScoreInfo()
 	{
@@ -35,10 +36,12 @@ public class CrossGameState : MonoBehaviour
 
 	public void OnGameOver(ScoreInfo lastPlayInfo)
 	{
+		LastScore = lastPlayInfo;
 		if(_highScoreInfo.MaxScoreThisRun < lastPlayInfo.MaxScoreThisRun)
 		{
 			_highScoreInfo = lastPlayInfo;
 		}
+		
 		StartCoroutine(showScoreAfterwards(lastPlayInfo));
 	}
 
