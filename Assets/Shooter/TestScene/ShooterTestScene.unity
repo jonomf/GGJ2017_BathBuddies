@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 422bef9c80a975044aa41b09e0f43c9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 11400000, guid: 5ac401d96af5c024bb4631e6079603e0, type: 2}
+  m_ActiveWeapon: {fileID: 11400000, guid: 5ac401d96af5c024bb4631e6079603e0, type: 2}
   m_LeftHand: {fileID: 2083061952}
   m_RightHand: {fileID: 52904871}
 --- !u!4 &44975417
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 52904874}
   - component: {fileID: 52904873}
   - component: {fileID: 52904872}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b27bace3048ea7344ac9fe003a6145ec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -356,7 +356,7 @@ GameObject:
   - component: {fileID: 945157867}
   - component: {fileID: 945157866}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -422,7 +422,7 @@ Transform:
   m_GameObject: {fileID: 945157865}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 9.514164, y: 9.514162, z: 9.514162}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -458,7 +458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 422bef9c80a975044aa41b09e0f43c9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
+  m_ActiveWeapon: {fileID: 0}
   m_LeftHand: {fileID: 0}
   m_RightHand: {fileID: 0}
 --- !u!81 &1352152693
@@ -541,7 +541,7 @@ GameObject:
   - component: {fileID: 1758538353}
   - component: {fileID: 1758538352}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -621,7 +621,7 @@ GameObject:
   - component: {fileID: 2083061955}
   - component: {fileID: 2083061954}
   - component: {fileID: 2083061953}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -654,7 +654,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b27bace3048ea7344ac9fe003a6145ec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

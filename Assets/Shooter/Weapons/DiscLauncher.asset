@@ -11,3 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 056746453aee17946a8d480265300c69, type: 3}
   m_Name: DiscLauncher
   m_EditorClassIdentifier: 
+  m_Power: 1000
+  m_Disk: {fileID: 54246236048385984, guid: daf8849918b56684eb6c2460fffc93d0, type: 2}
