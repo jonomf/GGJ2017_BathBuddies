@@ -10,4 +10,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/StateManagement/StartGame.unity
   - enabled: 1
+    path: Assets/SonarView/HUD/HUD.unity
+  - enabled: 1
+    path: Assets/StateManagement/StubMainGameScene.unity
+  - enabled: 1
     path: Assets/StateManagement/EndGame.unity
