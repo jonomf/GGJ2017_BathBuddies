@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -34,6 +33,7 @@ public class GlobalState : MonoBehaviour
 
 	IEnumerator showScoreAfterwards(TrackedMaxInfo scoreAfterPlaying)
 	{
+		SceneManager.UnloadSceneAsync(_mainGameScene);
 		SceneManager.LoadScene(_gameOverSceneName, LoadSceneMode.Additive);
 		yield return null; //I don't think this is needed anymore
 #pragma warning "re-enable communication to scoreToShow"
@@ -46,6 +46,7 @@ public class GlobalState : MonoBehaviour
 
 	public void OnStartNewGame()
 	{
+		SceneManager.UnloadSceneAsync(_gameStartSceneName);
 		SceneManager.LoadScene(_mainGameScene);
 	}
 
