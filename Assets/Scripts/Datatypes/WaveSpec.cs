@@ -12,7 +12,7 @@ public class WaveSpec {
 	public int NumEnemies;
 
 	[Header("Types and spawn weight of enemies to spawn")]
-	public List<EnemySpec> EnemyPrefabs;
+	public List<EnemySpec> EnemyWeights;
 }
 
 [System.Serializable]
