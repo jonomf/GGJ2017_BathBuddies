@@ -17,11 +17,15 @@ public class BaseStats : Stats {
 	}
     private void OnCollisionEnter(Collision collision)
     {
-        AttackType attack = collision.gameObject.GetComponent<Projectile>().attack;
-        if (attack != null && attack.originator == enemyProjectileTag)
+        var projectile = collision.gameObject.GetComponent<Projectile>();
+        if (projectile != null)
         {
-            Hit(gameObject, attack);
-            DestroyObject(collision.gameObject);
+            AttackType attack = projectile.attack;
+            if (attack != null && attack.originator == enemyProjectileTag)
+            {
+                Hit(gameObject, attack);
+                DestroyObject(collision.gameObject);
+            }
         }
     }
 }

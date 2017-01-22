@@ -18,7 +18,7 @@ public abstract class Stats : MonoBehaviour {
     protected virtual void Start ()
     {
         curHealth = health;
-        //damageController = FindObjectOfType<DamageController>();
+        damageController = FindObjectOfType<DamageController>();
     }
 	
 	// Update is called once per frame
@@ -27,12 +27,12 @@ public abstract class Stats : MonoBehaviour {
         GameObject target = GetTarget();
         if (target && cooldown <= 0)
         {
-
+ 
             cooldown = Attack(target, attackType);
         }
         if(cooldown >= 0)
         {
-            
+            //Debug.Log("Cooldown");
             if (cooldown <= Time.deltaTime)
             {
                 cooldown = 0;
