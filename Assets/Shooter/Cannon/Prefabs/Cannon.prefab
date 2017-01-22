@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 33744048655763512}
   - component: {fileID: 135204974923927214}
   - component: {fileID: 114411447635738528}
-  m_Layer: 11
+  m_Layer: 13
   m_Name: Handle and trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -465,9 +465,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64dbb0309d4dcad43969922af79f2adb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weapon: {fileID: 11400000, guid: 60aed073bf5d453489f5bb501b9e810a, type: 2}
+  m_CannonShot: {fileID: 11400000, guid: 60aed073bf5d453489f5bb501b9e810a, type: 2}
+  m_DepthChargeShot: {fileID: 11400000, guid: 04dfee453a4f6084890f988236ab9f01, type: 2}
   m_RotationSpeed: 100
-  m_StartingAmmo: 100
+  m_StartingCannonAmmo: 100
+  m_StartingDepthCargeAmmo: 100
   m_YPivot: {fileID: 4233006316307172}
   m_XPivot: {fileID: 4778859693402592}
   m_CannonTip: {fileID: 4450539064160018}

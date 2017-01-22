@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
+using UnityEngine.VR;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
@@ -32,7 +33,27 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 	{
 		return Time.time;
 	}
-	
+
+	[SerializeField] private float _multipleToSpeedUpTimeBy = 3f;
+
+	[ContextMenu("Make invincible, kill current wave, speed up time")]
+	private void TestDesign()
+	{
+		
+		StopCoroutine("TriggerWave");
+		killEverything();
+
+		Time.timeScale = _multipleToSpeedUpTimeBy;
+		GameObject.FindObjectOfType<BaseStats>().health = int.MaxValue;
+
+	}
+
+	[ContextMenu("Make time normal", false, -100)]
+	private void NormalizeTime()
+	{
+		Time.timeScale = 1f;
+	}
+
 	private float _gameStartedTime;
 
 	void Start ()
@@ -77,16 +98,33 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 		while (!IsGameOver())
 		{
 			var nextWave = Waves.Waves[WaveNumber];
-			if(nextWave.StartTime_s <= GameTime()) //FIXME: gametime doesn't 
-			{
+			//if(nextWave.StartTime_s <= GameTime()) //FIXME: gametime doesn't 
+			//{
 				var blockUntilNextDone = nextWave.blockUntilAllEnemiesAreDead;
 				var coroutine = StartCoroutine(TriggerWave(nextWave));
-				if(blockUntilNextDone)
+				if(blockUntilNextDone) { 
 					yield return coroutine;
+					WinningDuh();
+
+				}
 				WaveNumber++;
-			}
+			//}
 			yield return null;
 		}
+	}
+
+#warning "Celebrate winning here"
+	[ContextMenu("Winning")]
+	private void WinningDuh()
+	{
+		StartCoroutine(spawnWinEffect());
+	}
+
+	IEnumerator spawnWinEffect()
+	{
+		var go = GameObject.Instantiate(Resources.Load("confetti2"),InputTracking.GetLocalPosition(VRNode.Head),Quaternion.identity) as GameObject;
+		yield return new WaitForSeconds(2f);
+		GameObject.Destroy(go);
 	}
 	
 	public Vector3 spawnPointInsideOfBoundsForEnemySpec(EnemySpec spec)
@@ -118,14 +156,17 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 
 	IEnumerator TriggerWave(WaveSpec spec)
 	{
+		Debug.Log("Start wave");
 		float waveStartedAt = Time.time;
 		Dictionary<EnemySpec,int> enemiesSpawned = new Dictionary<EnemySpec, int>();
 		Dictionary<EnemySpec, int> enemiesSpawnedLastFrame = new Dictionary<EnemySpec, int>();  //not braining. this will do.
+		List<GameObject> objectsSpawned = new List<GameObject>();
+
 		foreach (var enemyWeights in spec.EnemyWeights)
 		{
 			enemiesSpawned.Add(enemyWeights, 0);
 		}
-
+		
 		while (Time.time - waveStartedAt < spec.DurationOfWave)
 		{
 			float normalizedTime = (Time.time - waveStartedAt)/spec.DurationOfWave;
@@ -143,12 +184,16 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 				//TODO: watch out for collection modified exception here
 				enemiesSpawnedLastFrame[enemySpec] = newEnemiesToSpawn;
 
-				for(int i = 0;i < newEnemiesToSpawn;i++) {
-					
-					var go = Instantiate(enemySpec.prefab, spawnPointInsideOfBoundsForEnemySpec(enemySpec), Quaternion.identity).transform.parent = shipsContainer;
-					Debug.Log("Spawned",go);
+				//Debug.LogFormat("expected {0} newTOSpawn {1}",expectedEnmiesNow,);
+				for(int i = 0;i < newEnemiesToSpawn;i++)
+				{
+					var go = Instantiate(enemySpec.prefab, spawnPointInsideOfBoundsForEnemySpec(enemySpec), Quaternion.identity);
+					go.transform.parent = shipsContainer;
+					objectsSpawned.Add(go);
+					//Debug.Log("Spawned", go);
 				}
 			}
+			
 			foreach (var lastFrameAdds in enemiesSpawnedLastFrame)
 			{
 				enemiesSpawned[lastFrameAdds.Key] += lastFrameAdds.Value;
@@ -156,13 +201,35 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 			
 			yield return null;
 		}
-		/*
-		var allEnemiesSpawned = GameObject.FindObjectsOfType<EnemySpec>();
-		foreach (var enemies in allEnemiesSpawned)
-		{
-			if(enemies)
+		foreach(var keyValuePair in enemiesSpawned) {
+			var enemySpec = keyValuePair.Key;
+			var enemiesOfThisTypeSpawnedPreviously = keyValuePair.Value;
+			int expectedEnmiesNow = enemySpec.NumEnemies;
+			int newEnemiesToSpawn = expectedEnmiesNow - enemiesOfThisTypeSpawnedPreviously;
+			for(int i = 0;i < newEnemiesToSpawn;i++) {
+				var go = Instantiate(enemySpec.prefab, spawnPointInsideOfBoundsForEnemySpec(enemySpec), Quaternion.identity);
+				go.transform.parent = shipsContainer;
+				objectsSpawned.Add(go);
+				Debug.Log("Spawned at end", go);
+			}
 		}
-		*/
+		Debug.Log("wave spawned all, waiting until all enemies died");
+		//wait until this wave is "done"
+		while(true) { 
+			bool allEnemiesCleared = true;
+			foreach (var enemy in objectsSpawned)
+			{
+				if(enemy != null) { 
+					allEnemiesCleared = false;
+					break;
+				}
+			}
+			if(allEnemiesCleared)
+				break;
+			yield return null;
+		}
+		WinningDuh();
+		Debug.Log("wave done");
 		//NOTE: this may cut off the last few in some cases. can be fixed in data
 	}
 		
@@ -172,12 +239,9 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 		// todo;		
 	}
 
-	void TriggerLose()
+	void killEverything()
 	{
-		GameState = State.Lost;
-		//FIXME: just destroy all things under bulletsContainer, et al
-		foreach(var stats in FindObjectsOfType<EnemyStats>())
-		{
+		foreach(var stats in FindObjectsOfType<EnemyStats>()) {
 			if(stats != null) //in the process of being cleaned up?
 				Destroy(stats.gameObject);
 			//Debug.Log("TriggerLose Destroying:" +stats.gameObject);
@@ -192,6 +256,12 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 				Destroy(projectile.gameObject);
 			//Debug.Log("TriggerLose Destroying:" +stats.gameObject);
 		}
+	}
+	void TriggerLose()
+	{
+		GameState = State.Lost;
+		//FIXME: just destroy all things under bulletsContainer, et al
+		killEverything();
 		//stopping coroutine by string name. Not awesome
 		StopCoroutine("TriggerWave");
 		GameObject.FindObjectOfType<CrossGameState>().OnGameOver(new CrossGameState.ScoreInfo() {ScoreThisRun = WaveNumber ,TimeAlive = Time.time - _gameStartedTime});

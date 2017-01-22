@@ -4,19 +4,23 @@ using UnityEngine;
 public class CannonHandle : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private ProjectileWeapon m_Weapon;
+    [SerializeField] private ProjectileWeapon m_CannonShot;
+	[SerializeField] private ProjectileWeapon m_DepthChargeShot;
 	[SerializeField] private float m_RotationSpeed = 100f;
-	[SerializeField] private int m_StartingAmmo = 3;
+	[SerializeField] private int m_StartingCannonAmmo = 100;
+	[SerializeField] private int m_StartingDepthCargeAmmo = 100;
     [Header("References")]
     [SerializeField] private Transform m_YPivot;
     [SerializeField] private Transform m_XPivot;
     [SerializeField] private Transform m_CannonTip;
 
-	private int m_Ammo;
+	private int m_CannonAmmo;
+	private int m_DepthCargeAmmo;
 
 	void Awake()
 	{
-		m_Ammo = m_StartingAmmo;
+		m_CannonAmmo = m_StartingCannonAmmo;
+		m_DepthCargeAmmo = m_StartingDepthCargeAmmo;
 	}
 
     void OnTriggerStay(Collider other)
@@ -29,13 +33,13 @@ public class CannonHandle : MonoBehaviour
 
     IEnumerator DragHandle()
     {
-        var lastHandPosition = VRPlayer.rightHand.position;
+	    var lastHandPosition = HandPositionRelativeToHead();
         VRPlayer.handsBusy = true;
         while (!Input.GetButtonUp("Fire1"))
-        {
-            m_YPivot.Rotate(Vector3.up, (lastHandPosition - VRPlayer.rightHand.position).x * m_RotationSpeed);
-            m_XPivot.Rotate(Vector3.left, (lastHandPosition - VRPlayer.rightHand.position).y * m_RotationSpeed);
-            lastHandPosition = VRPlayer.rightHand.position;
+		{
+			m_YPivot.Rotate(m_YPivot.up, (lastHandPosition - HandPositionRelativeToHead()).x * m_RotationSpeed * 50 * Time.deltaTime, Space.World);
+			m_XPivot.Rotate(-m_XPivot.right, (lastHandPosition - HandPositionRelativeToHead()).y * m_RotationSpeed * 50 * Time.deltaTime, Space.World);
+			lastHandPosition = HandPositionRelativeToHead();
             if (VRPlayer.fire)
             {
 				AttemptFire();
@@ -43,18 +47,39 @@ public class CannonHandle : MonoBehaviour
             yield return null;
         }
         VRPlayer.handsBusy = false;
-    }
+	}
+
+	Vector3 HandPositionRelativeToHead()
+	{
+		return VRPlayer.head.InverseTransformPoint(VRPlayer.rightHand.position);
+	}
 
 	void AttemptFire()
 	{
-		if (m_Ammo > 0)
+		switch (HUDController.cannonMode)
 		{
-			m_Ammo--;
-			m_Weapon.Fire(m_CannonTip.position, m_CannonTip.forward);
-		}
-		else
-		{
-			AudioManager.outOfAmmo.Play();
+			case HUDController.CannonMode.Ballistic:
+				if (m_CannonAmmo > 0)
+				{
+					m_CannonAmmo--;
+					m_CannonShot.Fire(m_CannonTip.position, m_CannonTip.forward);
+				}
+				else
+				{
+					AudioManager.outOfAmmo.Play();
+				}
+				break;
+			case HUDController.CannonMode.Depth:
+				if (m_StartingDepthCargeAmmo > 0)
+				{
+					m_StartingDepthCargeAmmo--;
+					m_DepthChargeShot.Fire(m_CannonTip.position, m_CannonTip.forward);
+				}
+				else
+				{
+					AudioManager.outOfAmmo.Play();
+				}
+				break;
 		}
 	}
 }
