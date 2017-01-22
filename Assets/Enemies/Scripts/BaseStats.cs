@@ -7,12 +7,12 @@ public class BaseStats : Stats {
     public delegate void ObjectHit(GameObject target, AttackType attack);
     public static event ObjectHit Hit;
     // Use this for initialization
-    void Start () {
+	protected override void Start () {
         base.Start();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected override void Update () {
         base.Update();
 	}
     private void OnCollisionEnter(Collision collision)
@@ -23,8 +23,8 @@ public class BaseStats : Stats {
             AttackType attack = projectile.attack;
             if (attack != null && attack.originator == enemyProjectileTag)
             {
-                Hit(gameObject, attack);
-                DestroyObject(collision.gameObject);
+	            if(Hit != null) Hit(gameObject, attack);
+	            DestroyObject(collision.gameObject);
             }
         }
     }

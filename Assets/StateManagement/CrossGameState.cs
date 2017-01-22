@@ -60,7 +60,11 @@ public class CrossGameState : MonoBehaviour
 	{
 		return _highScoreInfo;
 	}
-
+	[ContextMenu("fake kill base")]
+	void fakeKillBase() {
+		//GameObject.FindObjectOfType<BaseStats>().Attack()
+		GameObject.FindObjectOfType<BaseStats>().curHealth = -1;
+	}
 	[ContextMenu("End game fake")]
 	void fakeGameOver()
 	{
