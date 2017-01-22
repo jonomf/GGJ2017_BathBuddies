@@ -20,11 +20,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4120785337894012}
   - component: {fileID: 33964189994899386}
-  - component: {fileID: 65012105080466114}
   - component: {fileID: 23236557072208238}
   - component: {fileID: 54246236048385984}
   - component: {fileID: 114805780532078022}
   - component: {fileID: 114381101245409562}
+  - component: {fileID: 135547819188780692}
   m_Layer: 10
   m_Name: DepthCharge
   m_TagString: Untagged
@@ -98,18 +98,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!65 &65012105080466114
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1114520447402450}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114381101245409562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -134,3 +122,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DestroyDelay: 1
+--- !u!135 &135547819188780692
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1114520447402450}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 70
+  m_Center: {x: 0, y: 0, z: 0}

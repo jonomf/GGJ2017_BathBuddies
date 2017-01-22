@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   range: 0
-  originator: player
+  originator: player_cannon
   projectile: {fileID: 0}
   fireEffect: {fileID: 0}
   hitEffect: {fileID: 180128, guid: 6586ff0f14125534cae2f5d8f04b7871, type: 2}
