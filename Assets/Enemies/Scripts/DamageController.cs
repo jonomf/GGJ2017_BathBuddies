@@ -22,7 +22,7 @@ public class DamageController : MonoBehaviour {
 		projectile.transform.rotation = Quaternion.LookRotation(directionalVector); // set projectile to look at the target.
         rb.AddForce(directionalVector * attack.attackForce);
         projectile.GetComponent<Projectile>().attack = attack;
-
+   
 		// set target for any seeking behaviors.
 		var projectileScript = projectile.GetComponent<Projectile>();
 		projectileScript.target = target;
@@ -36,7 +36,10 @@ public class DamageController : MonoBehaviour {
             effect.transform.position = attacker.transform.position;
             Destroy(effect, 2.0f);
         }
-  
+        if(attack.attackSound != SOUNDS.NO_SOUND)
+        {
+            AudioManager.Play(attack.attackSound, attacker.transform.position);
+        }
         return attack.attackCooldown;
     }
 
