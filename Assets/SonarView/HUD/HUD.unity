@@ -453,7 +453,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc2105ace5be72d48aefb6af086292e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teleportMarkerPrefab: {fileID: 0}
+  teleportMarkerPrefab: {fileID: 1679206390106746, guid: a44b8d885ac22426fa519d32174d1881,
+    type: 2}
   hudCamera: {fileID: 0}
 --- !u!1 &591639520
 GameObject:
