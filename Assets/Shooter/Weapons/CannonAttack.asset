@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeeedd0cf5c730049b57b91a94efbcf3, type: 3}
   m_Name: CannonAttack
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 1
   range: 0
   originator: player_cannon
   projectile: {fileID: 0}
