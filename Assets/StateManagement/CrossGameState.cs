@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 public class CrossGameState : MonoBehaviour
 {
@@ -52,6 +53,16 @@ public class CrossGameState : MonoBehaviour
 		return _highScoreInfo;
 	}
 
+	[ContextMenu("End game fake")]
+	void fakeGameOver()
+	{
+		OnGameOver(new ScoreInfo()
+		{
+			ScoreThisRun =  Random.Range(1,100),
+			TimeAlive = Random.Range(0f,100f)
+		});
+	}
+
 	public void OnGameOver(ScoreInfo lastPlayInfo)
 	{
 		LastScore = lastPlayInfo;
@@ -89,7 +100,7 @@ public class CrossGameState : MonoBehaviour
 		unloadScene(_gameOverScene);
 		loadScene(_gameStartScene);
 	}
-
+	[ContextMenu("Start game")]
 	public void OnStartNewGame()
 	{
 		unloadScene(_gameStartScene);
