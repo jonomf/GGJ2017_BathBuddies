@@ -11,4 +11,6 @@ public class AttackType : ScriptableObject
     public GameObject hitEffect;
     public float attackForce;
     public float attackCooldown;
+    public SOUNDS attackSound = SOUNDS.NO_SOUND;
+    public SOUNDS hitSound = SOUNDS.NO_SOUND;
 }

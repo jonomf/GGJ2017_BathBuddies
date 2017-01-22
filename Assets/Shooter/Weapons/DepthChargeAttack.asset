@@ -19,3 +19,5 @@ MonoBehaviour:
   hitEffect: {fileID: 0}
   attackForce: 0
   attackCooldown: 0
+  attackSound: 7
+  hitSound: 9

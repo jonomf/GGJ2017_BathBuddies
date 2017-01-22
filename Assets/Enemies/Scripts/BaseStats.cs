@@ -31,6 +31,10 @@ public class BaseStats : Stats {
                     effect.transform.position = collision.transform.position;
                     Destroy(effect, 2.0f);
                 }
+                if(attack.hitSound != SOUNDS.NO_SOUND)
+                {
+                    AudioManager.Play(attack.hitSound, collision.contacts[0].point);
+                }
 
             }
         }
