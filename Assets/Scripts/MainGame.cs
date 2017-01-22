@@ -140,14 +140,17 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 
 	IEnumerator TriggerWave(WaveSpec spec)
 	{
+		Debug.Log("Start wave");
 		float waveStartedAt = Time.time;
 		Dictionary<EnemySpec,int> enemiesSpawned = new Dictionary<EnemySpec, int>();
 		Dictionary<EnemySpec, int> enemiesSpawnedLastFrame = new Dictionary<EnemySpec, int>();  //not braining. this will do.
+		List<GameObject> objectsSpawned = new List<GameObject>();
+
 		foreach (var enemyWeights in spec.EnemyWeights)
 		{
 			enemiesSpawned.Add(enemyWeights, 0);
 		}
-
+		
 		while (Time.time - waveStartedAt < spec.DurationOfWave)
 		{
 			float normalizedTime = (Time.time - waveStartedAt)/spec.DurationOfWave;
@@ -165,12 +168,16 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 				//TODO: watch out for collection modified exception here
 				enemiesSpawnedLastFrame[enemySpec] = newEnemiesToSpawn;
 
-				for(int i = 0;i < newEnemiesToSpawn;i++) {
-					
-					var go = Instantiate(enemySpec.prefab, spawnPointInsideOfBoundsForEnemySpec(enemySpec), Quaternion.identity).transform.parent = shipsContainer;
-					Debug.Log("Spawned",go);
+				//Debug.LogFormat("expected {0} newTOSpawn {1}",expectedEnmiesNow,);
+				for(int i = 0;i < newEnemiesToSpawn;i++)
+				{
+					var go = Instantiate(enemySpec.prefab, spawnPointInsideOfBoundsForEnemySpec(enemySpec), Quaternion.identity);
+					go.transform.parent = shipsContainer;
+					objectsSpawned.Add(go);
+					//Debug.Log("Spawned", go);
 				}
 			}
+			
 			foreach (var lastFrameAdds in enemiesSpawnedLastFrame)
 			{
 				enemiesSpawned[lastFrameAdds.Key] += lastFrameAdds.Value;
@@ -178,13 +185,34 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 			
 			yield return null;
 		}
-		/*
-		var allEnemiesSpawned = GameObject.FindObjectsOfType<EnemySpec>();
-		foreach (var enemies in allEnemiesSpawned)
-		{
-			if(enemies)
+		foreach(var keyValuePair in enemiesSpawned) {
+			var enemySpec = keyValuePair.Key;
+			var enemiesOfThisTypeSpawnedPreviously = keyValuePair.Value;
+			int expectedEnmiesNow = enemySpec.NumEnemies;
+			int newEnemiesToSpawn = expectedEnmiesNow - enemiesOfThisTypeSpawnedPreviously;
+			for(int i = 0;i < newEnemiesToSpawn;i++) {
+				var go = Instantiate(enemySpec.prefab, spawnPointInsideOfBoundsForEnemySpec(enemySpec), Quaternion.identity);
+				go.transform.parent = shipsContainer;
+				objectsSpawned.Add(go);
+				Debug.Log("Spawned at end", go);
+			}
 		}
-		*/
+		Debug.Log("wave spawned all, waiting until all enemies died");
+		//wait until this wave is "done"
+		while(true) { 
+			bool allEnemiesCleared = true;
+			foreach (var enemy in objectsSpawned)
+			{
+				if(enemy != null) { 
+					allEnemiesCleared = false;
+					break;
+				}
+			}
+			if(allEnemiesCleared)
+				break;
+			yield return null;
+		}
+		Debug.Log("wave done");
 		//NOTE: this may cut off the last few in some cases. can be fixed in data
 	}
 		

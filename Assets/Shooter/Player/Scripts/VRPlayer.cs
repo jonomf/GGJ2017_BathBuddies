@@ -6,6 +6,7 @@ public class VRPlayer : MonoBehaviourSingleton<VRPlayer>
 {
     public static Transform leftHand { get { return Instance.m_LeftHand; } }
 	public static Transform rightHand { get { return Instance.m_RightHand; } }
+	public static Transform head { get { return Instance.m_Head; } }
     public static bool fire { get; private set; }
     public static bool handsBusy { get; set; }
 
@@ -18,6 +19,7 @@ public class VRPlayer : MonoBehaviourSingleton<VRPlayer>
     [Header("References")]
     [SerializeField] private Transform m_LeftHand;
     [SerializeField] private Transform m_RightHand;
+	[SerializeField] private Transform m_Head;
     [SerializeField] private Material m_FadeMaterial;
 
     private readonly Color m_Opaque = new Color(0, 0, 0, 1);

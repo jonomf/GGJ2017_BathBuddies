@@ -12,7 +12,7 @@ public class HUDController : MonoBehaviourSingleton<HUDController> {
 		Depth
 	}
 
-	public CannonMode cannonMode;
+	public static CannonMode cannonMode { get; private set; }
 
 	public GameObject teleportMarkerPrefab;
 
@@ -128,10 +128,10 @@ public class HUDController : MonoBehaviourSingleton<HUDController> {
 		RaycastHit hit;
 		if(Physics.Raycast(ray, out hit, 100)) //, LayerMask.NameToLayer("UI")))
 		{
-			if(hit.collider.tag == "Tower") {
-				Debug.Log("Found object: " + hit.collider);
-				// assume parent to Click collider is our object.
-				VRPlayer.TeleportTo(hit.collider.transform.parent);
+			var turret = hit.collider.transform.parent.GetComponent<Turret>();
+			if (turret != null)
+			{
+				VRPlayer.TeleportTo(turret.teleportPoint);
 			}
 		}
 	}
