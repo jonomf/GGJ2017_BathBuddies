@@ -48,8 +48,8 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 
 	}
 
-	[ContextMenu("Make time normal", false, -100)]
-	private void NormalizeTime()
+	[ContextMenu("Make time normal", false, 1000001)]
+	public void NormalizeTime()
 	{
 		Time.timeScale = 1f;
 	}
@@ -123,7 +123,8 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 	IEnumerator spawnWinEffect()
 	{
 		var go = GameObject.Instantiate(Resources.Load("confetti2"),InputTracking.GetLocalPosition(VRNode.Head),Quaternion.identity) as GameObject;
-		yield return new WaitForSeconds(2f);
+		Debug.Log("Spawning confetti",go);
+		yield return new WaitForSeconds(10f);
 		GameObject.Destroy(go);
 	}
 	
