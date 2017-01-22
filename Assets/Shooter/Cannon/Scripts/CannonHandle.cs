@@ -31,23 +31,15 @@ public class CannonHandle : MonoBehaviour
         }
     }
 
-	Vector3 HandPositionRelativeToHead()
-	{
-		return VRPlayer.head.InverseTransformPoint(VRPlayer.rightHand.position);
-	}
-
     IEnumerator DragHandle()
     {
 	    var lastHandPosition = HandPositionRelativeToHead();
         VRPlayer.handsBusy = true;
-	    var rootTransform = GetComponentInParent<PrefabNester>().transform;
-	    var upAxis = rootTransform.up;
-	    var rightAxis = -rootTransform.right;
         while (!Input.GetButtonUp("Fire1"))
-        {
-            m_YPivot.Rotate(upAxis, (lastHandPosition - HandPositionRelativeToHead()).x * m_RotationSpeed * 50 * Time.deltaTime);
-            m_XPivot.Rotate(rightAxis, (lastHandPosition - HandPositionRelativeToHead()).y * m_RotationSpeed * 50 * Time.deltaTime);
-            lastHandPosition = HandPositionRelativeToHead();
+		{
+			m_YPivot.Rotate(m_YPivot.up, (lastHandPosition - HandPositionRelativeToHead()).x * m_RotationSpeed * 50 * Time.deltaTime, Space.World);
+			m_XPivot.Rotate(-m_XPivot.right, (lastHandPosition - HandPositionRelativeToHead()).y * m_RotationSpeed * 50 * Time.deltaTime, Space.World);
+			lastHandPosition = HandPositionRelativeToHead();
             if (VRPlayer.fire)
             {
 				AttemptFire();
@@ -55,7 +47,12 @@ public class CannonHandle : MonoBehaviour
             yield return null;
         }
         VRPlayer.handsBusy = false;
-    }
+	}
+
+	Vector3 HandPositionRelativeToHead()
+	{
+		return VRPlayer.head.InverseTransformPoint(VRPlayer.rightHand.position);
+	}
 
 	void AttemptFire()
 	{
