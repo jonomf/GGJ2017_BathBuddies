@@ -40,7 +40,16 @@ public class AudioManager : MonoBehaviour //TODO: onValidate to make sure all so
 		enumToSoundDataMap = new Dictionary<SOUNDS, AudioToEnum>();
 		foreach (var audioToEnum in audioclips)
 		{
-			enumToSoundDataMap.Add(audioToEnum.sound,audioToEnum);
+			try
+			{
+				enumToSoundDataMap.Add(audioToEnum.sound, audioToEnum);
+			}
+			catch (Exception e)
+			{
+				Debug.LogError("Error in soundmanager sound setup:");
+				Debug.LogException(e);
+			}
+			
 		}
 	}
 
