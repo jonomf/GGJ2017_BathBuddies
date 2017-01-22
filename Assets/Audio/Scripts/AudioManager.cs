@@ -65,7 +65,8 @@ public class AudioManager : MonoBehaviour //TODO: onValidate to make sure all so
 
 	void Start()
 	{
-		Play(SOUNDS.MAIN_GAME_AUDIO);
+		Play(SOUNDS.MAIN_GAME_AUDIO, InputTracking.GetLocalPosition(VRNode.Head),false);
+		Play(SOUNDS.WAVES, InputTracking.GetLocalPosition(VRNode.Head), false);
 	}
 
 	public static void Play(SOUNDS sound) //default position is at the vr players head
