@@ -27,7 +27,7 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 		return Time.time;
 	}
 
-	[SerializeField] private List<Vector3> _debugTowerPlacements = new List<Vector3>()
+	private List<Vector3> _debugTowerPlacements = new List<Vector3>()
 	{
 		new Vector3(4.36f,1.78f,0f),
 		new Vector3(4.36f,1.78f,14.6f),
