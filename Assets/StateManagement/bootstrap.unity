@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -413,6 +413,8 @@ MonoBehaviour:
   _aiScene: {fileID: 102900000, guid: 826979932281fa24bb30745110af992e, type: 3}
   _hudScene: {fileID: 102900000, guid: 29a743b2435b14c4cbc2a0fe0a98e421, type: 3}
   _mainGameScene: {fileID: 102900000, guid: 66e9cddcdce0e49c588ad7000e1aabcb, type: 3}
+  m_VRPlayerPrefab: {fileID: 114228280128699228, guid: a248320e4232d5b4a8e09dddf7941987,
+    type: 2}
   _timeToShowGameOverScene: 3
   _highScoreInfo:
     ScoreThisRun: 0
@@ -420,4 +422,3 @@ MonoBehaviour:
   LastScore:
     ScoreThisRun: 0
     TimeAlive: 0
-  mainScenes: []

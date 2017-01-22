@@ -27,6 +27,8 @@ public class CrossGameState : MonoBehaviour
 	[SerializeField]
 	private Object _mainGameScene;
 
+    [SerializeField] private VRPlayer m_VRPlayerPrefab;
+
 	[SerializeField] private float _timeToShowGameOverScene;
 
 	[SerializeField] //for debugging sake
@@ -39,6 +41,7 @@ public class CrossGameState : MonoBehaviour
 	private void Awake()
 	{
 		mainScenes = new List<Object>() {_aiScene,_hudScene,_mainGameScene};
+	    Instantiate(m_VRPlayerPrefab.gameObject);
 		loadScene = (Object scene) => SceneManager.LoadScene(scene.name,LoadSceneMode.Additive);
 		unloadScene = (Object scene) => SceneManager.UnloadSceneAsync(scene.name);
 	}
