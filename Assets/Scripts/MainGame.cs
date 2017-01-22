@@ -29,6 +29,8 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 	public static Transform playerBulletsContainer;
     private Transform m_TowersContainer;
 
+	private GameObject m_SonarOverlayGroup;
+
 	public static float GameTime()
 	{
 		return Time.time;
@@ -58,12 +60,13 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 
 	void Start ()
 	{
+		m_SonarOverlayGroup = GameObject.FindWithTag("FlatscreenPlayer");
 		_gameStartedTime = Time.time;
         enemyBulletsContainer = new GameObject("enemy-bullets-container").transform;
 		playerBulletsContainer = new GameObject("player-bullets-container").transform;
         m_TowersContainer = new GameObject("towers-container").transform;
         VRPlayer.TeleportTo(TurretManager.startingTurret.teleportPoint);
-		
+
 		FindObjectOfType<BaseStats>().OnDie += OnBaseDied;
 
         shipsContainer = new GameObject("ships-container").transform;
@@ -89,7 +92,16 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 		if(WaveNumber >= Waves.Waves.Count)
 		{
 			TriggerWin();
+		}
+		if (m_SonarOverlayGroup == null)
 			return;
+		if (Input.GetKeyDown(KeyCode.Tab))
+		{
+			m_SonarOverlayGroup.SetActive(false);
+		}
+		else if (Input.GetKeyUp(KeyCode.Tab))
+		{
+			m_SonarOverlayGroup.SetActive(true);
 		}
 	}
 

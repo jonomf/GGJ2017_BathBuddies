@@ -8,6 +8,13 @@ using Random = UnityEngine.Random;
 
 public class CrossGameState : MonoBehaviour
 {
+	private const string k_StartGameScene = "StartGame";
+	private const string k_AISceneName = "AI";
+	private const string k_HudScene = "HUD";
+	private const string k_MainGameSceneName = "MainWorld";
+	private const string k_GameOverSceneName = "EndGame";
+	private const string k_GameStartSceneName = "StartGame";
+
     private static CrossGameState s_Instance;
     public static bool skipIntro { get { return s_Instance.m_SkipIntro; } }
 
@@ -20,16 +27,7 @@ public class CrossGameState : MonoBehaviour
 	}
 
 	//FIXME: I think you can drag scenes as assets now...
-
-	[SerializeField]
-	private Object  _gameOverScene;
-	[SerializeField]
-	private Object _gameStartScene;
-
-	[SerializeField] private Object _aiScene;
-	[SerializeField] private Object _hudScene;
-	[SerializeField]
-	private Object _mainGameScene;
+	
 
     [SerializeField] private VRPlayer m_VRPlayerPrefab;
 	[SerializeField] private AudioManager m_AudioManagerPrefab;
@@ -40,22 +38,21 @@ public class CrossGameState : MonoBehaviour
 	private ScoreInfo _highScoreInfo = new ScoreInfo();
 	public ScoreInfo LastScore = new ScoreInfo();
 	[NonSerialized]
-	public List<Object> mainScenes;
+	public List<string> mainScenes;
 	private Action<Object> loadScene; //lol
 	private Action<Object> unloadScene;  
 	private void Awake()
 	{
 	    s_Instance = this;
-		mainScenes = new List<Object>() {_aiScene,_hudScene,_mainGameScene};
-	    var player = Instantiate(m_VRPlayerPrefab.gameObject).transform;
+		mainScenes = new List<string>() {k_AISceneName,k_HudScene,k_MainGameSceneName};
+
+		var player = Instantiate(m_VRPlayerPrefab.gameObject).transform;
 		Instantiate(m_AudioManagerPrefab.gameObject, player);
-		loadScene = (Object scene) => SceneManager.LoadScene(scene.name,LoadSceneMode.Additive);
-		unloadScene = (Object scene) => SceneManager.UnloadSceneAsync(scene.name);
 	}
 
 	private void Start()
 	{
-		loadScene(_gameStartScene);
+		SceneManager.LoadScene(k_StartGameScene, LoadSceneMode.Additive);
 	}
 
 	public ScoreInfo GetHighScoreInfo()
@@ -92,32 +89,42 @@ public class CrossGameState : MonoBehaviour
 	{
 		foreach (var scene in mainScenes)
 		{
-			if(load)
+			if (load)
 			{
-				loadScene(scene);
+				LoadScene(scene);
 			} else
 			{
-				unloadScene(scene);
+				UnloadScene(scene);
 			}
 		}
+	}
+
+	void LoadScene(string sceneName)
+	{
+		SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+	}
+
+	void UnloadScene(string sceneName)
+	{
+		SceneManager.UnloadScene(sceneName);
 	}
 	IEnumerator showScoreAfterwards(ScoreInfo scoreAfterPlaying)
 	{
 		MainSceneLoadOrUnload(load: false);
-		loadScene(_gameOverScene);
+		LoadScene(k_GameOverSceneName);
 		yield return null; //I don't think this is needed anymore as a delay before getting gameoverscreen reference
 //#warning "re-enable communication to scoreToShow"
 //NOTE: the Endgamecontroller polls this, not the other way around
 		//GameObject.FindObjectOfType<EndGameController>().ScoreToShow(scoreAfterPlaying);
 		//The scene should read from this, I suppose
 		yield return new WaitForSeconds(_timeToShowGameOverScene);
-		unloadScene(_gameOverScene);
-		loadScene(_gameStartScene);
+		UnloadScene(k_GameOverSceneName);
+		LoadScene(k_GameStartSceneName);
 	}
 	[ContextMenu("Start game")]
 	public void OnStartNewGame()
 	{
-		unloadScene(_gameStartScene);
+		SceneManager.UnloadSceneAsync(k_StartGameScene);
 		MainSceneLoadOrUnload(load:true);  //NOTE: push/pop sets
 	}
 
