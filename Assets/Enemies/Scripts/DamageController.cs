@@ -28,6 +28,15 @@ public class DamageController : MonoBehaviour {
 		projectileScript.target = target;
 
         projectile.transform.parent = MainGame.enemyBulletsContainer;
+
+        if(attack.fireEffect != null)
+        {
+            GameObject effect = Instantiate(attack.fireEffect);
+            //effect.transform.LookAt()
+            effect.transform.position = attacker.transform.position;
+            Destroy(effect, 2.0f);
+        }
+  
         return attack.attackCooldown;
     }
 

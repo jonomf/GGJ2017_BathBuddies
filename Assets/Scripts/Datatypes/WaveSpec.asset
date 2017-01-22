@@ -16,7 +16,7 @@ MonoBehaviour:
     EnemyWeights:
     - spawnCorner: 0
       prefab: {fileID: 1751762888535412, guid: 787fb5c06d3f59245af3b9ab2e4ed20a, type: 2}
-      NumEnemies: 10
+      NumEnemies: 1
       rampUpOfEnemiesInCurve:
         serializedVersion: 2
         m_Curve:
@@ -32,6 +32,58 @@ MonoBehaviour:
           inSlope: 1
           outSlope: 1
           tangentMode: 34
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      underwater: 0
+    DurationOfWave: 1
+    blockUntilAllEnemiesAreDead: 1
+  - StartTime_s: 0
+    EnemyWeights:
+    - spawnCorner: 1
+      prefab: {fileID: 1621068116860610, guid: dacf766e9443d4d09a1dbe514dd84421, type: 2}
+      NumEnemies: 1
+      rampUpOfEnemiesInCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 2
+          time: 0
+          value: 0
+          inSlope: 1
+          outSlope: 1
+          tangentMode: 34
+        - serializedVersion: 2
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 1
+          tangentMode: 34
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      underwater: 1
+    DurationOfWave: 1
+    blockUntilAllEnemiesAreDead: 1
+  - StartTime_s: 0
+    EnemyWeights:
+    - spawnCorner: 3
+      prefab: {fileID: 1751762888535412, guid: 787fb5c06d3f59245af3b9ab2e4ed20a, type: 2}
+      NumEnemies: 1
+      rampUpOfEnemiesInCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 2
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+        - serializedVersion: 2
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 0
@@ -44,47 +96,69 @@ MonoBehaviour:
         m_Curve:
         - serializedVersion: 2
           time: 0
-          value: 0
-          inSlope: 1
-          outSlope: 1
+          value: 0.014475763
+          inSlope: 1.9719174
+          outSlope: 1.9719174
           tangentMode: 34
         - serializedVersion: 2
-          time: 1
+          time: 0.49977967
           value: 1
-          inSlope: 1
-          outSlope: 1
+          inSlope: 1.9719174
+          outSlope: 1.9719174
           tangentMode: 34
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 0
       underwater: 1
-    DurationOfWave: 60
+    DurationOfWave: 20
     blockUntilAllEnemiesAreDead: 1
   - StartTime_s: 0
     EnemyWeights:
     - spawnCorner: 1
       prefab: {fileID: 1751762888535412, guid: 787fb5c06d3f59245af3b9ab2e4ed20a, type: 2}
-      NumEnemies: 10
+      NumEnemies: 1
       rampUpOfEnemiesInCurve:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 2
           time: 0
-          value: 0
-          inSlope: 1
-          outSlope: 1
-          tangentMode: 34
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
         - serializedVersion: 2
           time: 1
           value: 1
-          inSlope: 1
-          outSlope: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      underwater: 0
+    - spawnCorner: 0
+      prefab: {fileID: 1751762888535412, guid: 787fb5c06d3f59245af3b9ab2e4ed20a, type: 2}
+      NumEnemies: 1
+      rampUpOfEnemiesInCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 2
+          time: 0
+          value: 0.014475763
+          inSlope: 1.9719174
+          outSlope: 1.9719174
+          tangentMode: 34
+        - serializedVersion: 2
+          time: 0.49977967
+          value: 1
+          inSlope: 1.9719174
+          outSlope: 1.9719174
           tangentMode: 34
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 0
       underwater: 0
-    - spawnCorner: 1
+    - spawnCorner: 3
       prefab: {fileID: 1621068116860610, guid: dacf766e9443d4d09a1dbe514dd84421, type: 2}
       NumEnemies: 1
       rampUpOfEnemiesInCurve:
@@ -92,19 +166,417 @@ MonoBehaviour:
         m_Curve:
         - serializedVersion: 2
           time: 0
-          value: 0
-          inSlope: 1
-          outSlope: 1
+          value: 0.014475763
+          inSlope: 1.9719174
+          outSlope: 1.9719174
           tangentMode: 34
         - serializedVersion: 2
-          time: 1
+          time: 0.49977967
           value: 1
-          inSlope: 1
-          outSlope: 1
+          inSlope: 1.9719174
+          outSlope: 1.9719174
           tangentMode: 34
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 0
       underwater: 1
+    - spawnCorner: 2
+      prefab: {fileID: 1621068116860610, guid: dacf766e9443d4d09a1dbe514dd84421, type: 2}
+      NumEnemies: 1
+      rampUpOfEnemiesInCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 2
+          time: 0
+          value: 0.014475763
+          inSlope: 1.2860332
+          outSlope: 1.2860332
+          tangentMode: 34
+        - serializedVersion: 2
+          time: 0.7663288
+          value: 1
+          inSlope: 1.2860332
+          outSlope: 1.2860332
+          tangentMode: 34
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      underwater: 1
+    DurationOfWave: 45
+    blockUntilAllEnemiesAreDead: 1
+  - StartTime_s: 0
+    EnemyWeights:
+    - spawnCorner: 3
+      prefab: {fileID: 1751762888535412, guid: 787fb5c06d3f59245af3b9ab2e4ed20a, type: 2}
+      NumEnemies: 2
+      rampUpOfEnemiesInCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 2
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+        - serializedVersion: 2
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      underwater: 0
+    - spawnCorner: 0
+      prefab: {fileID: 1621068116860610, guid: dacf766e9443d4d09a1dbe514dd84421, type: 2}
+      NumEnemies: 2
+      rampUpOfEnemiesInCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 2
+          time: 0
+          value: 0.014475763
+          inSlope: 1.9719174
+          outSlope: 1.9719174
+          tangentMode: 34
+        - serializedVersion: 2
+          time: 0.49977967
+          value: 1
+          inSlope: 1.9719174
+          outSlope: 1.9719174
+          tangentMode: 34
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      underwater: 1
+    - spawnCorner: 0
+      prefab: {fileID: 1621068116860610, guid: dacf766e9443d4d09a1dbe514dd84421, type: 2}
+      NumEnemies: 1
+      rampUpOfEnemiesInCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 2
+          time: 0
+          value: 0.014475763
+          inSlope: 1.9719174
+          outSlope: 1.9719174
+          tangentMode: 34
+        - serializedVersion: 2
+          time: 0.49977967
+          value: 1
+          inSlope: 1.9719174
+          outSlope: 1.9719174
+          tangentMode: 34
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      underwater: 1
+    - spawnCorner: 0
+      prefab: {fileID: 1621068116860610, guid: dacf766e9443d4d09a1dbe514dd84421, type: 2}
+      NumEnemies: 1
+      rampUpOfEnemiesInCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 2
+          time: 0
+          value: 0.014475763
+          inSlope: 1.9719174
+          outSlope: 1.9719174
+          tangentMode: 34
+        - serializedVersion: 2
+          time: 0.49977967
+          value: 1
+          inSlope: 1.9719174
+          outSlope: 1.9719174
+          tangentMode: 34
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      underwater: 1
+    - spawnCorner: 0
+      prefab: {fileID: 1621068116860610, guid: dacf766e9443d4d09a1dbe514dd84421, type: 2}
+      NumEnemies: 1
+      rampUpOfEnemiesInCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 2
+          time: 0
+          value: 0.014475763
+          inSlope: 1.9719174
+          outSlope: 1.9719174
+          tangentMode: 34
+        - serializedVersion: 2
+          time: 0.49977967
+          value: 1
+          inSlope: 1.9719174
+          outSlope: 1.9719174
+          tangentMode: 34
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      underwater: 1
+    - spawnCorner: 0
+      prefab: {fileID: 1751762888535412, guid: 787fb5c06d3f59245af3b9ab2e4ed20a, type: 2}
+      NumEnemies: 3
+      rampUpOfEnemiesInCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 2
+          time: 0
+          value: 0.014475763
+          inSlope: 1.9719174
+          outSlope: 1.9719174
+          tangentMode: 34
+        - serializedVersion: 2
+          time: 0.49977967
+          value: 1
+          inSlope: 1.9719174
+          outSlope: 1.9719174
+          tangentMode: 34
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      underwater: 0
     DurationOfWave: 60
+    blockUntilAllEnemiesAreDead: 1
+  - StartTime_s: 0
+    EnemyWeights:
+    - spawnCorner: 3
+      prefab: {fileID: 1751762888535412, guid: 787fb5c06d3f59245af3b9ab2e4ed20a, type: 2}
+      NumEnemies: 1
+      rampUpOfEnemiesInCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 2
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+        - serializedVersion: 2
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      underwater: 0
+    - spawnCorner: 0
+      prefab: {fileID: 1621068116860610, guid: dacf766e9443d4d09a1dbe514dd84421, type: 2}
+      NumEnemies: 1
+      rampUpOfEnemiesInCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 2
+          time: 0
+          value: 0.014475763
+          inSlope: 1.9719174
+          outSlope: 1.9719174
+          tangentMode: 34
+        - serializedVersion: 2
+          time: 0.49977967
+          value: 1
+          inSlope: 1.9719174
+          outSlope: 1.9719174
+          tangentMode: 34
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      underwater: 1
+    DurationOfWave: 20
+    blockUntilAllEnemiesAreDead: 1
+  - StartTime_s: 0
+    EnemyWeights:
+    - spawnCorner: 3
+      prefab: {fileID: 1751762888535412, guid: 787fb5c06d3f59245af3b9ab2e4ed20a, type: 2}
+      NumEnemies: 1
+      rampUpOfEnemiesInCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 2
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+        - serializedVersion: 2
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      underwater: 0
+    - spawnCorner: 0
+      prefab: {fileID: 1621068116860610, guid: dacf766e9443d4d09a1dbe514dd84421, type: 2}
+      NumEnemies: 1
+      rampUpOfEnemiesInCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 2
+          time: 0
+          value: 0.014475763
+          inSlope: 1.9719174
+          outSlope: 1.9719174
+          tangentMode: 34
+        - serializedVersion: 2
+          time: 0.49977967
+          value: 1
+          inSlope: 1.9719174
+          outSlope: 1.9719174
+          tangentMode: 34
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      underwater: 1
+    DurationOfWave: 20
+    blockUntilAllEnemiesAreDead: 1
+  - StartTime_s: 0
+    EnemyWeights:
+    - spawnCorner: 3
+      prefab: {fileID: 1751762888535412, guid: 787fb5c06d3f59245af3b9ab2e4ed20a, type: 2}
+      NumEnemies: 1
+      rampUpOfEnemiesInCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 2
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+        - serializedVersion: 2
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      underwater: 0
+    - spawnCorner: 0
+      prefab: {fileID: 1621068116860610, guid: dacf766e9443d4d09a1dbe514dd84421, type: 2}
+      NumEnemies: 1
+      rampUpOfEnemiesInCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 2
+          time: 0
+          value: 0.014475763
+          inSlope: 1.9719174
+          outSlope: 1.9719174
+          tangentMode: 34
+        - serializedVersion: 2
+          time: 0.49977967
+          value: 1
+          inSlope: 1.9719174
+          outSlope: 1.9719174
+          tangentMode: 34
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      underwater: 1
+    DurationOfWave: 20
+    blockUntilAllEnemiesAreDead: 1
+  - StartTime_s: 0
+    EnemyWeights:
+    - spawnCorner: 3
+      prefab: {fileID: 1751762888535412, guid: 787fb5c06d3f59245af3b9ab2e4ed20a, type: 2}
+      NumEnemies: 1
+      rampUpOfEnemiesInCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 2
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+        - serializedVersion: 2
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      underwater: 0
+    - spawnCorner: 0
+      prefab: {fileID: 1621068116860610, guid: dacf766e9443d4d09a1dbe514dd84421, type: 2}
+      NumEnemies: 1
+      rampUpOfEnemiesInCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 2
+          time: 0
+          value: 0.014475763
+          inSlope: 1.9719174
+          outSlope: 1.9719174
+          tangentMode: 34
+        - serializedVersion: 2
+          time: 0.49977967
+          value: 1
+          inSlope: 1.9719174
+          outSlope: 1.9719174
+          tangentMode: 34
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      underwater: 1
+    DurationOfWave: 20
+    blockUntilAllEnemiesAreDead: 1
+  - StartTime_s: 0
+    EnemyWeights:
+    - spawnCorner: 3
+      prefab: {fileID: 1751762888535412, guid: 787fb5c06d3f59245af3b9ab2e4ed20a, type: 2}
+      NumEnemies: 1
+      rampUpOfEnemiesInCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 2
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+        - serializedVersion: 2
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      underwater: 0
+    - spawnCorner: 0
+      prefab: {fileID: 1621068116860610, guid: dacf766e9443d4d09a1dbe514dd84421, type: 2}
+      NumEnemies: 1
+      rampUpOfEnemiesInCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 2
+          time: 0
+          value: 0.014475763
+          inSlope: 1.9719174
+          outSlope: 1.9719174
+          tangentMode: 34
+        - serializedVersion: 2
+          time: 0.49977967
+          value: 1
+          inSlope: 1.9719174
+          outSlope: 1.9719174
+          tangentMode: 34
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      underwater: 1
+    DurationOfWave: 20
     blockUntilAllEnemiesAreDead: 1
