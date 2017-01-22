@@ -114,16 +114,16 @@ Material:
       second: 1
     - first:
         name: _RandomHeight
-      second: 0.25
+      second: 0.5
     - first:
         name: _RandomSpeed
-      second: 0.13
+      second: 0.75
     - first:
         name: _ScanTrailAngle
       second: 1
     - first:
         name: _Shininess
-      second: 1
+      second: 0.8
     - first:
         name: _SmoothnessTextureChannel
       second: 0
@@ -138,13 +138,13 @@ Material:
       second: 0
     - first:
         name: _WaveHeight
-      second: 0.92
+      second: 0.5
     - first:
         name: _WaveLength
       second: 0.75
     - first:
         name: _WaveSpeed
-      second: 0.75
+      second: 0.5
     - first:
         name: _ZWrite
       second: 1
