@@ -25,6 +25,13 @@ public class BaseStats : Stats {
             {
 	            if(Hit != null) Hit(gameObject, attack);
 	            DestroyObject(collision.gameObject);
+                if (attack.hitEffect != null)
+                {
+                    GameObject effect = Instantiate(attack.hitEffect);
+                    effect.transform.position = collision.transform.position;
+                    Destroy(effect, 2.0f);
+                }
+
             }
         }
     }
