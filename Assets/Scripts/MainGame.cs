@@ -31,43 +31,15 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 	{
 		return Time.time;
 	}
-
-	private List<Vector3> _debugTowerPlacements = new List<Vector3>()
-	{
-		new Vector3(4.36f,1.78f,0f),
-		new Vector3(4.36f,1.78f,14.6f),
-		new Vector3(4.36f,1.78f,-24.2f),
-		new Vector3(21.7f,1.78f,-3.77f),
-	};
-
+	
 	private float _gameStartedTime;
-	// Use this for initialization
-	Transform SetupTurrets()
-	{
-		var firstTurret = Object.FindObjectOfType<Turret>();
-	    Transform firstTurretTeleportPoint = null;
-	    if (firstTurret == null)
-	    {
-	        foreach (var turretPlacement in _debugTowerPlacements)
-	        {
-	            var turret = Instantiate(m_TurretPrefab.gameObject, turretPlacement, Quaternion.identity)
-                    .GetComponent<Turret>();
-	            turret.transform.parent = m_TowersContainer;
-	            if (firstTurret == null)
-	            {
-	                firstTurretTeleportPoint = turret.teleportPoint;
-	            }
-	        }
-	    }
-	    return firstTurretTeleportPoint;
-	}
+
 	void Start ()
 	{
 		_gameStartedTime = Time.time;
         bulletsContainer = new GameObject("bullets-container").transform;
         m_TowersContainer = new GameObject("towers-container").transform;
-		var firstTurretTelePoint = SetupTurrets();
-        VRPlayer.TeleportTo(firstTurretTelePoint);
+        VRPlayer.TeleportTo(TurretManager.startingTurret.teleportPoint);
 		
 		FindObjectOfType<BaseStats>().OnDie += OnBaseDied;
 
