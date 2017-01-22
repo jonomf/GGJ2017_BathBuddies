@@ -8,10 +8,15 @@ public class VRPlayer : MonoBehaviour
 
     public static Transform leftHand { get { return s_Instance.m_LeftHand; } }
     public static Transform rightHand { get { return s_Instance.m_RightHand; } }
+    public static bool fire { get; private set; }
+    public static bool handsBusy { get; set; }
 
     [Header("Settings")]
     [SerializeField] private ProjectileWeapon m_ActiveWeapon;
     [SerializeField] private float m_TeleportFadeDuration = 0.5f;
+    [Header("Input business")]
+    [SerializeField] private float m_TriggerOnThreshhold = 0.6f;
+    [SerializeField] private float m_TriggerOffThreshhold = 0.4f;
     [Header("References")]
     [SerializeField] private Transform m_LeftHand;
     [SerializeField] private Transform m_RightHand;
@@ -27,6 +32,7 @@ public class VRPlayer : MonoBehaviour
 
     private readonly Color m_Opaque = new Color(0, 0, 0, 1);
     private readonly Color m_Invisible = new Color(0, 0, 0, 0);
+    private bool m_TriggerConsumed;
 
     void Awake()
     {
@@ -40,7 +46,7 @@ public class VRPlayer : MonoBehaviour
         m_LeftHand.localRotation = InputTracking.GetLocalRotation(VRNode.LeftHand);
         m_RightHand.localPosition = InputTracking.GetLocalPosition(VRNode.RightHand);
         m_RightHand.localRotation = InputTracking.GetLocalRotation(VRNode.RightHand);
-        if (Input.GetButtonDown("Fire2"))
+        if (!handsBusy && fire)
         {
             m_ActiveWeapon.Fire(m_RightHand.position, m_RightHand.forward);
         }
@@ -56,6 +62,20 @@ public class VRPlayer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             TeleportTo(m_TeleSpot3);
+        }
+
+        if (fire)
+        {
+            fire = false;
+        }
+        if (Input.GetAxis("Trigger") > m_TriggerOnThreshhold && !m_TriggerConsumed)
+        {
+            m_TriggerConsumed = true;
+            fire = true;
+        }
+        else if (Input.GetAxis("Trigger") < m_TriggerOffThreshhold && m_TriggerConsumed)
+        {
+            m_TriggerConsumed = false;
         }
     }
 
