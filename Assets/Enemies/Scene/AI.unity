@@ -1975,6 +1975,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 114718988124055556, guid: efab05445907147e09af1dadb4aa2a2d,
+        type: 2}
+      propertyPath: SpawnPointsAir.Array.data[0]
+      value: 
+      objectReference: {fileID: 777353776}
+    - target: {fileID: 114718988124055556, guid: efab05445907147e09af1dadb4aa2a2d,
+        type: 2}
+      propertyPath: SpawnPointsUnderWater.Array.data[0]
+      value: 
+      objectReference: {fileID: 881514861}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: efab05445907147e09af1dadb4aa2a2d, type: 2}
   m_IsPrefabParent: 0
