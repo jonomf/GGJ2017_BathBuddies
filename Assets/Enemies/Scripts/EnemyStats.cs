@@ -22,7 +22,13 @@ public class EnemyStats : Stats
 
     private void OnCollisionEnter(Collision collision)
     {
-        AttackType attack = collision.gameObject.GetComponent<Projectile>().attack;
+        Projectile projectile = collision.gameObject.GetComponent<Projectile>();
+        AttackType attack = null;
+        if (projectile != null)
+        {
+            attack = projectile.attack;
+        }
+
         if (attack != null && attack.originator == enemyProjectileTag)
         {
             Hit(gameObject, attack);
