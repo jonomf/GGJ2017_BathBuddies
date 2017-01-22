@@ -66,7 +66,7 @@ public class CannonHandle : MonoBehaviour
 				}
 				else
 				{
-					AudioManager.outOfAmmo.Play();
+					AudioManager.Play(SOUNDS.OUT_OF_AMMO);
 				}
 				break;
 			case HUDController.CannonMode.Depth:
@@ -77,7 +77,7 @@ public class CannonHandle : MonoBehaviour
 				}
 				else
 				{
-					AudioManager.outOfAmmo.Play();
+					AudioManager.Play(SOUNDS.OUT_OF_AMMO);
 				}
 				break;
 		}
