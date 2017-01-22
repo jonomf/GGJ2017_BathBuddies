@@ -14,8 +14,8 @@ MonoBehaviour:
   damage: 10
   range: 5
   originator: EnemyProjectile
-  projectile: {fileID: 0}
+  projectile: {fileID: 1905819681185128, guid: 76146d5e3262eca4e9d6a6c4ced41574, type: 2}
   fireEffect: {fileID: 0}
   hitEffect: {fileID: 0}
-  attackForce: 0
-  attackCooldown: 0
+  attackForce: 100
+  attackCooldown: 5
