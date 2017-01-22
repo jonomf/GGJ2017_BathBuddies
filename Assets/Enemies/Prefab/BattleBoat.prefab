@@ -163,7 +163,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1931712646070292}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -6.12, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4471355129811866}
@@ -328,8 +328,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.4822922, y: 1.8300858, z: 6.276966}
+  m_Center: {x: -0.02964592, y: 0.9486675, z: -0.02964592}
 --- !u!95 &95363619848304136
 Animator:
   serializedVersion: 3
@@ -429,7 +429,7 @@ MonoBehaviour:
   damageController: {fileID: 0}
   rangeVolume: {fileID: 114397357984556852}
   curHealth: 5
-  enemyProjectileTag: player
+  enemyProjectileTag: player_cannon
   attackDelayTime: 0.3
   fireTransform: {fileID: 1232955759459302}
   animControl: {fileID: 95363619848304136}
