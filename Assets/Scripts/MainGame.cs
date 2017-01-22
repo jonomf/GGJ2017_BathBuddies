@@ -33,7 +33,7 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 		return Time.time;
 	}
 
-	[SerializeField] private float _multipleToSpeedUpTimeBy = 10f;
+	[SerializeField] private float _multipleToSpeedUpTimeBy = 3f;
 
 	[ContextMenu("Make invincible, kill current wave, speed up time")]
 	private void TestDesign()

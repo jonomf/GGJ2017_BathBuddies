@@ -16,6 +16,6 @@ MonoBehaviour:
   originator: EnemyProjectile
   projectile: {fileID: 1905819681185128, guid: 76146d5e3262eca4e9d6a6c4ced41574, type: 2}
   fireEffect: {fileID: 0}
-  hitEffect: {fileID: 0}
+  hitEffect: {fileID: 120410, guid: 6636b3078b0905e489f698a11b7a6b6b, type: 2}
   attackForce: 100
   attackCooldown: 10
