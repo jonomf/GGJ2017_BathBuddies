@@ -13,6 +13,7 @@ public class VRPlayer : MonoBehaviourSingleton<VRPlayer>
     [Header("Settings")]
     [SerializeField] private ProjectileWeapon m_ActiveWeapon;
     [SerializeField] private float m_TeleportFadeDuration = 0.5f;
+	[SerializeField] private bool m_PistolEnabled;
     [Header("Input business")]
     [SerializeField] private float m_TriggerOnThreshhold = 0.6f;
     [SerializeField] private float m_TriggerOffThreshhold = 0.4f;
@@ -37,11 +38,11 @@ public class VRPlayer : MonoBehaviourSingleton<VRPlayer>
         m_LeftHand.localRotation = InputTracking.GetLocalRotation(VRNode.LeftHand);
         m_RightHand.localPosition = InputTracking.GetLocalPosition(VRNode.RightHand);
         m_RightHand.localRotation = InputTracking.GetLocalRotation(VRNode.RightHand);
-        if (!handsBusy && fire)
+        if (m_PistolEnabled && !handsBusy && fire)
         {
             m_ActiveWeapon.Fire(m_RightHand.position, m_RightHand.forward);
-			//AudioManager.pistolShot.Play();
-        }
+			AudioManager.Play(SOUNDS.PISTOL_SHOT);
+		}
 
         if (fire)
         {
