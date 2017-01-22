@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class HUDController : MonoBehaviourSingleton<HUDController> {
 
@@ -25,8 +26,8 @@ public class HUDController : MonoBehaviourSingleton<HUDController> {
 		Debug.Log("HUD MovedPlayer");
 	}
 
-	public void OnMoveToggle(bool value) {
-		Debug.Log("OnMoveToggle: " + value);
+	public void OnReload() {
+		//Debug.Log("OnMoveToggle: " + value);
 	}
 	public void OnCannonToggle(bool value) {
 		Debug.Log("OnCannonToggle: " + value);
