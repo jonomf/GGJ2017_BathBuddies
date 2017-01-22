@@ -42,9 +42,10 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 
 	private float _gameStartedTime;
 	// Use this for initialization
-	Turret SetupTurrets()
+	Transform SetupTurrets()
 	{
 		var firstTurret = Object.FindObjectOfType<Turret>();
+	    Transform firstTurretTeleportPoint = null;
 	    if (firstTurret == null)
 	    {
 	        foreach (var turretPlacement in _debugTowerPlacements)
@@ -54,19 +55,19 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 	            turret.transform.parent = m_TowersContainer;
 	            if (firstTurret == null)
 	            {
-	                firstTurret = turret;
+	                firstTurretTeleportPoint = turret.teleportPoint;
 	            }
 	        }
 	    }
-	    return firstTurret;
+	    return firstTurretTeleportPoint;
 	}
 	void Start ()
 	{
 		_gameStartedTime = Time.time;
         bulletsContainer = new GameObject("bullets-container").transform;
         m_TowersContainer = new GameObject("towers-container").transform;
-		var firstTurret = SetupTurrets();
-        VRPlayer.TeleportTo(firstTurret.transform);
+		var firstTurretTelePoint = SetupTurrets();
+        VRPlayer.TeleportTo(firstTurretTelePoint);
 		
 		FindObjectOfType<BaseStats>().OnDie += OnBaseDied;
 
