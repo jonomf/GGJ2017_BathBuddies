@@ -192,6 +192,8 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 				Destroy(projectile.gameObject);
 			//Debug.Log("TriggerLose Destroying:" +stats.gameObject);
 		}
+		//stopping coroutine by string name. Not awesome
+		StopCoroutine("TriggerWave");
 		GameObject.FindObjectOfType<CrossGameState>().OnGameOver(new CrossGameState.ScoreInfo() {ScoreThisRun = WaveNumber ,TimeAlive = Time.time - _gameStartedTime});
 		// todo;
 	}
