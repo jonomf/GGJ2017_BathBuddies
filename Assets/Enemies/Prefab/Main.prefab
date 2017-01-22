@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4446873645416534}
   - component: {fileID: 114718988124055556}
+  - component: {fileID: 114797020549715268}
   m_Layer: 0
   m_Name: Main
   m_TagString: Untagged
@@ -51,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 652e08227f15742d9bff30ed38724983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TurretPrefab: {fileID: 114104408540362046, guid: 96ada484b539cf34f8fdc1c2ad929a21,
+  m_TurretPrefab: {fileID: 114580721995435362, guid: b3cc3537e1c2787448f960a3b66bf54f,
     type: 2}
   Waves:
   - StartTime_s: 0
@@ -107,3 +108,14 @@ MonoBehaviour:
   - {x: 4.36, y: 1.78, z: 14.6}
   - {x: 4.36, y: 1.78, z: -24.2}
   - {x: 21.7, y: 1.78, z: -3.77}
+--- !u!114 &114797020549715268
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1114383542583722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f15db2aa7ac24e6428486321a6165c8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

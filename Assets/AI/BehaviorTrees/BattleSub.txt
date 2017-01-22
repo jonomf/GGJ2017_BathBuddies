@@ -1,0 +1,1 @@
+<behaviortree version="1.1" repeatuntil="" name="BattleSub" debugbreak="False"><random repeatuntil="" name="root" debugbreak="False"><move weight="" turnspeed="" repeatuntil="" name="move" movetarget="&quot;sn1&quot;" movespeed="2" facetarget="" debugbreak="False" closeenoughdistance="20" closeenoughangle=""></move></random></behaviortree>
