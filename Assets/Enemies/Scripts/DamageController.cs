@@ -21,6 +21,7 @@ public class DamageController : MonoBehaviour {
         Vector3 directionalVector = (target.transform.position - projectile.transform.position).normalized;
         rb.AddForce(directionalVector * attack.attackForce);
         projectile.GetComponent<Projectile>().attack = attack;
+        projectile.transform.parent = MainGame.bulletsContainer;
         return attack.attackCooldown;
     }
 

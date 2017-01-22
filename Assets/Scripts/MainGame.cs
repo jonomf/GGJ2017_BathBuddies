@@ -22,6 +22,11 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 	public List<GameObject> SpawnPointsAir = new List<GameObject>();
 	public List<GameObject> SpawnPointsUnderWater = new List<GameObject>();
 
+    private Transform shipsContainer;
+
+    public static Transform bulletsContainer;
+    private Transform m_TowersContainer;
+
 	public static float GameTime()
 	{
 		return Time.time;
@@ -44,9 +49,9 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 	    {
 	        foreach (var turretPlacement in _debugTowerPlacements)
 	        {
-	            var turret =
-	                Object.Instantiate(m_TurretPrefab.gameObject, turretPlacement, Quaternion.identity)
-	                    .GetComponent<Turret>();
+	            var turret = Instantiate(m_TurretPrefab.gameObject, turretPlacement, Quaternion.identity)
+                    .GetComponent<Turret>();
+	            turret.transform.parent = m_TowersContainer;
 	            if (firstTurret == null)
 	            {
 	                firstTurret = turret;
@@ -58,10 +63,14 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 	void Start ()
 	{
 		_gameStartedTime = Time.time;
+        bulletsContainer = new GameObject("bullets-container").transform;
+        m_TowersContainer = new GameObject("towers-container").transform;
 		var firstTurret = SetupTurrets();
         VRPlayer.TeleportTo(firstTurret.transform);
 		
-		GameObject.FindObjectOfType<BaseStats>().OnDie += OnBaseDied;
+		FindObjectOfType<BaseStats>().OnDie += OnBaseDied;
+
+        shipsContainer = new GameObject("ships-container").transform;
 	}
 
 	private void OnBaseDied(Stats stats)
@@ -108,7 +117,7 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 		}
 
 		var randomPos = RandomEx.InsideBounds(spawnBounds.bounds);
-		GameObject.Instantiate( spec.prefab, randomPos, Quaternion.identity);
+		Instantiate( spec.prefab, randomPos, Quaternion.identity).transform.parent = shipsContainer;
 	}
 
 	void TriggerNextWave()
