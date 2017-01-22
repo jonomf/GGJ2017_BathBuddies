@@ -17,7 +17,7 @@ public abstract class Stats : MonoBehaviour {
     public GameObject fireTransform = null;
     public Animator animControl = null;
     public GameObject deathEffect = null;
-   
+    public SOUNDS deathEffectSound = SOUNDS.NO_SOUND;
     // Use this for initialization
     protected virtual void Start ()
     {
@@ -95,6 +95,10 @@ public abstract class Stats : MonoBehaviour {
             GameObject effect = Instantiate(deathEffect);
             effect.transform.position = gameObject.transform.position;
             Destroy(effect, 3.0f);
+        }
+        if(deathEffectSound != SOUNDS.NO_SOUND)
+        {
+            AudioManager.Play(deathEffectSound, gameObject.transform.position);
         }
 	    if(OnDie != null)
 	    {

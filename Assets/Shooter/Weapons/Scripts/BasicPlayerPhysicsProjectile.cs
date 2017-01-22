@@ -11,7 +11,7 @@ public class BasicPlayerPhysicsProjectile : ProjectileWeapon
     public override void Fire(Vector3 position, Vector3 direction)
     {
         var rb = Instantiate(m_Projectile.gameObject, position, Quaternion.LookRotation(direction)).GetComponent<Rigidbody>();
-        rb.AddForce(rb.transform.forward * m_Power);
+        rb.AddForce(direction * m_Power);
 	    rb.transform.parent = MainGame.playerBulletsContainer;
     }
 }

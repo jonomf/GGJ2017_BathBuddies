@@ -7,12 +7,21 @@ using UnityEngine.VR;
 using Random = UnityEngine.Random;
 
 public enum SOUNDS {
-	OUT_OF_AMMO,
+    NO_SOUND,
+    OUT_OF_AMMO,
 	PISTOL_SHOT,
 	CANNON_SHOT,
 	EXPLOSION_BIG,
 	EXPLOSION_SMALL,
 	MAIN_GAME_AUDIO,
+    DEPTH_CHARGE_DROP,
+    BASE_EXPLOSION,
+    SUB_EXPLOSION,
+    WAVES,
+    CANNON_EXPLOSION
+
+    
+    
 }
 
 [Serializable]
@@ -23,6 +32,7 @@ public class AudioToEnum
 	//todo: frequency and volume
 	public float frequencyVariance = 0.2f;
 	public float volumeVariance = 0.2f;
+    public float volume = 1.0f;
 }
 public class AudioManager : MonoBehaviour //TODO: onValidate to make sure all sounds are set
 {
@@ -63,23 +73,31 @@ public class AudioManager : MonoBehaviour //TODO: onValidate to make sure all so
 		Play(sound, InputTracking.GetLocalPosition(VRNode.Head));
 	}
 
-	public static void Play(SOUNDS sound,Vector3 pointToPlayAt,bool killWhenDone = true) {
-		try
-		{
+	public static void Play(SOUNDS sound, Vector3 pointToPlayAt, bool killWhenDone = true) {
+		try {
 			var clipInfo = s_Instance.enumToSoundDataMap[sound];
 			var tmpAudioSource = Instantiate(s_Instance.m_templateAudio) as AudioSource;
 			tmpAudioSource.transform.position = pointToPlayAt;
 			tmpAudioSource.clip = clipInfo.clip;
-			tmpAudioSource.volume += Random.Range(-1*clipInfo.volumeVariance, 0f);
+			tmpAudioSource.volume += Random.Range(-1 * clipInfo.volumeVariance, 0f);
 			tmpAudioSource.pitch += Random.Range(-1 * clipInfo.frequencyVariance, clipInfo.frequencyVariance);
 			tmpAudioSource.Play();
 			if(killWhenDone)
 				s_Instance.StartCoroutine(s_Instance.killWhenDone(tmpAudioSource));
+			else
+				s_Instance.StartCoroutine(s_Instance.trackVRHeadset(tmpAudioSource));
 		}
 		catch(Exception e) {
 			Debug.LogWarning("Sound play error:" + e.Message);
 		}
 
+	}
+
+	public IEnumerator trackVRHeadset(AudioSource source) {
+		while(source != null) {
+			source.transform.position = InputTracking.GetLocalPosition(VRNode.Head);
+			yield return null;
+		}
 	}
 
 	public IEnumerator killWhenDone(AudioSource source)

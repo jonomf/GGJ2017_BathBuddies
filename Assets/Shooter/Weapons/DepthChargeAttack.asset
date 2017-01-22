@@ -13,9 +13,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 15
   range: 0
-  originator: player
+  originator: player_depth
   projectile: {fileID: 0}
   fireEffect: {fileID: 0}
   hitEffect: {fileID: 0}
   attackForce: 0
   attackCooldown: 0
+  attackSound: 7
+  hitSound: 9
