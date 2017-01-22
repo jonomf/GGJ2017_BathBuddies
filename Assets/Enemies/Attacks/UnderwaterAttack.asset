@@ -18,4 +18,4 @@ MonoBehaviour:
   fireEffect: {fileID: 0}
   hitEffect: {fileID: 0}
   attackForce: 100
-  attackCooldown: 5
+  attackCooldown: 10
