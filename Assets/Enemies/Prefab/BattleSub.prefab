@@ -308,8 +308,10 @@ MonoBehaviour:
   damageController: {fileID: 0}
   rangeVolume: {fileID: 114050763767364290}
   curHealth: 0
-  enemyProjectileTag: 
+  enemyProjectileTag: player
+  attackDelayTime: 0.1
   fireTransform: {fileID: 0}
+  animControl: {fileID: 0}
 --- !u!135 &135950956501944530
 SphereCollider:
   m_ObjectHideFlags: 1

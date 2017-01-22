@@ -8,8 +8,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 056746453aee17946a8d480265300c69, type: 3}
-  m_Name: DiscLauncher
+  m_Script: {fileID: 11500000, guid: eeeedd0cf5c730049b57b91a94efbcf3, type: 3}
+  m_Name: PistolAttack
   m_EditorClassIdentifier: 
-  m_Power: 1000
-  m_Disk: {fileID: 54246236048385984, guid: daf8849918b56684eb6c2460fffc93d0, type: 2}
+  damage: 1
+  range: 0
+  originator: player
+  projectile: {fileID: 0}
+  fireEffect: {fileID: 0}
+  hitEffect: {fileID: 0}
+  attackForce: 0
+  attackCooldown: 0

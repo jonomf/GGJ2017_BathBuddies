@@ -11,13 +11,4 @@ public class AttackType : ScriptableObject
     public GameObject hitEffect;
     public float attackForce;
     public float attackCooldown;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
