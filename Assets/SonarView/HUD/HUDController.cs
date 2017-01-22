@@ -40,7 +40,17 @@ public class HUDController : MonoBehaviourSingleton<HUDController> {
 		var ray = hudCamera.ScreenPointToRay(ped.position);
 		Debug.Log (" ped.position = " + ped.position  + " ray = " + ray);
 
-		
+		RaycastHit hit;
+		if(Physics.Raycast(ray, out hit, 100)) //, LayerMask.NameToLayer("UI")))
+		{
+			if(hit.collider.tag == "Tower")
+			{
+				Debug.Log("Found object: " + hit.collider);
+				// assume parent to Click collider is our object.
+				VRPlayer.TeleportTo(hit.collider.transform.parent);
+			}
+		}
+
 
 	}
 }
