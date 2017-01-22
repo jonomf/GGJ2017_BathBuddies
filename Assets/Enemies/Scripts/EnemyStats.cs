@@ -23,6 +23,30 @@ public class EnemyStats : Stats
     {
         return base.Attack(target, attack);
     }
+
+	void OnTriggerEnter(Collider other)
+	{
+		var proj = other.GetComponent<Projectile>();
+		if (proj == null)
+			return;
+		ApplyDamage(proj.attack, other.gameObject);
+	}
+
+	void ApplyDamage(AttackType attack, GameObject hit)
+	{
+		if (attack != null && attack.originator == enemyProjectileTag)
+		{
+			Hit(gameObject, attack);
+			DestroyObject(hit);
+			if (attack.hitEffect != null)
+			{
+				GameObject effect = Instantiate(attack.hitEffect);
+				effect.transform.position = hit.transform.position;
+				Destroy(effect, 2.0f);
+			}
+		}
+
+	}
     private void OnCollisionEnter(Collision collision)
     {
         Projectile projectile = collision.gameObject.GetComponent<Projectile>();
@@ -31,17 +55,6 @@ public class EnemyStats : Stats
         {
             attack = projectile.attack;
         }
-
-        if (attack != null && attack.originator == enemyProjectileTag)
-        {
-            Hit(gameObject, attack);
-            DestroyObject(collision.gameObject);
-            if(attack.hitEffect != null)
-            {
-                GameObject effect = Instantiate(attack.hitEffect);
-                effect.transform.position = collision.transform.position;
-                Destroy(effect, 2.0f);
-            }
-        }
+		ApplyDamage(attack, collision.gameObject);
     }
 }
