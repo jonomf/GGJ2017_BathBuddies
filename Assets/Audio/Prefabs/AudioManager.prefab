@@ -177,14 +177,14 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 1f04c45ec3163e44e9f87ed645d68a2f, type: 3}
     frequencyVariance: 0
     volumeVariance: 0.2
-    volume: 0.35
+    volume: 0.3
   - sound: 4
     clip: {fileID: 8300000, guid: 968789f5fcb1eff41be675855b2d1196, type: 3}
     frequencyVariance: 0.2
     volumeVariance: 0.2
     volume: 1
   - sound: 5
-    clip: {fileID: 8300000, guid: 3e68f7a3126ae2649b7937b087f2a0d4, type: 3}
+    clip: {fileID: 8300000, guid: 4fc3285247a16c441bb86b696b8b4b0e, type: 3}
     frequencyVariance: 0.2
     volumeVariance: 0.2
     volume: 1
