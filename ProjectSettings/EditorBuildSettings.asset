@@ -17,3 +17,7 @@ EditorBuildSettings:
     path: Assets/StateManagement/EndGame.unity
   - enabled: 1
     path: Assets/Shooter/TestScene/ShooterTestScene.unity
+  - enabled: 1
+    path: Assets/MainWorld.unity
+  - enabled: 1
+    path: Assets/Enemies/Scene/AI.unity

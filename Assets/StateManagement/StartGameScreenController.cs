@@ -37,7 +37,7 @@ public class StartGameScreenController : MonoBehaviour
 
 	public void StartGame()
 	{
-			
+		GameObject.FindObjectOfType<CrossGameState>().OnStartNewGame();
 	}
 
 }

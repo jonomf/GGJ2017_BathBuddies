@@ -31,6 +31,7 @@ public class CrossGameState : MonoBehaviour
 	[SerializeField] //for debugging sake
 	private ScoreInfo _highScoreInfo = new ScoreInfo();
 	public ScoreInfo LastScore = new ScoreInfo();
+	[NonSerialized]
 	public List<Object> mainScenes;
 	private Action<Object> loadScene; //lol
 	private Action<Object> unloadScene;  
@@ -39,6 +40,11 @@ public class CrossGameState : MonoBehaviour
 		mainScenes = new List<Object>() {_aiScene,_hudScene,_mainGameScene};
 		loadScene = (Object scene) => SceneManager.LoadScene(scene.name,LoadSceneMode.Additive);
 		unloadScene = (Object scene) => SceneManager.UnloadSceneAsync(scene.name);
+	}
+
+	private void Start()
+	{
+		loadScene(_gameStartScene);
 	}
 
 	public ScoreInfo GetHighScoreInfo()
@@ -57,22 +63,16 @@ public class CrossGameState : MonoBehaviour
 		StartCoroutine(showScoreAfterwards(lastPlayInfo));
 	}
 
-	private void unloadAndLoadScene(Object toUnload, Object toLoad)
-	{
-		SceneManager.UnloadSceneAsync(toUnload.name);
-		SceneManager.LoadScene(toLoad.name, LoadSceneMode.Additive);
-	}
-
 	private void MainSceneLoadOrUnload(bool load)
 	{
 		foreach (var scene in mainScenes)
 		{
 			if(load)
 			{
-				SceneManager.LoadScene(scene.name);
+				loadScene(scene);
 			} else
 			{
-				SceneManager.UnloadSceneAsync(scene.name);
+				unloadScene(scene);
 			}
 		}
 	}
@@ -81,11 +81,13 @@ public class CrossGameState : MonoBehaviour
 		MainSceneLoadOrUnload(load: false);
 		loadScene(_gameOverScene);
 		yield return null; //I don't think this is needed anymore as a delay before getting gameoverscreen reference
-#warning "re-enable communication to scoreToShow"
-		//GameObject.FindObjectOfType<GameOverScreen>().ScoreToShow(scoreAfterPlaying);
+//#warning "re-enable communication to scoreToShow"
+//NOTE: the Endgamecontroller polls this, not the other way around
+		//GameObject.FindObjectOfType<EndGameController>().ScoreToShow(scoreAfterPlaying);
 		//The scene should read from this, I suppose
 		yield return new WaitForSeconds(_timeToShowGameOverScene);
-		unloadAndLoadScene(_gameOverScene,_gameStartScene);
+		unloadScene(_gameOverScene);
+		loadScene(_gameStartScene);
 	}
 
 	public void OnStartNewGame()
