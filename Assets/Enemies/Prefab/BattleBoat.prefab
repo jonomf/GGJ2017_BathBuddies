@@ -429,7 +429,7 @@ MonoBehaviour:
   damageController: {fileID: 0}
   rangeVolume: {fileID: 114397357984556852}
   curHealth: 5
-  enemyProjectileTag: player
+  enemyProjectileTag: player_cannon
   attackDelayTime: 0.3
   fireTransform: {fileID: 1232955759459302}
   animControl: {fileID: 95363619848304136}

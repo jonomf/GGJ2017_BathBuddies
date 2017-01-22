@@ -29,13 +29,13 @@ public class EnemyStats : Stats
 		var proj = other.GetComponent<Projectile>();
 		if (proj == null)
 			return;
-		if (proj.attack.originator == "player")
+		if (proj.attack.originator == "player_depth")
 		{
-			DoShit(proj.attack, other.gameObject);
+			ApplyDamage(proj.attack, other.gameObject);
 		}
 	}
 
-	void DoShit(AttackType attack, GameObject hit)
+	void ApplyDamage(AttackType attack, GameObject hit)
 	{
 		if (attack != null && attack.originator == enemyProjectileTag)
 		{
@@ -58,6 +58,6 @@ public class EnemyStats : Stats
         {
             attack = projectile.attack;
         }
-		DoShit(attack, collision.gameObject);
+		ApplyDamage(attack, collision.gameObject);
     }
 }
