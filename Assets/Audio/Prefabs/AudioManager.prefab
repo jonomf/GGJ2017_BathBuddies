@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4594019004102350}
   - component: {fileID: 82226540611815040}
   m_Layer: 0
-  m_Name: outOfAmmo
+  m_Name: template
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,4 +161,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c8bd15fd24fb347bb641741e0c7e5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_OutOfAmmo: {fileID: 82226540611815040}
+  m_templateAudio: {fileID: 82226540611815040}
+  audioclips:
+  - sound: 0
+    clip: {fileID: 8300000, guid: 646c0968d88cbee419e4c90813970fc4, type: 3}
+    frequencyVariance: 0.2
+    volumeVariance: 0.2
+  - sound: 1
+    clip: {fileID: 8300000, guid: 4931aa8c1c799134696004a7ef0f9ab7, type: 3}
+    frequencyVariance: 0.2
+    volumeVariance: 0.2

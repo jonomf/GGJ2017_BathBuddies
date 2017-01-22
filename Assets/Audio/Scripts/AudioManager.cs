@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.VR;
 
 public class AudioManager : MonoBehaviour
 {
@@ -13,5 +14,16 @@ public class AudioManager : MonoBehaviour
 	void Awake()
 	{
 		s_Instance = this;
+	}
+
+	void Update()
+	{
+		transform.position = InputTracking.GetLocalPosition(VRNode.Head);
+	}
+
+	[ContextMenu("test play OutOFAMMO")]
+	public void OutOfAmmo()
+	{
+		m_OutOfAmmo.Play();
 	}
 }
