@@ -33,13 +33,13 @@ public class CannonHandle : MonoBehaviour
 
     IEnumerator DragHandle()
     {
-        var lastHandPosition = VRPlayer.rightHand.position;
+        var lastHandPosition = VRPlayer.rightHand.localPosition;
         VRPlayer.handsBusy = true;
         while (!Input.GetButtonUp("Fire1"))
         {
-            m_YPivot.Rotate(Vector3.up, (lastHandPosition - VRPlayer.rightHand.position).x * m_RotationSpeed);
-            m_XPivot.Rotate(Vector3.left, (lastHandPosition - VRPlayer.rightHand.position).y * m_RotationSpeed);
-            lastHandPosition = VRPlayer.rightHand.position;
+            m_YPivot.Rotate(Vector3.up, (lastHandPosition - VRPlayer.rightHand.localPosition).x * m_RotationSpeed);
+            m_XPivot.Rotate(Vector3.left, (lastHandPosition - VRPlayer.rightHand.localPosition).y * m_RotationSpeed);
+            lastHandPosition = VRPlayer.rightHand.localPosition;
             if (VRPlayer.fire)
             {
 				AttemptFire();
@@ -54,7 +54,6 @@ public class CannonHandle : MonoBehaviour
 		switch (HUDController.cannonMode)
 		{
 			case HUDController.CannonMode.Ballistic:
-				Debug.Log("firing cannon");
 				if (m_CannonAmmo > 0)
 				{
 					m_CannonAmmo--;
@@ -66,7 +65,6 @@ public class CannonHandle : MonoBehaviour
 				}
 				break;
 			case HUDController.CannonMode.Depth:
-				Debug.Log("firing depth charge");
 				if (m_StartingDepthCargeAmmo > 0)
 				{
 					m_StartingDepthCargeAmmo--;
