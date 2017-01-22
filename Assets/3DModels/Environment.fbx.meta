@@ -1,0 +1,182 @@
+fileFormatVersion: 2
+guid: f5a7e5033aa621e428da8e2c4c088ae3
+timeCreated: 1485116983
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: BodyWash
+    100002: ceilingPlane
+    100004: Door
+    100006: //RootNode
+    100008: Faucet
+    100010: FaucetPlate
+    100012: Frame1
+    100014: Frame2
+    100016: Frame3
+    100018: Mirror
+    100020: pCube1
+    100022: polySurface3
+    100024: polySurface4
+    100026: Sink
+    100028: Soap
+    100030: Spout
+    100032: Toilet
+    100034: ToiletLid
+    100036: ToiletPaper
+    100038: Towel
+    100040: TowelBar
+    100042: wallPlanes
+    400000: BodyWash
+    400002: ceilingPlane
+    400004: Door
+    400006: //RootNode
+    400008: Faucet
+    400010: FaucetPlate
+    400012: Frame1
+    400014: Frame2
+    400016: Frame3
+    400018: Mirror
+    400020: pCube1
+    400022: polySurface3
+    400024: polySurface4
+    400026: Sink
+    400028: Soap
+    400030: Spout
+    400032: Toilet
+    400034: ToiletLid
+    400036: ToiletPaper
+    400038: Towel
+    400040: TowelBar
+    400042: wallPlanes
+    2300000: BodyWash
+    2300002: ceilingPlane
+    2300004: Door
+    2300006: Faucet
+    2300008: FaucetPlate
+    2300010: Frame1
+    2300012: Frame2
+    2300014: Frame3
+    2300016: Mirror
+    2300018: pCube1
+    2300020: polySurface3
+    2300022: polySurface4
+    2300024: Sink
+    2300026: Soap
+    2300028: Spout
+    2300030: Toilet
+    2300032: ToiletLid
+    2300034: ToiletPaper
+    2300036: Towel
+    2300038: TowelBar
+    2300040: wallPlanes
+    3300000: BodyWash
+    3300002: ceilingPlane
+    3300004: Door
+    3300006: Faucet
+    3300008: FaucetPlate
+    3300010: Frame1
+    3300012: Frame2
+    3300014: Frame3
+    3300016: Mirror
+    3300018: pCube1
+    3300020: polySurface3
+    3300022: polySurface4
+    3300024: Sink
+    3300026: Soap
+    3300028: Spout
+    3300030: Toilet
+    3300032: ToiletLid
+    3300034: ToiletPaper
+    3300036: Towel
+    3300038: TowelBar
+    3300040: wallPlanes
+    4300000: ToiletPaper
+    4300002: Spout
+    4300004: Faucet
+    4300006: pCube1
+    4300008: wallPlanes
+    4300010: ceilingPlane
+    4300012: Towel
+    4300014: BodyWash
+    4300016: Mirror
+    4300018: polySurface3
+    4300020: polySurface4
+    4300022: ToiletLid
+    4300024: Toilet
+    4300026: Door
+    4300028: Soap
+    4300030: FaucetPlate
+    4300032: Frame1
+    4300034: Frame2
+    4300036: Frame3
+    4300038: Sink
+    4300040: TowelBar
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

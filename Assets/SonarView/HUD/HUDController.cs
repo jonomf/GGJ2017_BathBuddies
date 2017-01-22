@@ -97,6 +97,10 @@ public class HUDController : MonoBehaviourSingleton<HUDController> {
 
 	private void Attack(Ray ray)
 	{
+	}
+
+	private void MovePlayer(Ray ray)
+	{
 		RaycastHit hit;
 		if(Physics.Raycast(ray, out hit, 100)) //, LayerMask.NameToLayer("UI")))
 		{
@@ -119,19 +123,6 @@ public class HUDController : MonoBehaviourSingleton<HUDController> {
 						GameObject.Destroy(sourceTeleportMarker);
 					});
 				}
-			}
-		}
-	}
-
-	private void MovePlayer(Ray ray)
-	{
-		RaycastHit hit;
-		if(Physics.Raycast(ray, out hit, 100)) //, LayerMask.NameToLayer("UI")))
-		{
-			var turret = hit.collider.transform.parent.GetComponent<Turret>();
-			if (turret != null)
-			{
-				VRPlayer.TeleportTo(turret.teleportPoint);
 			}
 		}
 	}
