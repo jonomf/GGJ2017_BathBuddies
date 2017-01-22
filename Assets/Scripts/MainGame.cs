@@ -184,6 +184,11 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 				Destroy(turret.gameObject);
 			//Debug.Log("TriggerLose Destroying:" +stats.gameObject);
 		}
+		foreach(var projectile in FindObjectsOfType<Projectile>()) {
+			if(projectile != null) //in the process of being cleaned up?
+				Destroy(projectile.gameObject);
+			//Debug.Log("TriggerLose Destroying:" +stats.gameObject);
+		}
 		GameObject.FindObjectOfType<CrossGameState>().OnGameOver(new CrossGameState.ScoreInfo() {ScoreThisRun = WaveNumber ,TimeAlive = Time.time - _gameStartedTime});
 		// todo;
 	}
