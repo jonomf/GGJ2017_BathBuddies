@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
@@ -13,7 +15,7 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 	}
 
     [SerializeField] private Turret m_TurretPrefab;
-	public List<WaveSpec> Waves = new List<WaveSpec>();
+	public WaveSpecSO Waves;
 	public int WaveNumber = 0;
 	public State GameState = State.Playing;
 
@@ -44,6 +46,7 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 		FindObjectOfType<BaseStats>().OnDie += OnBaseDied;
 
         shipsContainer = new GameObject("ships-container").transform;
+		StartCoroutine(pollWaves());
 	}
 
 	private void OnBaseDied(Stats stats)
@@ -62,82 +65,107 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 		if(IsGameOver())
 			return;
 			
-		if(WaveNumber >= Waves.Count)
+		if(WaveNumber >= Waves.Waves.Count)
 		{
 			TriggerWin();
 			return;
 		}
-
-		var nextWave = Waves[WaveNumber];
-		if(nextWave.StartTime_s <= GameTime())
-		{
-			TriggerNextWave();
-		}
-		//if(Waves[WaveNumber]
 	}
 
-	void SpawnEnemy(EnemySpec spec, Collider spawnBoundsAir, Collider spawnBoundsWater)
+	public IEnumerator pollWaves()
 	{
-		Collider spawnBounds = null;
-
-		if(!spec.underwater)
+		while (!IsGameOver())
 		{
-			spawnBounds = spawnBoundsAir;
-		}
-		else
-		{
-			spawnBounds = spawnBoundsWater;
-		}
-
-		var randomPos = RandomEx.InsideBounds(spawnBounds.bounds);
-		Instantiate( spec.prefab, randomPos, Quaternion.identity).transform.parent = shipsContainer;
-	}
-
-	void TriggerNextWave()
-	{
-		Debug.Log("TriggerNextWave");
-		var thisWave = Waves[WaveNumber];
-		WaveNumber++;
-
-		//todo: display Wave number to user.
-
-
-		// find wave start. both air and water, since wave can be mixed.
-		Collider spawnBoundAir = null;
-		Collider spawnBoundWater = null;
-
-		{
-			var spawnPointGO = this.SpawnPointsAir[Random.Range(0, this.SpawnPointsAir.Count)];
-			var allSpawns = spawnPointGO.GetComponentsInChildren<Collider>();
-			spawnBoundAir = allSpawns[Random.Range(0, allSpawns.Length)];
-		}
-		{
-			var spawnPointGO = this.SpawnPointsUnderWater[Random.Range(0, this.SpawnPointsUnderWater.Count)];
-			var allSpawns = spawnPointGO.GetComponentsInChildren<Collider>();
-			spawnBoundWater = allSpawns[Random.Range(0, allSpawns.Length)];
-		}
-
-
-		for(var i = 0; i < thisWave.NumEnemies; i++)
-		{
-			int totalWeight = thisWave.EnemyWeights.Sum(w => w.weight);
-			int randomSelect = Random.Range(0, totalWeight);
-
-			foreach(var e in thisWave.EnemyWeights)
+			var nextWave = Waves.Waves[WaveNumber];
+			if(nextWave.StartTime_s <= GameTime()) //FIXME: gametime doesn't 
 			{
-				if(randomSelect < e.weight)
-				{
-					SpawnEnemy(e, spawnBoundAir, spawnBoundWater);
-				}
-
-				randomSelect -= e.weight;
-
+				var blockUntilNextDone = nextWave.blockUntilAllEnemiesAreDead;
+				var coroutine = StartCoroutine(TriggerWave(nextWave));
+				if(blockUntilNextDone)
+					yield return coroutine;
+				WaveNumber++;
 			}
-
+			yield return null;
 		}
-
+	}
+	
+	public Vector3 spawnPointInsideOfBoundsForEnemySpec(EnemySpec spec)
+	{
+		var targetSpawnPointCollection = spec.underwater ? SpawnPointsUnderWater : SpawnPointsAir;
+		Collider spawnPointArea = null;
+		//find the corner that is tagged with the same enum as the group
+		foreach (var collection in targetSpawnPointCollection)
+		{
+			foreach (Transform spawnPointTransform in collection.transform)
+			{
+				var spawnPoint = spawnPointTransform.gameObject;
+				var spawnTag = spawnPoint.GetComponent<EnemySpawnAreaTag>();
+				if(spawnTag == null) {
+					Debug.LogError(spawnPoint.name + " does not ahave a spawntag!");
+					continue;
+				}
+				var corner = spawnTag.Corner;
+				if(corner == spec.spawnCorner) {
+					spawnPointArea = spawnPoint.GetComponent<EnemySpawnAreaTag>().GetComponent<Collider>();
+				}
+			}
+			
+		}
+		
+		//null ref means that the air or watter pool wasn't taged with one of the enemy spawn area tags
+		return RandomEx.InsideBounds(spawnPointArea.bounds);
 	}
 
+	IEnumerator TriggerWave(WaveSpec spec)
+	{
+		float waveStartedAt = Time.time;
+		Dictionary<EnemySpec,int> enemiesSpawned = new Dictionary<EnemySpec, int>();
+		Dictionary<EnemySpec, int> enemiesSpawnedLastFrame = new Dictionary<EnemySpec, int>();  //not braining. this will do.
+		foreach (var enemyWeights in spec.EnemyWeights)
+		{
+			enemiesSpawned.Add(enemyWeights, 0);
+		}
+
+		while (Time.time - waveStartedAt < spec.DurationOfWave)
+		{
+			float normalizedTime = (Time.time - waveStartedAt)/spec.DurationOfWave;
+
+			foreach (KeyValuePair<EnemySpec, int> keyValuePair in enemiesSpawned) //yes, gc. yes, gamejam.
+			{
+				var enemySpec = keyValuePair.Key;
+				var enemiesOfThisTypeSpawnedPreviously = keyValuePair.Value;
+
+				float accordingToTime = enemySpec.rampUpOfEnemiesInCurve.Evaluate(normalizedTime);
+				//Debug.Log(accordingToTime);
+				int expectedEnmiesNow = Mathf.FloorToInt(accordingToTime * enemySpec.NumEnemies);
+				int newEnemiesToSpawn = expectedEnmiesNow - enemiesOfThisTypeSpawnedPreviously;
+
+				//TODO: watch out for collection modified exception here
+				enemiesSpawnedLastFrame[enemySpec] = newEnemiesToSpawn;
+
+				for(int i = 0;i < newEnemiesToSpawn;i++) {
+					
+					var go = Instantiate(enemySpec.prefab, spawnPointInsideOfBoundsForEnemySpec(enemySpec), Quaternion.identity).transform.parent = shipsContainer;
+					Debug.Log("Spawned",go);
+				}
+			}
+			foreach (var lastFrameAdds in enemiesSpawnedLastFrame)
+			{
+				enemiesSpawned[lastFrameAdds.Key] += lastFrameAdds.Value;
+			}
+			
+			yield return null;
+		}
+		/*
+		var allEnemiesSpawned = GameObject.FindObjectsOfType<EnemySpec>();
+		foreach (var enemies in allEnemiesSpawned)
+		{
+			if(enemies)
+		}
+		*/
+		//NOTE: this may cut off the last few in some cases. can be fixed in data
+	}
+		
 	void TriggerWin()
 	{
 		GameState = State.Won;
@@ -147,7 +175,8 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 	void TriggerLose()
 	{
 		GameState = State.Lost;
-		foreach (var stats in FindObjectsOfType<EnemyStats>())
+		//FIXME: just destroy all things under bulletsContainer, et al
+		foreach(var stats in FindObjectsOfType<EnemyStats>())
 		{
 			if(stats != null) //in the process of being cleaned up?
 				Destroy(stats.gameObject);

@@ -17,6 +17,17 @@ public class HUDController : MonoBehaviourSingleton<HUDController> {
 	public GameObject teleportMarkerPrefab;
 
 	public Camera hudCamera;
+
+	private enum State
+	{
+		MOVE_PLAYER,
+		ATTACK,
+		CANNON,
+		DEPTH_CHARGE,
+	}
+
+	private State state = State.MOVE_PLAYER;
+
 	public void Start()
 	{
 		var cameraGO = GameObject.Find("SonarCamera");
@@ -53,10 +64,45 @@ public class HUDController : MonoBehaviourSingleton<HUDController> {
 	{
 		var ray = hudCamera.ScreenPointToRay(ped.position);
 		Debug.Log (" ped.position = " + ped.position  + " ray = " + ray);
+		
+		switch (state)
+		{
+				case State.MOVE_PLAYER:
+					MovePlayer(ray);
+					break;
+				case State.ATTACK:
+					Attack(ray);
+					break;
+				case State.CANNON:
+					Cannon(ray);
+					break;
+				case State.DEPTH_CHARGE:
+					DepthCharge(ray);
+					break;
+			default:
+				throw new Exception("Unknown state transition:"+state);
+		}
+		
 
+
+	}
+
+	private void DepthCharge(Ray ray)
+	{	
+	}
+
+	private void Cannon(Ray ray)
+	{
+	}
+
+	private void Attack(Ray ray)
+	{
 		RaycastHit hit;
 		if(Physics.Raycast(ray, out hit, 100)) //, LayerMask.NameToLayer("UI")))
 		{
+			if(hit.collider.tag == "Tower") {
+				Debug.Log("Found object: " + hit.collider);
+			}
 			if(hit.collider.tag == "Tower")
 			{
 				var sourceTransform = VRPlayer.Instance.transform;
@@ -77,5 +123,16 @@ public class HUDController : MonoBehaviourSingleton<HUDController> {
 		}
 	}
 
-
+	private void MovePlayer(Ray ray)
+	{
+		RaycastHit hit;
+		if(Physics.Raycast(ray, out hit, 100)) //, LayerMask.NameToLayer("UI")))
+		{
+			if(hit.collider.tag == "Tower") {
+				Debug.Log("Found object: " + hit.collider);
+				// assume parent to Click collider is our object.
+				VRPlayer.TeleportTo(hit.collider.transform.parent);
+			}
+		}
+	}
 }
