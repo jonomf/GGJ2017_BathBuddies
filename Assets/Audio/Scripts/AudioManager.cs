@@ -33,6 +33,7 @@ public class AudioToEnum
 	public float frequencyVariance = 0.2f;
 	public float volumeVariance = 0.2f;
     public float volume = 1.0f;
+	public bool loop = false;
 }
 public class AudioManager : MonoBehaviour //TODO: onValidate to make sure all sounds are set
 {
@@ -82,6 +83,7 @@ public class AudioManager : MonoBehaviour //TODO: onValidate to make sure all so
 			tmpAudioSource.clip = clipInfo.clip;
 			tmpAudioSource.volume += Random.Range(-1 * clipInfo.volumeVariance, 0f);
 			tmpAudioSource.pitch += Random.Range(-1 * clipInfo.frequencyVariance, clipInfo.frequencyVariance);
+			tmpAudioSource.loop = clipInfo.loop;
 			tmpAudioSource.Play();
 			if(killWhenDone)
 				s_Instance.StartCoroutine(s_Instance.killWhenDone(tmpAudioSource));
