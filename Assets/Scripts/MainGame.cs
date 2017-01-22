@@ -22,7 +22,8 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 
     private Transform shipsContainer;
 
-    public static Transform bulletsContainer;
+    public static Transform enemyBulletsContainer;
+	public static Transform playerBulletsContainer;
     private Transform m_TowersContainer;
 
 	public static float GameTime()
@@ -35,7 +36,8 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 	void Start ()
 	{
 		_gameStartedTime = Time.time;
-        bulletsContainer = new GameObject("bullets-container").transform;
+        enemyBulletsContainer = new GameObject("enemy-bullets-container").transform;
+		playerBulletsContainer = new GameObject("player-bullets-container").transform;
         m_TowersContainer = new GameObject("towers-container").transform;
         VRPlayer.TeleportTo(TurretManager.startingTurret.teleportPoint);
 		

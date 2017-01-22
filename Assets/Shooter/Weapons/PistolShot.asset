@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Name: PistolShot
   m_EditorClassIdentifier: 
   m_Power: 750
-  m_Disk: {fileID: 54246236048385984, guid: daf8849918b56684eb6c2460fffc93d0, type: 2}
+  m_Projectile: {fileID: 54246236048385984, guid: daf8849918b56684eb6c2460fffc93d0,
+    type: 2}

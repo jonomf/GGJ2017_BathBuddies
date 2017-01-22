@@ -32,6 +32,7 @@ public class CrossGameState : MonoBehaviour
 	private Object _mainGameScene;
 
     [SerializeField] private VRPlayer m_VRPlayerPrefab;
+	[SerializeField] private AudioManager m_AudioManagerPrefab;
 
 	[SerializeField] private float _timeToShowGameOverScene;
 
@@ -46,7 +47,8 @@ public class CrossGameState : MonoBehaviour
 	{
 	    s_Instance = this;
 		mainScenes = new List<Object>() {_aiScene,_hudScene,_mainGameScene};
-	    Instantiate(m_VRPlayerPrefab.gameObject);
+	    var player = Instantiate(m_VRPlayerPrefab.gameObject).transform;
+		Instantiate(m_AudioManagerPrefab.gameObject, player);
 		loadScene = (Object scene) => SceneManager.LoadScene(scene.name,LoadSceneMode.Additive);
 		unloadScene = (Object scene) => SceneManager.UnloadSceneAsync(scene.name);
 	}

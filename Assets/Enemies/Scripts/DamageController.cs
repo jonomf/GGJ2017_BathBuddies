@@ -27,7 +27,7 @@ public class DamageController : MonoBehaviour {
 		var projectileScript = projectile.GetComponent<Projectile>();
 		projectileScript.target = target;
 
-        projectile.transform.parent = MainGame.bulletsContainer;
+        projectile.transform.parent = MainGame.enemyBulletsContainer;
         return attack.attackCooldown;
     }
 

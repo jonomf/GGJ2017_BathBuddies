@@ -22,14 +22,6 @@ public class VRPlayer : MonoBehaviour
     [SerializeField] private Transform m_RightHand;
     [SerializeField] private Material m_FadeMaterial;
 
-    [Header("Teleport testing")]
-    [SerializeField]
-    private Transform m_TeleSpot1;
-    [SerializeField]
-    private Transform m_TeleSpot2;
-    [SerializeField]
-    private Transform m_TeleSpot3;
-
     private readonly Color m_Opaque = new Color(0, 0, 0, 1);
     private readonly Color m_Invisible = new Color(0, 0, 0, 0);
     private bool m_TriggerConsumed;
@@ -49,19 +41,7 @@ public class VRPlayer : MonoBehaviour
         if (!handsBusy && fire)
         {
             m_ActiveWeapon.Fire(m_RightHand.position, m_RightHand.forward);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            TeleportTo(m_TeleSpot1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            TeleportTo(m_TeleSpot2);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            TeleportTo(m_TeleSpot3);
+			//AudioManager.pistolShot.Play();
         }
 
         if (fire)
