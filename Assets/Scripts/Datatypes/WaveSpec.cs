@@ -14,7 +14,7 @@ public class WaveSpec {
 	public List<EnemySpec> EnemyWeights;
 
 	public float DurationOfWave;
-	
+	public bool blockUntilAllEnemiesAreDead;
 }
 
 [System.Serializable]

@@ -15,7 +15,7 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 	}
 
     [SerializeField] private Turret m_TurretPrefab;
-	public List<WaveSpec> Waves = new List<WaveSpec>();
+	public WaveSpecSO Waves;
 	public int WaveNumber = 0;
 	public State GameState = State.Playing;
 
@@ -46,6 +46,7 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 		FindObjectOfType<BaseStats>().OnDie += OnBaseDied;
 
         shipsContainer = new GameObject("ships-container").transform;
+		StartCoroutine(pollWaves());
 	}
 
 	private void OnBaseDied(Stats stats)
@@ -64,17 +65,27 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 		if(IsGameOver())
 			return;
 			
-		if(WaveNumber >= Waves.Count)
+		if(WaveNumber >= Waves.Waves.Count)
 		{
 			TriggerWin();
 			return;
 		}
+	}
 
-		var nextWave = Waves[WaveNumber];
-		if(nextWave.StartTime_s <= GameTime())
+	public IEnumerator pollWaves()
+	{
+		while (!IsGameOver())
 		{
-			StartCoroutine(TriggerWave(Waves[WaveNumber]));
-			WaveNumber++;
+			var nextWave = Waves.Waves[WaveNumber];
+			if(nextWave.StartTime_s <= GameTime()) //FIXME: gametime doesn't 
+			{
+				var blockUntilNextDone = nextWave.blockUntilAllEnemiesAreDead;
+				var coroutine = StartCoroutine(TriggerWave(nextWave));
+				if(blockUntilNextDone)
+					yield return coroutine;
+				WaveNumber++;
+			}
+			yield return null;
 		}
 	}
 	
@@ -145,6 +156,13 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 			
 			yield return null;
 		}
+		/*
+		var allEnemiesSpawned = GameObject.FindObjectsOfType<EnemySpec>();
+		foreach (var enemies in allEnemiesSpawned)
+		{
+			if(enemies)
+		}
+		*/
 		//NOTE: this may cut off the last few in some cases. can be fixed in data
 	}
 		
