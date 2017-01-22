@@ -112,7 +112,5 @@ public class HUDController : MonoBehaviourSingleton<HUDController> {
 				VRPlayer.TeleportTo(hit.collider.transform.parent);
 			}
 		}
-=======
->>>>>>> origin/master
 	}
 }
