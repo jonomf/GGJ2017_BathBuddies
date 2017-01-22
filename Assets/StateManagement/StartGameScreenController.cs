@@ -22,12 +22,12 @@ public class StartGameScreenController : MonoBehaviour
 			toShow = _debugScoreInfo;
 		}
 		SetHighScore(toShow);
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
         if (CrossGameState.skipIntro)
 	    {
 	        StartGame();
 	    }
-#endif
+//#endif
     }
 
 	[ContextMenu("SetHighScoreManually")]

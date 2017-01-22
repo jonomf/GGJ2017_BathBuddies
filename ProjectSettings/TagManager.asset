@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Base
   - Tower
+  - FlatscreenPlayer
   layers:
   - Default
   - TransparentFX
