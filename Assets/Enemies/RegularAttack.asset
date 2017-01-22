@@ -11,11 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeeedd0cf5c730049b57b91a94efbcf3, type: 3}
   m_Name: RegularAttack
   m_EditorClassIdentifier: 
-  damage: 100
+  damage: 5
   range: 5
   originator: EnemyProjectile
   projectile: {fileID: 1050303121565140, guid: 001ab598285cced4b85c146bc6f62256, type: 2}
   fireEffect: {fileID: 0}
   hitEffect: {fileID: 0}
-  attackForce: 200
-  attackCooldown: 15
+  attackForce: 250
+  attackCooldown: 3
