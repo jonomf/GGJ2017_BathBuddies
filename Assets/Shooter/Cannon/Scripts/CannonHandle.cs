@@ -25,7 +25,7 @@ public class CannonHandle : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (Input.GetButton("Fire1") && !VRPlayer.handsBusy)
+        if (Input.GetButtonDown("Fire1"))
         {
             StartCoroutine(DragHandle());
         }
@@ -35,18 +35,11 @@ public class CannonHandle : MonoBehaviour
     {
 	    var lastHandPosition = HandPositionRelativeToHead();
         VRPlayer.handsBusy = true;
-	    var handStartRotation = VRPlayer.rightHand.rotation;
         while (!Input.GetButtonUp("Fire1"))
 		{
-			
-			//m_YPivot.Rotate(m_YPivot.up, (lastHandPosition - HandPositionRelativeToHead()).x * m_RotationSpeed * 50 * Time.deltaTime, Space.World);
-			//m_XPivot.Rotate(-m_XPivot.right, (lastHandPosition - HandPositionRelativeToHead()).y * m_RotationSpeed * 50 * Time.deltaTime, Space.World);
-			//lastHandPosition = HandPositionRelativeToHead();
-
-			//m_XPivot.rotation = handStartRotation * Quaternion.Inverse(VRPlayer.rightHand.rotation);
-
-			m_XPivot.rotation = VRPlayer.rightHand.rotation;
-
+			m_YPivot.Rotate(m_YPivot.up, (lastHandPosition - HandPositionRelativeToHead()).x * m_RotationSpeed * 50 * Time.deltaTime, Space.World);
+			m_XPivot.Rotate(-m_XPivot.right, (lastHandPosition - HandPositionRelativeToHead()).y * m_RotationSpeed * 50 * Time.deltaTime, Space.World);
+			lastHandPosition = HandPositionRelativeToHead();
             if (VRPlayer.fire)
             {
 				AttemptFire();
@@ -70,6 +63,7 @@ public class CannonHandle : MonoBehaviour
 				{
 					m_CannonAmmo--;
 					m_CannonShot.Fire(m_CannonTip.position, m_CannonTip.forward);
+					AudioManager.Play(SOUNDS.CANNON_SHOT);
 				}
 				else
 				{
@@ -81,6 +75,7 @@ public class CannonHandle : MonoBehaviour
 				{
 					m_StartingDepthCargeAmmo--;
 					m_DepthChargeShot.Fire(m_CannonTip.position, m_CannonTip.forward);
+					AudioManager.Play(SOUNDS.DEPTH_CHARGE_DROP);
 				}
 				else
 				{
