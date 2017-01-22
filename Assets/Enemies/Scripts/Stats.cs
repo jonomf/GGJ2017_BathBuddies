@@ -13,7 +13,8 @@ public abstract class Stats : MonoBehaviour {
     public int curHealth;
     public string enemyProjectileTag;
 	public Action<Stats> OnDie;
-
+    public GameObject fireTransform = null;
+   
     // Use this for initialization
     protected virtual void Start ()
     {
@@ -53,15 +54,21 @@ public abstract class Stats : MonoBehaviour {
         {
             foreach(GameObject target in rangeVolume.activeTargets)
             {
-
                 return target;
             }
         }
         return null;
     }
-    public float Attack(GameObject target, AttackType attack)
+    virtual public float Attack(GameObject target, AttackType attack)
     {
-        return damageController.DoAttack(gameObject, target, attack);
+        if (fireTransform)
+        {
+            return damageController.DoAttack(fireTransform, target, attack);
+        }else
+        {
+            return damageController.DoAttack(gameObject, target, attack);
+        }
+        
     }
     public virtual void Die()
     {
