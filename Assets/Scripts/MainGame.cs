@@ -43,6 +43,7 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 		killEverything();
 
 		Time.timeScale = _multipleToSpeedUpTimeBy;
+		GameObject.FindObjectOfType<BaseStats>().health = int.MaxValue;
 
 	}
 	private float _gameStartedTime;
