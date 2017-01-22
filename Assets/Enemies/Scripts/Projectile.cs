@@ -5,6 +5,8 @@ using UnityEngine;
 public class Projectile : MonoBehaviour {
     [HideInInspector]
     public AttackType attack;
+
+	public GameObject target;
 	// Use this for initialization
 	void Start () {
 		

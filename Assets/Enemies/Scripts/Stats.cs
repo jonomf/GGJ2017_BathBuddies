@@ -63,6 +63,7 @@ public abstract class Stats : MonoBehaviour {
     {
         return damageController.DoAttack(gameObject, target, attack);
     }
+
     public virtual void Die()
     {
         Debug.Log("I'm DEAADDD");
