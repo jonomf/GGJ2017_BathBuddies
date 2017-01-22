@@ -19,9 +19,15 @@ public class DamageController : MonoBehaviour {
         projectile.transform.position = attacker.transform.position;
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
         Vector3 directionalVector = (target.transform.position - projectile.transform.position).normalized;
+		projectile.transform.rotation = Quaternion.LookRotation(directionalVector); // set projectile to look at the target.
         rb.AddForce(directionalVector * attack.attackForce);
         projectile.GetComponent<Projectile>().attack = attack;
-        projectile.transform.parent = MainGame.bulletsContainer;
+
+		// set target for any seeking behaviors.
+		var projectileScript = projectile.GetComponent<Projectile>();
+		projectileScript.target = target;
+
+        projectile.transform.parent = MainGame.enemyBulletsContainer;
         return attack.attackCooldown;
     }
 

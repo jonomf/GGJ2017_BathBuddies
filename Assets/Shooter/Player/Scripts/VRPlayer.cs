@@ -22,14 +22,6 @@ public class VRPlayer : MonoBehaviour
     [SerializeField] private Transform m_RightHand;
     [SerializeField] private Material m_FadeMaterial;
 
-    [Header("Teleport testing")]
-    [SerializeField]
-    private Transform m_TeleSpot1;
-    [SerializeField]
-    private Transform m_TeleSpot2;
-    [SerializeField]
-    private Transform m_TeleSpot3;
-
     private readonly Color m_Opaque = new Color(0, 0, 0, 1);
     private readonly Color m_Invisible = new Color(0, 0, 0, 0);
     private bool m_TriggerConsumed;
@@ -49,19 +41,7 @@ public class VRPlayer : MonoBehaviour
         if (!handsBusy && fire)
         {
             m_ActiveWeapon.Fire(m_RightHand.position, m_RightHand.forward);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            TeleportTo(m_TeleSpot1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            TeleportTo(m_TeleSpot2);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            TeleportTo(m_TeleSpot3);
+			//AudioManager.pistolShot.Play();
         }
 
         if (fire)
@@ -81,7 +61,7 @@ public class VRPlayer : MonoBehaviour
 
     public static void TeleportTo(Transform target)
     {
-        s_Instance.StartCoroutine(s_Instance.TeleportWithFade(target.position));
+        s_Instance.StartCoroutine(s_Instance.TeleportWithFade(target.position, target.forward));
     }
 
     private static Color FadeToBlack(float alpha)
@@ -89,7 +69,7 @@ public class VRPlayer : MonoBehaviour
         return new Color(0, 0, 0, alpha);
     }
 
-    IEnumerator TeleportWithFade(Vector3 targetPosition)
+    IEnumerator TeleportWithFade(Vector3 targetPosition, Vector3 direction)
     {
         var t = 0f;
         while (t < 1)
@@ -100,6 +80,7 @@ public class VRPlayer : MonoBehaviour
         }
         m_FadeMaterial.color = m_Opaque;
         transform.position = targetPosition;
+		transform.rotation = Quaternion.Euler(direction);
         while (t > 0)
         {
             m_FadeMaterial.color = FadeToBlack(t);

@@ -5,12 +5,19 @@ public class CannonHandle : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private ProjectileWeapon m_Weapon;
+	[SerializeField] private float m_RotationSpeed = 100f;
+	[SerializeField] private int m_StartingAmmo = 3;
     [Header("References")]
     [SerializeField] private Transform m_YPivot;
     [SerializeField] private Transform m_XPivot;
     [SerializeField] private Transform m_CannonTip;
 
-    public float m_RotationSpeed = 10f;
+	private int m_Ammo;
+
+	void Awake()
+	{
+		m_Ammo = m_StartingAmmo;
+	}
 
     void OnTriggerStay(Collider other)
     {
@@ -31,15 +38,23 @@ public class CannonHandle : MonoBehaviour
             lastHandPosition = VRPlayer.rightHand.position;
             if (VRPlayer.fire)
             {
-                Fire();
+				AttemptFire();
             }
             yield return null;
         }
         VRPlayer.handsBusy = false;
     }
 
-    void Fire()
-    {
-        m_Weapon.Fire(m_CannonTip.position, m_CannonTip.forward);
-    }
+	void AttemptFire()
+	{
+		if (m_Ammo > 0)
+		{
+			m_Ammo--;
+			m_Weapon.Fire(m_CannonTip.position, m_CannonTip.forward);
+		}
+		else
+		{
+			AudioManager.outOfAmmo.Play();
+		}
+	}
 }

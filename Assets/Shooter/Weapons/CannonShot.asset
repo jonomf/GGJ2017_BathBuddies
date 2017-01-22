@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Name: CannonShot
   m_EditorClassIdentifier: 
   m_Power: 2500
-  m_Disk: {fileID: 54246236048385984, guid: ac6686c85553fb346bb0e730da788ea7, type: 2}
+  m_Projectile: {fileID: 54246236048385984, guid: ac6686c85553fb346bb0e730da788ea7,
+    type: 2}
