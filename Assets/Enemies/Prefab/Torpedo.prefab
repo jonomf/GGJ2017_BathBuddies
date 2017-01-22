@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 135045512002194042}
   - component: {fileID: 23683087673605034}
   - component: {fileID: 54881548252642692}
-  - component: {fileID: 114628232311210512}
+  - component: {fileID: 114803257207309162}
   m_Layer: 11
   m_Name: Torpedo
   m_TagString: Untagged
@@ -90,14 +90,14 @@ Rigidbody:
   m_GameObject: {fileID: 1905819681185128}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 1
+  m_AngularDrag: 0.1
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114628232311210512
+--- !u!114 &114803257207309162
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -105,10 +105,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1905819681185128}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ee653589b8160d4096c9c396542de7e, type: 3}
+  m_Script: {fileID: 11500000, guid: 40d0b17d440e5471c9a2f398a764b75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attack: {fileID: 0}
+  target: {fileID: 0}
+  forwardForce: 5
+  boyancy: 1
+  maxDegreesCorrection: 1
 --- !u!135 &135045512002194042
 SphereCollider:
   m_ObjectHideFlags: 1

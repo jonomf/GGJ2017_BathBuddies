@@ -83,7 +83,7 @@ public abstract class Stats : MonoBehaviour {
         yield return new WaitForSeconds(time);
         damageController.DoAttack(gameObject, target, attack);
     }   
-        
+
 
     public virtual void Die()
     {
