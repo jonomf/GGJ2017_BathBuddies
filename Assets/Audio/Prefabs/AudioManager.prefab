@@ -214,7 +214,7 @@ MonoBehaviour:
     volumeVariance: 0.2
     volume: 1
   - sound: 10
-    clip: {fileID: 8300000, guid: b9085f6714564f7488ce2975b42b7b58, type: 3}
+    clip: {fileID: 8300000, guid: d603808357bd6ac48b90c6f4ddf83b51, type: 3}
     frequencyVariance: 0.2
     volumeVariance: 0.2
     volume: 1
