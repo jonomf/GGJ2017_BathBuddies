@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Object = UnityEngine.Object;
@@ -97,9 +98,9 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 		var nextWave = Waves[WaveNumber];
 		if(nextWave.StartTime_s <= GameTime())
 		{
-			TriggerNextWave();
+			StartCoroutine(TriggerWave(Waves[WaveNumber]));
+			WaveNumber++;
 		}
-		//if(Waves[WaveNumber]
 	}
 
 	void SpawnEnemy(EnemySpec spec, Collider spawnBoundsAir, Collider spawnBoundsWater)
@@ -119,51 +120,58 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 		Instantiate( spec.prefab, randomPos, Quaternion.identity).transform.parent = shipsContainer;
 	}
 
-	void TriggerNextWave()
+	void EnemySpawnSpecForNow(int newEnemies, EnemySpec spec)
 	{
-		Debug.Log("TriggerNextWave");
-		var thisWave = Waves[WaveNumber];
-		WaveNumber++;
+		var targetSpawnPointCollection = spec.underwater ? SpawnPointsUnderWater : SpawnPointsAir;
+		var spawnPointGO = targetSpawnPointCollection[Random.Range(0, targetSpawnPointCollection.Count)];
+		var allSpawns = spawnPointGO.GetComponentsInChildren<Collider>();
+		var spawnPoint = allSpawns[Random.Range(0, allSpawns.Length)];
 
-		//todo: display Wave number to user.
-
-
-		// find wave start. both air and water, since wave can be mixed.
-		Collider spawnBoundAir = null;
-		Collider spawnBoundWater = null;
-
-		{
-			var spawnPointGO = this.SpawnPointsAir[Random.Range(0, this.SpawnPointsAir.Count)];
-			var allSpawns = spawnPointGO.GetComponentsInChildren<Collider>();
-			spawnBoundAir = allSpawns[Random.Range(0, allSpawns.Length)];
+		for(int i = 0;i < newEnemies;i++) {
+			var randomInsideBounds = RandomEx.InsideBounds(spawnPoint.bounds);
+			Instantiate(spec.prefab, randomInsideBounds, Quaternion.identity).transform.parent = shipsContainer;
 		}
-		{
-			var spawnPointGO = this.SpawnPointsUnderWater[Random.Range(0, this.SpawnPointsUnderWater.Count)];
-			var allSpawns = spawnPointGO.GetComponentsInChildren<Collider>();
-			spawnBoundWater = allSpawns[Random.Range(0, allSpawns.Length)];
-		}
-
-
-		for(var i = 0; i < thisWave.NumEnemies; i++)
-		{
-			int totalWeight = thisWave.EnemyWeights.Sum(w => w.weight);
-			int randomSelect = Random.Range(0, totalWeight);
-
-			foreach(var e in thisWave.EnemyWeights)
-			{
-				if(randomSelect < e.weight)
-				{
-					SpawnEnemy(e, spawnBoundAir, spawnBoundWater);
-				}
-
-				randomSelect -= e.weight;
-
-			}
-
-		}
-
 	}
 
+	public Vector3 spawnPointInsideOfBoundsForEnemySpec(EnemySpec spec)
+	{
+		var targetSpawnPointCollection = spec.underwater ? SpawnPointsUnderWater : SpawnPointsAir;
+		Collider spawnPointArea = null;
+		for (int index = 0; index < targetSpawnPointCollection.Count; index++)  //cache me...
+		{
+			var spawnPoints = targetSpawnPointCollection[index];
+			if(spawnPoints.GetComponent<)
+		}
+	}
+
+	IEnumerator TriggerWave(WaveSpec spec)
+	{
+		float waveStartedAt = Time.time;
+		Dictionary<EnemySpec,int> enemiesSpawned = new Dictionary<EnemySpec, int>();
+
+		while (Time.time - waveStartedAt < waveStartedAt)
+		{
+			float normalizedTime = (Time.time - waveStartedAt)/spec.DurationOfWave;
+
+			foreach (KeyValuePair<EnemySpec, int> keyValuePair in enemiesSpawned) //yes, gc. yes, gamejam.
+			{
+				var enemySpec = keyValuePair.Key;
+				var enemiesOfThisTypeSpawnedPreviously = keyValuePair.Value;
+
+				int expectedEnmiesNow = Mathf.FloorToInt(enemySpec.rampUpOfEnemiesInCurve.Evaluate(normalizedTime));
+				int newEnemiesToSpawn = expectedEnmiesNow - enemiesOfThisTypeSpawnedPreviously;
+				
+				 //TODO: watch out for collection modified exception here
+				enemiesSpawned[enemySpec] += newEnemiesToSpawn;
+
+				EnemySpawnSpecForNow(newEnemiesToSpawn, enemySpec);
+			}
+			
+			yield return null;
+		}
+		//NOTE: this may cut off the last few in some cases. can be fixed in data
+	}
+		
 	void TriggerWin()
 	{
 		GameState = State.Won;
@@ -173,7 +181,8 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 	void TriggerLose()
 	{
 		GameState = State.Lost;
-		foreach (var stats in FindObjectsOfType<EnemyStats>())
+		//FIXME: just destroy all things under bulletsContainer, et al
+		foreach(var stats in FindObjectsOfType<EnemyStats>())
 		{
 			if(stats != null) //in the process of being cleaned up?
 				Destroy(stats.gameObject);
