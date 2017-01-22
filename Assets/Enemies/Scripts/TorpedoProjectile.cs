@@ -25,11 +25,14 @@ public class TorpedoProjectile : Projectile {
 		}
 
 
-		var targetRotation = Quaternion.LookRotation((this.target.transform.position - this.transform.position));
+		if(this.target)
+		{
+			var targetRotation = Quaternion.LookRotation((this.target.transform.position - this.transform.position));
 
-		this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, targetRotation, maxDegreesCorrection);
+			this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, targetRotation, maxDegreesCorrection);
 
-		body.AddRelativeForce(Vector3.forward * this.forwardForce);
+			body.AddRelativeForce(Vector3.forward * this.forwardForce);
+		}
 
 	}
 }
