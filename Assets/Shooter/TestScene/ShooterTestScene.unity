@@ -119,8 +119,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ActiveWeapon: {fileID: 11400000, guid: 5ac401d96af5c024bb4631e6079603e0, type: 2}
+  m_TeleportFadeDuration: 0.5
   m_LeftHand: {fileID: 2083061952}
   m_RightHand: {fileID: 52904871}
+  m_FadeMaterial: {fileID: 0}
+  m_TeleSpot1: {fileID: 0}
+  m_TeleSpot2: {fileID: 0}
+  m_TeleSpot3: {fileID: 0}
 --- !u!4 &44975417
 Transform:
   m_ObjectHideFlags: 0
@@ -148,7 +153,7 @@ GameObject:
   - component: {fileID: 52904874}
   - component: {fileID: 52904873}
   - component: {fileID: 52904872}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -459,8 +464,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ActiveWeapon: {fileID: 0}
+  m_TeleportFadeDuration: 0.5
   m_LeftHand: {fileID: 0}
   m_RightHand: {fileID: 0}
+  m_FadeMaterial: {fileID: 0}
+  m_TeleSpot1: {fileID: 0}
+  m_TeleSpot2: {fileID: 0}
+  m_TeleSpot3: {fileID: 0}
 --- !u!81 &1352152693
 AudioListener:
   m_ObjectHideFlags: 0
@@ -783,7 +793,7 @@ GameObject:
   - component: {fileID: 2083061955}
   - component: {fileID: 2083061954}
   - component: {fileID: 2083061953}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
