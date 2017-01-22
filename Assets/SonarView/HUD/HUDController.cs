@@ -12,7 +12,7 @@ public class HUDController : MonoBehaviourSingleton<HUDController> {
 		Depth
 	}
 
-	public CannonMode cannonMode;
+	public static CannonMode cannonMode { get; private set; }
 
 	public Camera hudCamera;
 	public void Start()
