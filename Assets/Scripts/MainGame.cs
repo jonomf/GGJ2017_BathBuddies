@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Random = UnityEngine.Random;
 
 public class MainGame : MonoBehaviourSingleton<MainGame> {
-
+	 
 	public enum State {
 		Playing = 0,
 		Won = 1,
@@ -23,9 +25,18 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 		return Time.time;
 	}
 
+	private float _gameStartedTime;
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
+		_gameStartedTime = Time.time;
 		
+		GameObject.FindObjectOfType<BaseStats>().OnDie += OnBaseDied;
+	}
+
+	private void OnBaseDied(Stats stats)
+	{
+		TriggerLose();
 	}
 
 	public bool IsGameOver()
@@ -124,6 +135,7 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 	void TriggerLose()
 	{
 		GameState = State.Lost;
+		GameObject.FindObjectOfType<CrossGameState>().OnGameOver(new CrossGameState.ScoreInfo() {ScoreThisRun = WaveNumber ,TimeAlive = Time.time - _gameStartedTime});
 		// todo;
 	}
 

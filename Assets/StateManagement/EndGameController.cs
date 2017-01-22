@@ -35,7 +35,7 @@ public class EndGameController : MonoBehaviour
 
 	private void setScore(CrossGameState.ScoreInfo toShow)
 	{
-		scoreText.text = toShow.MaxScoreThisRun.ToString();
+		scoreText.text = toShow.ScoreThisRun.ToString();
 	}
 
 

@@ -32,7 +32,7 @@ public class StartGameScreenController : MonoBehaviour
 
 	private void SetHighScore(CrossGameState.ScoreInfo toShow)
 	{
-		highScoreText.text = toShow.MaxScoreThisRun.ToString();
+		highScoreText.text = toShow.ScoreThisRun.ToString();
 	}
 
 	public void StartGame()
