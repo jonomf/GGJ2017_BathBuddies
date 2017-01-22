@@ -33,13 +33,13 @@ public class CannonHandle : MonoBehaviour
 
     IEnumerator DragHandle()
     {
-        var lastHandPosition = VRPlayer.rightHand.localPosition;
+	    var lastHandPosition = HandPositionRelativeToHead();
         VRPlayer.handsBusy = true;
         while (!Input.GetButtonUp("Fire1"))
-        {
-            m_YPivot.Rotate(Vector3.up, (lastHandPosition - VRPlayer.rightHand.localPosition).x * m_RotationSpeed);
-            m_XPivot.Rotate(Vector3.left, (lastHandPosition - VRPlayer.rightHand.localPosition).y * m_RotationSpeed);
-            lastHandPosition = VRPlayer.rightHand.localPosition;
+		{
+			m_YPivot.Rotate(m_YPivot.up, (lastHandPosition - HandPositionRelativeToHead()).x * m_RotationSpeed * 50 * Time.deltaTime, Space.World);
+			m_XPivot.Rotate(-m_XPivot.right, (lastHandPosition - HandPositionRelativeToHead()).y * m_RotationSpeed * 50 * Time.deltaTime, Space.World);
+			lastHandPosition = HandPositionRelativeToHead();
             if (VRPlayer.fire)
             {
 				AttemptFire();
@@ -47,7 +47,12 @@ public class CannonHandle : MonoBehaviour
             yield return null;
         }
         VRPlayer.handsBusy = false;
-    }
+	}
+
+	Vector3 HandPositionRelativeToHead()
+	{
+		return VRPlayer.head.InverseTransformPoint(VRPlayer.rightHand.position);
+	}
 
 	void AttemptFire()
 	{

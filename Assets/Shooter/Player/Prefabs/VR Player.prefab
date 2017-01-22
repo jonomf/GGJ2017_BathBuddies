@@ -444,6 +444,7 @@ MonoBehaviour:
   m_TriggerOffThreshhold: 0.4
   m_LeftHand: {fileID: 4328098615571936}
   m_RightHand: {fileID: 4984565857542590}
+  m_Head: {fileID: 4300268615407266}
   m_FadeMaterial: {fileID: 2100000, guid: 5e1628c0ea6d1f845aed6add982f3078, type: 2}
 --- !u!135 &135003121719224202
 SphereCollider:
