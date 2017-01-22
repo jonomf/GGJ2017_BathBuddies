@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Object = UnityEngine.Object;
@@ -147,6 +145,22 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 	void TriggerLose()
 	{
 		GameState = State.Lost;
+		foreach (var stats in FindObjectsOfType<EnemyStats>())
+		{
+			if(stats != null) //in the process of being cleaned up?
+				Destroy(stats.gameObject);
+			//Debug.Log("TriggerLose Destroying:" +stats.gameObject);
+		}
+		foreach(var turret in FindObjectsOfType<Turret>()) {
+			if(turret != null) //in the process of being cleaned up?
+				Destroy(turret.gameObject);
+			//Debug.Log("TriggerLose Destroying:" +stats.gameObject);
+		}
+		foreach(var projectile in FindObjectsOfType<Projectile>()) {
+			if(projectile != null) //in the process of being cleaned up?
+				Destroy(projectile.gameObject);
+			//Debug.Log("TriggerLose Destroying:" +stats.gameObject);
+		}
 		GameObject.FindObjectOfType<CrossGameState>().OnGameOver(new CrossGameState.ScoreInfo() {ScoreThisRun = WaveNumber ,TimeAlive = Time.time - _gameStartedTime});
 		// todo;
 	}
