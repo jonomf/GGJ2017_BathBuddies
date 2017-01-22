@@ -45,12 +45,13 @@ public class HUDController : MonoBehaviourSingleton<HUDController> {
 		{
 			if(hit.collider.tag == "Tower")
 			{
-				Debug.Log("Found object: " + hit.collider);
 				// assume parent to Click collider is our object.
-				VRPlayer.TeleportTo(hit.collider.transform.parent);
+				var turret = hit.collider.transform.parent.GetComponent<Turret>();
+				if (turret != null)
+				{
+					VRPlayer.TeleportTo(turret.teleportPoint);
+				}
 			}
 		}
-
-
 	}
 }
