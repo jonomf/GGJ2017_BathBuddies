@@ -102,37 +102,7 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 			WaveNumber++;
 		}
 	}
-
-	void SpawnEnemy(EnemySpec spec, Collider spawnBoundsAir, Collider spawnBoundsWater)
-	{
-		Collider spawnBounds = null;
-
-		if(!spec.underwater)
-		{
-			spawnBounds = spawnBoundsAir;
-		}
-		else
-		{
-			spawnBounds = spawnBoundsWater;
-		}
-
-		var randomPos = RandomEx.InsideBounds(spawnBounds.bounds);
-		Instantiate( spec.prefab, randomPos, Quaternion.identity).transform.parent = shipsContainer;
-	}
-
-	void EnemySpawnSpecForNow(int newEnemies, EnemySpec spec)
-	{
-		var targetSpawnPointCollection = spec.underwater ? SpawnPointsUnderWater : SpawnPointsAir;
-		var spawnPointGO = targetSpawnPointCollection[Random.Range(0, targetSpawnPointCollection.Count)];
-		var allSpawns = spawnPointGO.GetComponentsInChildren<Collider>();
-		var spawnPoint = allSpawns[Random.Range(0, allSpawns.Length)];
-
-		for(int i = 0;i < newEnemies;i++) {
-			var randomInsideBounds = RandomEx.InsideBounds(spawnPoint.bounds);
-			Instantiate(spec.prefab, randomInsideBounds, Quaternion.identity).transform.parent = shipsContainer;
-		}
-	}
-
+	
 	public Vector3 spawnPointInsideOfBoundsForEnemySpec(EnemySpec spec)
 	{
 		var targetSpawnPointCollection = spec.underwater ? SpawnPointsUnderWater : SpawnPointsAir;
@@ -140,8 +110,14 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 		for (int index = 0; index < targetSpawnPointCollection.Count; index++)  //cache me...
 		{
 			var spawnPoints = targetSpawnPointCollection[index];
-			if(spawnPoints.GetComponent<)
+			var corner = spawnPoints.GetComponent<EnemySpawnAreaTag>().Corner;
+			if(corner == spec.spawnCorner)
+			{
+				spawnPointArea = spawnPoints.GetComponent<EnemySpawnAreaTag>().GetComponent<Collider>();
+			}
 		}
+		//null ref means that the air or watter pool wasn't taged with one of the enemy spawn area tags
+		return RandomEx.InsideBounds(spawnPointArea.bounds);
 	}
 
 	IEnumerator TriggerWave(WaveSpec spec)
@@ -164,7 +140,9 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 				 //TODO: watch out for collection modified exception here
 				enemiesSpawned[enemySpec] += newEnemiesToSpawn;
 
-				EnemySpawnSpecForNow(newEnemiesToSpawn, enemySpec);
+				for(int i = 0;i < newEnemiesToSpawn;i++) {
+					Instantiate(enemySpec.prefab, spawnPointInsideOfBoundsForEnemySpec(enemySpec), Quaternion.identity).transform.parent = shipsContainer;
+				}
 			}
 			
 			yield return null;
