@@ -7,6 +7,13 @@ using UnityEngine.UI;
 
 public class HUDController : MonoBehaviourSingleton<HUDController> {
 
+	public enum CannonMode {
+		Ballistic,
+		Depth
+	}
+
+	public CannonMode cannonMode;
+
 	public Camera hudCamera;
 	public void Start()
 	{
@@ -30,9 +37,13 @@ public class HUDController : MonoBehaviourSingleton<HUDController> {
 		//Debug.Log("OnMoveToggle: " + value);
 	}
 	public void OnCannonToggle(bool value) {
+		if(value)			
+			cannonMode = CannonMode.Ballistic;
 		Debug.Log("OnCannonToggle: " + value);
 	}
 	public void OnDepthChargeToggle(bool value) {
+		if(value)
+			cannonMode = CannonMode.Depth;
 		Debug.Log("OnDepthChargeToggle: " + value);
 	}
 
