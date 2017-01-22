@@ -9,7 +9,7 @@ public class EnemyStats : Stats
    
 
     // Use this for initialization
-    void Start () {
+	protected override void Start () {
         base.Start();
 	}
 
@@ -19,7 +19,10 @@ public class EnemyStats : Stats
         base.Update();
     }
 
-
+    public override float Attack(GameObject target, AttackType attack)
+    {
+        return base.Attack(target, attack);
+    }
     private void OnCollisionEnter(Collision collision)
     {
         Projectile projectile = collision.gameObject.GetComponent<Projectile>();

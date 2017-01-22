@@ -8,6 +8,10 @@ using Random = UnityEngine.Random;
 
 public class CrossGameState : MonoBehaviour
 {
+    private static CrossGameState s_Instance;
+    public static bool skipIntro { get { return s_Instance.m_SkipIntro; } }
+
+    [SerializeField] private bool m_SkipIntro;
 	[Serializable]
 	public class ScoreInfo
 	{
@@ -40,6 +44,7 @@ public class CrossGameState : MonoBehaviour
 	private Action<Object> unloadScene;  
 	private void Awake()
 	{
+	    s_Instance = this;
 		mainScenes = new List<Object>() {_aiScene,_hudScene,_mainGameScene};
 	    Instantiate(m_VRPlayerPrefab.gameObject);
 		loadScene = (Object scene) => SceneManager.LoadScene(scene.name,LoadSceneMode.Additive);
@@ -55,7 +60,11 @@ public class CrossGameState : MonoBehaviour
 	{
 		return _highScoreInfo;
 	}
-
+	[ContextMenu("fake kill base")]
+	void fakeKillBase() {
+		//GameObject.FindObjectOfType<BaseStats>().Attack()
+		GameObject.FindObjectOfType<BaseStats>().curHealth = -1;
+	}
 	[ContextMenu("End game fake")]
 	void fakeGameOver()
 	{

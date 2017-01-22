@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Object = UnityEngine.Object;
@@ -22,46 +20,28 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 	public List<GameObject> SpawnPointsAir = new List<GameObject>();
 	public List<GameObject> SpawnPointsUnderWater = new List<GameObject>();
 
+    private Transform shipsContainer;
+
+    public static Transform bulletsContainer;
+    private Transform m_TowersContainer;
+
 	public static float GameTime()
 	{
 		return Time.time;
 	}
-
-	private List<Vector3> _debugTowerPlacements = new List<Vector3>()
-	{
-		new Vector3(4.36f,1.78f,0f),
-		new Vector3(4.36f,1.78f,14.6f),
-		new Vector3(4.36f,1.78f,-24.2f),
-		new Vector3(21.7f,1.78f,-3.77f),
-	};
-
+	
 	private float _gameStartedTime;
-	// Use this for initialization
-	Turret SetupTurrets()
-	{
-		var firstTurret = Object.FindObjectOfType<Turret>();
-	    if (firstTurret == null)
-	    {
-	        foreach (var turretPlacement in _debugTowerPlacements)
-	        {
-	            var turret =
-	                Object.Instantiate(m_TurretPrefab.gameObject, turretPlacement, Quaternion.identity)
-	                    .GetComponent<Turret>();
-	            if (firstTurret == null)
-	            {
-	                firstTurret = turret;
-	            }
-	        }
-	    }
-	    return firstTurret;
-	}
+
 	void Start ()
 	{
 		_gameStartedTime = Time.time;
-		var firstTurret = SetupTurrets();
-        VRPlayer.TeleportTo(firstTurret.transform);
+        bulletsContainer = new GameObject("bullets-container").transform;
+        m_TowersContainer = new GameObject("towers-container").transform;
+        VRPlayer.TeleportTo(TurretManager.startingTurret.teleportPoint);
 		
-		GameObject.FindObjectOfType<BaseStats>().OnDie += OnBaseDied;
+		FindObjectOfType<BaseStats>().OnDie += OnBaseDied;
+
+        shipsContainer = new GameObject("ships-container").transform;
 	}
 
 	private void OnBaseDied(Stats stats)
@@ -108,7 +88,7 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 		}
 
 		var randomPos = RandomEx.InsideBounds(spawnBounds.bounds);
-		GameObject.Instantiate( spec.prefab, randomPos, Quaternion.identity);
+		Instantiate( spec.prefab, randomPos, Quaternion.identity).transform.parent = shipsContainer;
 	}
 
 	void TriggerNextWave()
@@ -165,6 +145,22 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 	void TriggerLose()
 	{
 		GameState = State.Lost;
+		foreach (var stats in FindObjectsOfType<EnemyStats>())
+		{
+			if(stats != null) //in the process of being cleaned up?
+				Destroy(stats.gameObject);
+			//Debug.Log("TriggerLose Destroying:" +stats.gameObject);
+		}
+		foreach(var turret in FindObjectsOfType<Turret>()) {
+			if(turret != null) //in the process of being cleaned up?
+				Destroy(turret.gameObject);
+			//Debug.Log("TriggerLose Destroying:" +stats.gameObject);
+		}
+		foreach(var projectile in FindObjectsOfType<Projectile>()) {
+			if(projectile != null) //in the process of being cleaned up?
+				Destroy(projectile.gameObject);
+			//Debug.Log("TriggerLose Destroying:" +stats.gameObject);
+		}
 		GameObject.FindObjectOfType<CrossGameState>().OnGameOver(new CrossGameState.ScoreInfo() {ScoreThisRun = WaveNumber ,TimeAlive = Time.time - _gameStartedTime});
 		// todo;
 	}

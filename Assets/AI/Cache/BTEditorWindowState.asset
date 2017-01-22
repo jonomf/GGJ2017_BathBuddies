@@ -16,8 +16,8 @@ MonoBehaviour:
   - AssetPath: .currentai
     BehaviorTreeName: (No AI Selected)
     BehaviorTreeID: 0
-    LastUpdate: 636206302946658095
-    LastModified: 636206302063841297
+    LastUpdate: 0
+    LastModified: 0
     Errored: 0
   - AssetPath: .createxml
     BehaviorTreeName: Create New Behavior Tree
@@ -27,15 +27,15 @@ MonoBehaviour:
     Errored: 0
   - AssetPath: Assets/AI/BehaviorTrees/BattleBoat.txt
     BehaviorTreeName: BattleBoat
-    BehaviorTreeID: 0
-    LastUpdate: 0
-    LastModified: 0
+    BehaviorTreeID: 1
+    LastUpdate: 636206355982481716
+    LastModified: 636206355981741200
     Errored: 0
   - AssetPath: Assets/AI/BehaviorTrees/BattleSub.txt
     BehaviorTreeName: BattleSub
-    BehaviorTreeID: 1
-    LastUpdate: 636206302946658095
-    LastModified: 636206302063841297
+    BehaviorTreeID: 0
+    LastUpdate: 0
+    LastModified: 0
     Errored: 0
   TreeState:
     _branchRepo:
@@ -49,7 +49,7 @@ MonoBehaviour:
       _focused: 0
     - _fields:
       - _field: name
-        _currentValue: BattleSub
+        _currentValue: BattleBoat
         _recordChange: 1
         _changed: 0
       - _field: open
@@ -83,7 +83,7 @@ MonoBehaviour:
       _type: 4
       _stateIndex: 1
       _parent: 0
-      _lastUpdate: 636206302946658095
+      _lastUpdate: 636206355971684196
       _children: 02000000
       _variables: 
       _focused: 0
@@ -123,10 +123,10 @@ MonoBehaviour:
       _type: 18
       _stateIndex: 2
       _parent: 1
-      _lastUpdate: 636206302946663095
+      _lastUpdate: 636206355773910837
       _children: 030000000400000005000000060000000700000008000000090000000a000000
       _variables: 
-      _focused: 1
+      _focused: 0
     - _fields:
       - _field: name
         _currentValue: move
@@ -157,7 +157,7 @@ MonoBehaviour:
         _recordChange: 1
         _changed: 0
       - _field: movetarget
-        _currentValue: '"sn1"'
+        _currentValue: '"n1"'
         _recordChange: 1
         _changed: 0
       - _field: movespeed
@@ -183,7 +183,7 @@ MonoBehaviour:
       _type: 15
       _stateIndex: 3
       _parent: 2
-      _lastUpdate: 0
+      _lastUpdate: 636206355835151604
       _children: 
       _variables: 
       _focused: 0
@@ -217,7 +217,7 @@ MonoBehaviour:
         _recordChange: 1
         _changed: 0
       - _field: movetarget
-        _currentValue: '"sn2"'
+        _currentValue: '"n2"'
         _recordChange: 1
         _changed: 0
       - _field: movespeed
@@ -237,13 +237,13 @@ MonoBehaviour:
         _recordChange: 1
         _changed: 0
       - _field: closeenoughangle
-        _currentValue: 
+        _currentValue: 20
         _recordChange: 1
         _changed: 0
       _type: 15
       _stateIndex: 4
       _parent: 2
-      _lastUpdate: 0
+      _lastUpdate: 636206355851753213
       _children: 
       _variables: 
       _focused: 0
@@ -277,7 +277,7 @@ MonoBehaviour:
         _recordChange: 1
         _changed: 0
       - _field: movetarget
-        _currentValue: '"sn3"'
+        _currentValue: '"n3"'
         _recordChange: 1
         _changed: 0
       - _field: movespeed
@@ -303,7 +303,7 @@ MonoBehaviour:
       _type: 15
       _stateIndex: 5
       _parent: 2
-      _lastUpdate: 0
+      _lastUpdate: 636206355877151172
       _children: 
       _variables: 
       _focused: 0
@@ -337,7 +337,7 @@ MonoBehaviour:
         _recordChange: 1
         _changed: 0
       - _field: movetarget
-        _currentValue: '"sn4"'
+        _currentValue: '"n4"'
         _recordChange: 1
         _changed: 0
       - _field: movespeed
@@ -363,7 +363,7 @@ MonoBehaviour:
       _type: 15
       _stateIndex: 6
       _parent: 2
-      _lastUpdate: 0
+      _lastUpdate: 636206355896264818
       _children: 
       _variables: 
       _focused: 0
@@ -397,7 +397,7 @@ MonoBehaviour:
         _recordChange: 1
         _changed: 0
       - _field: movetarget
-        _currentValue: '"sn5"'
+        _currentValue: '"n5"'
         _recordChange: 1
         _changed: 0
       - _field: movespeed
@@ -423,7 +423,7 @@ MonoBehaviour:
       _type: 15
       _stateIndex: 7
       _parent: 2
-      _lastUpdate: 0
+      _lastUpdate: 636206355914978054
       _children: 
       _variables: 
       _focused: 0
@@ -457,7 +457,7 @@ MonoBehaviour:
         _recordChange: 1
         _changed: 0
       - _field: movetarget
-        _currentValue: '"sn6"'
+        _currentValue: '"n6"'
         _recordChange: 1
         _changed: 0
       - _field: movespeed
@@ -483,7 +483,7 @@ MonoBehaviour:
       _type: 15
       _stateIndex: 8
       _parent: 2
-      _lastUpdate: 0
+      _lastUpdate: 636206355933346615
       _children: 
       _variables: 
       _focused: 0
@@ -517,7 +517,7 @@ MonoBehaviour:
         _recordChange: 1
         _changed: 0
       - _field: movetarget
-        _currentValue: '"sn7"'
+        _currentValue: '"n7"'
         _recordChange: 1
         _changed: 0
       - _field: movespeed
@@ -543,7 +543,7 @@ MonoBehaviour:
       _type: 15
       _stateIndex: 9
       _parent: 2
-      _lastUpdate: 0
+      _lastUpdate: 636206355953941542
       _children: 
       _variables: 
       _focused: 0
@@ -577,7 +577,7 @@ MonoBehaviour:
         _recordChange: 1
         _changed: 0
       - _field: movetarget
-        _currentValue: '"sn8"'
+        _currentValue: '"n8"'
         _recordChange: 1
         _changed: 0
       - _field: movespeed
@@ -603,8 +603,8 @@ MonoBehaviour:
       _type: 15
       _stateIndex: 10
       _parent: 2
-      _lastUpdate: 0
+      _lastUpdate: 636206355971684196
       _children: 
       _variables: 
-      _focused: 0
+      _focused: 1
     _freeList: 
