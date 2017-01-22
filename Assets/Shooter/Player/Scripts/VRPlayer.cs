@@ -2,12 +2,10 @@
 using UnityEngine;
 using UnityEngine.VR;
 
-public class VRPlayer : MonoBehaviour
+public class VRPlayer : MonoBehaviourSingleton<VRPlayer>
 {
-    private static VRPlayer s_Instance;
-
-    public static Transform leftHand { get { return s_Instance.m_LeftHand; } }
-    public static Transform rightHand { get { return s_Instance.m_RightHand; } }
+    public static Transform leftHand { get { return Instance.m_LeftHand; } }
+	public static Transform rightHand { get { return Instance.m_RightHand; } }
     public static bool fire { get; private set; }
     public static bool handsBusy { get; set; }
 
@@ -26,9 +24,8 @@ public class VRPlayer : MonoBehaviour
     private readonly Color m_Invisible = new Color(0, 0, 0, 0);
     private bool m_TriggerConsumed;
 
-    void Awake()
+    protected override void Awake()
     {
-        s_Instance = this;
         m_FadeMaterial.color = new Color(0,0,0,0);
     }
 
@@ -59,9 +56,9 @@ public class VRPlayer : MonoBehaviour
         }
     }
 
-    public static void TeleportTo(Transform target)
+    public static void TeleportTo(Transform target, System.Action onComplete = null)
     {
-        s_Instance.StartCoroutine(s_Instance.TeleportWithFade(target.position, target.forward));
+		Instance.StartCoroutine(Instance.TeleportWithFade(target.position, target.forward, onComplete));
     }
 
     private static Color FadeToBlack(float alpha)
@@ -69,7 +66,7 @@ public class VRPlayer : MonoBehaviour
         return new Color(0, 0, 0, alpha);
     }
 
-    IEnumerator TeleportWithFade(Vector3 targetPosition, Vector3 direction)
+	IEnumerator TeleportWithFade(Vector3 targetPosition, Vector3 direction,  System.Action onComplete)
     {
         var t = 0f;
         while (t < 1)
@@ -88,5 +85,10 @@ public class VRPlayer : MonoBehaviour
             yield return null;
         }
         m_FadeMaterial.color = m_Invisible;
+
+		if(onComplete != null)
+		{
+			onComplete();
+		}
     }
 }

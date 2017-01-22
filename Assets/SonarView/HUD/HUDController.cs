@@ -14,6 +14,8 @@ public class HUDController : MonoBehaviourSingleton<HUDController> {
 
 	public CannonMode cannonMode;
 
+	public GameObject teleportMarkerPrefab;
+
 	public Camera hudCamera;
 	public void Start()
 	{
@@ -57,13 +59,23 @@ public class HUDController : MonoBehaviourSingleton<HUDController> {
 		{
 			if(hit.collider.tag == "Tower")
 			{
+				var sourceTransform = VRPlayer.Instance.transform;
+
+				var targetTransform = hit.collider.transform.parent;
+				var targetTeleportMarker = GameObject.Instantiate(this.teleportMarkerPrefab, targetTransform.position, Quaternion.identity);
+				var sourceTeleportMarker = GameObject.Instantiate(this.teleportMarkerPrefab, sourceTransform.position, Quaternion.identity);
 				// assume parent to Click collider is our object.
-				var turret = hit.collider.transform.parent.GetComponent<Turret>();
+				var turret = targetTransform.GetComponent<Turret>();
 				if (turret != null)
 				{
-					VRPlayer.TeleportTo(turret.teleportPoint);
+					VRPlayer.TeleportTo(turret.teleportPoint, () => {
+						GameObject.Destroy(targetTeleportMarker);
+						GameObject.Destroy(sourceTeleportMarker);
+					});
 				}
 			}
 		}
 	}
+
+
 }

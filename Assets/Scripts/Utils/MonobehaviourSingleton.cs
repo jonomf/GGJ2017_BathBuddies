@@ -22,11 +22,11 @@ public class MonoBehaviourSingleton<T> : MonoBehaviour where T : class {
         }
     }
     // Use this for initialization
-    protected void Awake () {
+    protected virtual void Awake () {
         instance = this as T;
 	}
 
-    protected void OnDestroy()
+    protected virtual void OnDestroy()
     {
         instance = null;
     }
