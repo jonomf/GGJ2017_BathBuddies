@@ -1,10 +1,12 @@
 fileFormatVersion: 2
 guid: 652e08227f15742d9bff30ed38724983
-timeCreated: 1485027330
-licenseType: Free
+timeCreated: 1485048983
+licenseType: Pro
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - m_TurretPrefab: {fileID: 114104408540362046, guid: 96ada484b539cf34f8fdc1c2ad929a21,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 652e08227f15742d9bff30ed38724983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TurretPrefab: {fileID: 114580721995435362, guid: b3cc3537e1c2787448f960a3b66bf54f,
+  m_TurretPrefab: {fileID: 114104408540362046, guid: 96ada484b539cf34f8fdc1c2ad929a21,
     type: 2}
   Waves:
   - StartTime_s: 0
