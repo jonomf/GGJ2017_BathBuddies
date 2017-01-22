@@ -22,4 +22,14 @@ public class HUDController : MonoBehaviour {
 	public void OnMovePlayer() {
 		Debug.Log("HUD MovedPlayer");
 	}
+
+	public void OnMoveToggle(bool value) {
+		Debug.Log("OnMoveToggle: " + value);
+	}
+	public void OnCannonToggle(bool value) {
+		Debug.Log("OnCannonToggle: " + value);
+	}
+	public void OnDepthChargeToggle(bool value) {
+		Debug.Log("OnDepthChargeToggle: " + value);
+	}
 }
