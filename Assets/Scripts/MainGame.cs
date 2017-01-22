@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
+using UnityEngine.VR;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
@@ -46,6 +47,13 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 		GameObject.FindObjectOfType<BaseStats>().health = int.MaxValue;
 
 	}
+
+	[ContextMenu("Make time normal", false, -100)]
+	private void NormalizeTime()
+	{
+		Time.timeScale = 1f;
+	}
+
 	private float _gameStartedTime;
 
 	void Start ()
@@ -90,8 +98,8 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 		while (!IsGameOver())
 		{
 			var nextWave = Waves.Waves[WaveNumber];
-			if(nextWave.StartTime_s <= GameTime()) //FIXME: gametime doesn't 
-			{
+			//if(nextWave.StartTime_s <= GameTime()) //FIXME: gametime doesn't 
+			//{
 				var blockUntilNextDone = nextWave.blockUntilAllEnemiesAreDead;
 				var coroutine = StartCoroutine(TriggerWave(nextWave));
 				if(blockUntilNextDone) { 
@@ -100,15 +108,23 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 
 				}
 				WaveNumber++;
-			}
+			//}
 			yield return null;
 		}
 	}
 
 #warning "Celebrate winning here"
+	[ContextMenu("Winning")]
 	private void WinningDuh()
 	{
-		
+		StartCoroutine(spawnWinEffect());
+	}
+
+	IEnumerator spawnWinEffect()
+	{
+		var go = GameObject.Instantiate(Resources.Load("confetti2"),InputTracking.GetLocalPosition(VRNode.Head),Quaternion.identity) as GameObject;
+		yield return new WaitForSeconds(2f);
+		GameObject.Destroy(go);
 	}
 	
 	public Vector3 spawnPointInsideOfBoundsForEnemySpec(EnemySpec spec)
@@ -212,6 +228,7 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 				break;
 			yield return null;
 		}
+		WinningDuh();
 		Debug.Log("wave done");
 		//NOTE: this may cut off the last few in some cases. can be fixed in data
 	}
