@@ -31,11 +31,6 @@ public class CannonHandle : MonoBehaviour
         }
     }
 
-	Vector3 HandPositionRelativeToHead()
-	{
-		return VRPlayer.head.InverseTransformPoint(VRPlayer.rightHand.position);
-	}
-
     IEnumerator DragHandle()
     {
 	    var lastHandPosition = HandPositionRelativeToHead();
@@ -55,7 +50,12 @@ public class CannonHandle : MonoBehaviour
             yield return null;
         }
         VRPlayer.handsBusy = false;
-    }
+	}
+
+	Vector3 HandPositionRelativeToHead()
+	{
+		return VRPlayer.head.InverseTransformPoint(VRPlayer.rightHand.position);
+	}
 
 	void AttemptFire()
 	{
