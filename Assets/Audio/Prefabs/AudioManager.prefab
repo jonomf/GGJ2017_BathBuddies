@@ -63,7 +63,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1209775833932328}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -30.544254, y: 81.78303, z: -68.26302}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4594019004102350}
@@ -163,15 +163,58 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_templateAudio: {fileID: 82226540611815040}
   audioclips:
-  - sound: 0
+  - sound: 1
     clip: {fileID: 8300000, guid: 646c0968d88cbee419e4c90813970fc4, type: 3}
     frequencyVariance: 0.2
     volumeVariance: 0.2
-  - sound: 1
+    volume: 1
+  - sound: 2
     clip: {fileID: 8300000, guid: 4931aa8c1c799134696004a7ef0f9ab7, type: 3}
     frequencyVariance: 0.2
     volumeVariance: 0.2
-  - sound: 5
+    volume: 1
+  - sound: 6
     clip: {fileID: 8300000, guid: 1f04c45ec3163e44e9f87ed645d68a2f, type: 3}
+    frequencyVariance: 0
+    volumeVariance: 0.2
+    volume: 0.35
+  - sound: 4
+    clip: {fileID: 8300000, guid: 968789f5fcb1eff41be675855b2d1196, type: 3}
     frequencyVariance: 0.2
     volumeVariance: 0.2
+    volume: 1
+  - sound: 5
+    clip: {fileID: 8300000, guid: 3e68f7a3126ae2649b7937b087f2a0d4, type: 3}
+    frequencyVariance: 0.2
+    volumeVariance: 0.2
+    volume: 1
+  - sound: 3
+    clip: {fileID: 8300000, guid: 5bfdd5a2182ef714dbd38bc08ceb1091, type: 3}
+    frequencyVariance: 0.2
+    volumeVariance: 0.2
+    volume: 1
+  - sound: 7
+    clip: {fileID: 8300000, guid: b9085f6714564f7488ce2975b42b7b58, type: 3}
+    frequencyVariance: 0.2
+    volumeVariance: 0.2
+    volume: 1
+  - sound: 8
+    clip: {fileID: 8300000, guid: 52cd8406c155b61449510cbb11ebf87d, type: 3}
+    frequencyVariance: 0.2
+    volumeVariance: 0.2
+    volume: 1
+  - sound: 9
+    clip: {fileID: 8300000, guid: 3019295b9417a264d9b9fd72c0f2a555, type: 3}
+    frequencyVariance: 0.2
+    volumeVariance: 0.2
+    volume: 1
+  - sound: 11
+    clip: {fileID: 8300000, guid: e9ac9f9528330e746b865a16cf169fcc, type: 3}
+    frequencyVariance: 0.2
+    volumeVariance: 0.2
+    volume: 1
+  - sound: 10
+    clip: {fileID: 8300000, guid: b9085f6714564f7488ce2975b42b7b58, type: 3}
+    frequencyVariance: 0.2
+    volumeVariance: 0.2
+    volume: 1

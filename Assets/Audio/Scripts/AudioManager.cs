@@ -7,12 +7,21 @@ using UnityEngine.VR;
 using Random = UnityEngine.Random;
 
 public enum SOUNDS {
-	OUT_OF_AMMO,
+    NO_SOUND,
+    OUT_OF_AMMO,
 	PISTOL_SHOT,
 	CANNON_SHOT,
 	EXPLOSION_BIG,
 	EXPLOSION_SMALL,
 	MAIN_GAME_AUDIO,
+    DEPTH_CHARGE_DROP,
+    BASE_EXPLOSION,
+    SUB_EXPLOSION,
+    WAVES,
+    CANNON_EXPLOSION
+
+    
+    
 }
 
 [Serializable]
@@ -23,6 +32,7 @@ public class AudioToEnum
 	//todo: frequency and volume
 	public float frequencyVariance = 0.2f;
 	public float volumeVariance = 0.2f;
+    public float volume = 1.0f;
 }
 public class AudioManager : MonoBehaviour //TODO: onValidate to make sure all sounds are set
 {

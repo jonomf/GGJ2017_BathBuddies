@@ -8,7 +8,8 @@ public class DiscProjectile : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        StartCoroutine(DestroyAfterDelay());
+        //StartCoroutine(DestroyAfterDelay());
+		Destroy(gameObject);
     }
 
     IEnumerator DestroyAfterDelay()

@@ -25,7 +25,7 @@ public class CannonHandle : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1") && !VRPlayer.handsBusy)
         {
             StartCoroutine(DragHandle());
         }

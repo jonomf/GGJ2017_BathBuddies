@@ -794,6 +794,7 @@ MonoBehaviour:
   fireTransform: {fileID: 0}
   animControl: {fileID: 0}
   deathEffect: {fileID: 191186, guid: 079954accd64b32419ec069129c81273, type: 2}
+  deathEffectSound: 8
 --- !u!23 &764152798
 MeshRenderer:
   m_ObjectHideFlags: 0

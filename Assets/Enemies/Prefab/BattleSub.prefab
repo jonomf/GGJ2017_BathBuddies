@@ -128,7 +128,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1621068116860610}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.878954, y: 0.125, z: 35.14444}
+  m_LocalPosition: {x: -1.2178879, y: 0.125, z: -15.38538}
   m_LocalScale: {x: 1, y: 1, z: 3}
   m_Children:
   - {fileID: 4667177173835552}
@@ -308,11 +308,12 @@ MonoBehaviour:
   damageController: {fileID: 0}
   rangeVolume: {fileID: 114050763767364290}
   curHealth: 0
-  enemyProjectileTag: player_depth
+  enemyProjectileTag: player
   attackDelayTime: 0.1
   fireTransform: {fileID: 0}
   animControl: {fileID: 0}
   deathEffect: {fileID: 0}
+  deathEffectSound: 9
 --- !u!135 &135950956501944530
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -19,3 +19,5 @@ MonoBehaviour:
   hitEffect: {fileID: 180128, guid: 6586ff0f14125534cae2f5d8f04b7871, type: 2}
   attackForce: 250
   attackCooldown: 3
+  attackSound: 3
+  hitSound: 5
