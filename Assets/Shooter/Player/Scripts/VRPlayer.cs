@@ -81,7 +81,7 @@ public class VRPlayer : MonoBehaviour
 
     public static void TeleportTo(Transform target)
     {
-        s_Instance.StartCoroutine(s_Instance.TeleportWithFade(target.position));
+        s_Instance.StartCoroutine(s_Instance.TeleportWithFade(target.position, target.forward));
     }
 
     private static Color FadeToBlack(float alpha)
@@ -89,7 +89,7 @@ public class VRPlayer : MonoBehaviour
         return new Color(0, 0, 0, alpha);
     }
 
-    IEnumerator TeleportWithFade(Vector3 targetPosition)
+    IEnumerator TeleportWithFade(Vector3 targetPosition, Vector3 direction)
     {
         var t = 0f;
         while (t < 1)
@@ -100,6 +100,7 @@ public class VRPlayer : MonoBehaviour
         }
         m_FadeMaterial.color = m_Opaque;
         transform.position = targetPosition;
+		transform.rotation = Quaternion.Euler(direction);
         while (t > 0)
         {
             m_FadeMaterial.color = FadeToBlack(t);
