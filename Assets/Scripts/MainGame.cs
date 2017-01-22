@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
@@ -107,15 +108,25 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 	{
 		var targetSpawnPointCollection = spec.underwater ? SpawnPointsUnderWater : SpawnPointsAir;
 		Collider spawnPointArea = null;
-		for (int index = 0; index < targetSpawnPointCollection.Count; index++)  //cache me...
+		//find the corner that is tagged with the same enum as the group
+		foreach (var collection in targetSpawnPointCollection)
 		{
-			var spawnPoints = targetSpawnPointCollection[index];
-			var corner = spawnPoints.GetComponent<EnemySpawnAreaTag>().Corner;
-			if(corner == spec.spawnCorner)
+			foreach (Transform spawnPointTransform in collection.transform)
 			{
-				spawnPointArea = spawnPoints.GetComponent<EnemySpawnAreaTag>().GetComponent<Collider>();
+				var spawnPoint = spawnPointTransform.gameObject;
+				var spawnTag = spawnPoint.GetComponent<EnemySpawnAreaTag>();
+				if(spawnTag == null) {
+					Debug.LogError(spawnPoint.name + " does not ahave a spawntag!");
+					continue;
+				}
+				var corner = spawnTag.Corner;
+				if(corner == spec.spawnCorner) {
+					spawnPointArea = spawnPoint.GetComponent<EnemySpawnAreaTag>().GetComponent<Collider>();
+				}
 			}
+			
 		}
+		
 		//null ref means that the air or watter pool wasn't taged with one of the enemy spawn area tags
 		return RandomEx.InsideBounds(spawnPointArea.bounds);
 	}
@@ -124,8 +135,13 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 	{
 		float waveStartedAt = Time.time;
 		Dictionary<EnemySpec,int> enemiesSpawned = new Dictionary<EnemySpec, int>();
+		Dictionary<EnemySpec, int> enemiesSpawnedLastFrame = new Dictionary<EnemySpec, int>();  //not braining. this will do.
+		foreach (var enemyWeights in spec.EnemyWeights)
+		{
+			enemiesSpawned.Add(enemyWeights, 0);
+		}
 
-		while (Time.time - waveStartedAt < waveStartedAt)
+		while (Time.time - waveStartedAt < spec.DurationOfWave)
 		{
 			float normalizedTime = (Time.time - waveStartedAt)/spec.DurationOfWave;
 
@@ -134,15 +150,23 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 				var enemySpec = keyValuePair.Key;
 				var enemiesOfThisTypeSpawnedPreviously = keyValuePair.Value;
 
-				int expectedEnmiesNow = Mathf.FloorToInt(enemySpec.rampUpOfEnemiesInCurve.Evaluate(normalizedTime));
+				float accordingToTime = enemySpec.rampUpOfEnemiesInCurve.Evaluate(normalizedTime);
+				//Debug.Log(accordingToTime);
+				int expectedEnmiesNow = Mathf.FloorToInt(accordingToTime * enemySpec.NumEnemies);
 				int newEnemiesToSpawn = expectedEnmiesNow - enemiesOfThisTypeSpawnedPreviously;
-				
-				 //TODO: watch out for collection modified exception here
-				enemiesSpawned[enemySpec] += newEnemiesToSpawn;
+
+				//TODO: watch out for collection modified exception here
+				enemiesSpawnedLastFrame[enemySpec] = newEnemiesToSpawn;
 
 				for(int i = 0;i < newEnemiesToSpawn;i++) {
-					Instantiate(enemySpec.prefab, spawnPointInsideOfBoundsForEnemySpec(enemySpec), Quaternion.identity).transform.parent = shipsContainer;
+					
+					var go = Instantiate(enemySpec.prefab, spawnPointInsideOfBoundsForEnemySpec(enemySpec), Quaternion.identity).transform.parent = shipsContainer;
+					Debug.Log("Spawned",go);
 				}
+			}
+			foreach (var lastFrameAdds in enemiesSpawnedLastFrame)
+			{
+				enemiesSpawned[lastFrameAdds.Key] += lastFrameAdds.Value;
 			}
 			
 			yield return null;

@@ -5,4 +5,5 @@ using UnityEngine;
 public class EnemySpawnAreaTag : MonoBehaviour
 {
 	public EnemySpec.SpawnCorner Corner;
+	public bool isUnderwater;
 }
