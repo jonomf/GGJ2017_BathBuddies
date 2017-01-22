@@ -55,7 +55,7 @@ Transform:
   m_GameObject: {fileID: 1790096388162134}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4984441987150740}
   m_RootOrder: 0
@@ -68,7 +68,7 @@ Transform:
   m_GameObject: {fileID: 1621068116860610}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -16.6, y: 7.9, z: -6}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4667177173835552}
   m_Father: {fileID: 0}
@@ -152,9 +152,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 5
   moveSpeed: 5
-  TargetsInRange: []
   attackType: {fileID: 11400000, guid: 9c06c3ab2efc05e419d35c532eb439cd, type: 2}
   damageController: {fileID: 0}
+  rangeVolume: {fileID: 0}
+  curHealth: 0
+  enemyProjectileTag: 
 --- !u!212 &212692215964276900
 SpriteRenderer:
   m_ObjectHideFlags: 1

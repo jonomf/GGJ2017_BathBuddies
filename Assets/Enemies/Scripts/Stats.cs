@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ public abstract class Stats : MonoBehaviour {
     public RangeVolume rangeVolume;
     public int curHealth;
     public string enemyProjectileTag;
+	public Action<Stats> OnDie;
+
     // Use this for initialization
     protected virtual void Start ()
     {
@@ -63,6 +66,10 @@ public abstract class Stats : MonoBehaviour {
     public virtual void Die()
     {
         Debug.Log("I'm DEAADDD");
+	    if(OnDie != null)
+	    {
+		    OnDie(this);
+	    }
         Destroy(gameObject);
     }
 

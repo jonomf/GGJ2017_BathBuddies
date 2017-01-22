@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 public class MainGame : MonoBehaviourSingleton<MainGame> {
-
+	 
 	public enum State {
 		Playing = 0,
 		Won = 1,
@@ -23,9 +26,39 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 		return Time.time;
 	}
 
+	[SerializeField] private List<Vector3> _debugTowerPlacements = new List<Vector3>()
+	{
+		new Vector3(4.36f,1.78f,0f),
+		new Vector3(4.36f,1.78f,14.6f),
+		new Vector3(4.36f,1.78f,-24.2f),
+		new Vector3(21.7f,1.78f,-3.77f),
+	};
+
+	private float _gameStartedTime;
 	// Use this for initialization
-	void Start () {
+	void SetupTurrets()
+	{
+		var firstTurret = Object.FindObjectOfType<Turret>();
+		if(firstTurret == null) {
+			var turretPrefab = Resources.Load<Turret>("Turret");
+			foreach(var turretPlacement in _debugTowerPlacements) {
+				Object.Instantiate(turretPrefab, turretPlacement, Quaternion.identity);
+			}
+		}
+	}
+	void Start ()
+	{
+		_gameStartedTime = Time.time;
+		SetupTurrets();
+		var firstTurret = Object.FindObjectOfType<Turret>();
+		VRPlayer.TeleportTo(firstTurret.transform);
 		
+		GameObject.FindObjectOfType<BaseStats>().OnDie += OnBaseDied;
+	}
+
+	private void OnBaseDied(Stats stats)
+	{
+		TriggerLose();
 	}
 
 	public bool IsGameOver()
@@ -124,6 +157,7 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 	void TriggerLose()
 	{
 		GameState = State.Lost;
+		GameObject.FindObjectOfType<CrossGameState>().OnGameOver(new CrossGameState.ScoreInfo() {ScoreThisRun = WaveNumber ,TimeAlive = Time.time - _gameStartedTime});
 		// todo;
 	}
 
