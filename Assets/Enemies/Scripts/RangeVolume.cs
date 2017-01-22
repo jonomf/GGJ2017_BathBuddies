@@ -18,11 +18,11 @@ public class RangeVolume : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
 
-        Debug.Log("Collision Detected");
+
         if (other.gameObject.tag == targetTag)
         {
             activeTargets.Add(other.gameObject);
-            Debug.Log("Adding enemy to available targets");
+    
         }
         
           
@@ -33,7 +33,7 @@ public class RangeVolume : MonoBehaviour {
         if(other.gameObject.tag == targetTag)
         {
             activeTargets.Remove(other.gameObject);
-            Debug.Log("Removing enemy from avaialble targets");
+        
             
         }
     }
