@@ -29,10 +29,7 @@ public class EnemyStats : Stats
 		var proj = other.GetComponent<Projectile>();
 		if (proj == null)
 			return;
-		if (proj.attack.originator == "player_depth")
-		{
-			ApplyDamage(proj.attack, other.gameObject);
-		}
+		ApplyDamage(proj.attack, other.gameObject);
 	}
 
 	void ApplyDamage(AttackType attack, GameObject hit)
