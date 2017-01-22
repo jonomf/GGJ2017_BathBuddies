@@ -14,6 +14,11 @@ public class CannonHandle : MonoBehaviour
 
 	private int m_Ammo;
 
+	void Awake()
+	{
+		m_Ammo = m_StartingAmmo;
+	}
+
     void OnTriggerStay(Collider other)
     {
         if (Input.GetButtonDown("Fire1"))
@@ -44,6 +49,7 @@ public class CannonHandle : MonoBehaviour
 	{
 		if (m_Ammo > 0)
 		{
+			m_Ammo--;
 			m_Weapon.Fire(m_CannonTip.position, m_CannonTip.forward);
 		}
 		else
