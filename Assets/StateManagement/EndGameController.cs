@@ -9,7 +9,7 @@ public class EndGameController : MonoBehaviour
 	[SerializeField]
 	private CrossGameState.ScoreInfo _debugScoreInfo;
 
-	[SerializeField] private Text scoreText;
+	[SerializeField] private Text timeAliveText;
 
 
 	public void Start()
@@ -35,7 +35,7 @@ public class EndGameController : MonoBehaviour
 
 	private void setScore(CrossGameState.ScoreInfo toShow)
 	{
-		scoreText.text = toShow.ScoreThisRun.ToString();
+		timeAliveText.text = toShow.TimeAlive.ToString();
 	}
 
 

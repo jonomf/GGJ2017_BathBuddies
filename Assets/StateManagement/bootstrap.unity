@@ -106,7 +106,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!20 &38661583
 Camera:
   m_ObjectHideFlags: 0
@@ -383,7 +383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2067264934
 Transform:
   m_ObjectHideFlags: 0
@@ -408,11 +408,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec7fcb6706cdab24faa4ccda5eb6b858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameOverScene: {fileID: 0}
-  _gameStartScene: {fileID: 0}
+  _gameOverScene: {fileID: 102900000, guid: 025e9d6a448270c4ea09e11909e1a320, type: 3}
+  _gameStartScene: {fileID: 102900000, guid: 90dc57ccf0f4d0e43972800ff38f62d3, type: 3}
   _aiScene: {fileID: 0}
-  _hudScene: {fileID: 0}
-  _mainGameScene: {fileID: 0}
+  _hudScene: {fileID: 102900000, guid: 29a743b2435b14c4cbc2a0fe0a98e421, type: 3}
+  _mainGameScene: {fileID: 102900000, guid: 66e9cddcdce0e49c588ad7000e1aabcb, type: 3}
   _timeToShowGameOverScene: 3
   _highScoreInfo:
     ScoreThisRun: 0
