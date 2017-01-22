@@ -32,7 +32,20 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 	{
 		return Time.time;
 	}
-	
+
+	[SerializeField] private float _multipleToSpeedUpTimeBy = 10f;
+
+	[ContextMenu("Make invincible, kill current wave, speed up time")]
+	private void TestDesign()
+	{
+		
+		StopCoroutine("TriggerWave");
+		killEverything();
+
+		Time.timeScale = _multipleToSpeedUpTimeBy;
+		GameObject.FindObjectOfType<BaseStats>().health = int.MaxValue;
+
+	}
 	private float _gameStartedTime;
 
 	void Start ()
@@ -81,12 +94,21 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 			{
 				var blockUntilNextDone = nextWave.blockUntilAllEnemiesAreDead;
 				var coroutine = StartCoroutine(TriggerWave(nextWave));
-				if(blockUntilNextDone)
+				if(blockUntilNextDone) { 
 					yield return coroutine;
+					WinningDuh();
+
+				}
 				WaveNumber++;
 			}
 			yield return null;
 		}
+	}
+
+#warning "Celebrate winning here"
+	private void WinningDuh()
+	{
+		
 	}
 	
 	public Vector3 spawnPointInsideOfBoundsForEnemySpec(EnemySpec spec)
@@ -172,12 +194,9 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 		// todo;		
 	}
 
-	void TriggerLose()
+	void killEverything()
 	{
-		GameState = State.Lost;
-		//FIXME: just destroy all things under bulletsContainer, et al
-		foreach(var stats in FindObjectsOfType<EnemyStats>())
-		{
+		foreach(var stats in FindObjectsOfType<EnemyStats>()) {
 			if(stats != null) //in the process of being cleaned up?
 				Destroy(stats.gameObject);
 			//Debug.Log("TriggerLose Destroying:" +stats.gameObject);
@@ -192,6 +211,12 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 				Destroy(projectile.gameObject);
 			//Debug.Log("TriggerLose Destroying:" +stats.gameObject);
 		}
+	}
+	void TriggerLose()
+	{
+		GameState = State.Lost;
+		//FIXME: just destroy all things under bulletsContainer, et al
+		killEverything();
 		//stopping coroutine by string name. Not awesome
 		StopCoroutine("TriggerWave");
 		GameObject.FindObjectOfType<CrossGameState>().OnGameOver(new CrossGameState.ScoreInfo() {ScoreThisRun = WaveNumber ,TimeAlive = Time.time - _gameStartedTime});
