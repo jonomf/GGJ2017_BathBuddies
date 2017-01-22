@@ -14,6 +14,7 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 		Lost = 2,
 	}
 
+    [SerializeField] private Turret m_TurretPrefab;
 	public List<WaveSpec> Waves = new List<WaveSpec>();
 	public int WaveNumber = 0;
 	public State GameState = State.Playing;
@@ -36,22 +37,29 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 
 	private float _gameStartedTime;
 	// Use this for initialization
-	void SetupTurrets()
+	Turret SetupTurrets()
 	{
 		var firstTurret = Object.FindObjectOfType<Turret>();
-		if(firstTurret == null) {
-			var turretPrefab = Resources.Load<Turret>("Turret");
-			foreach(var turretPlacement in _debugTowerPlacements) {
-				Object.Instantiate(turretPrefab, turretPlacement, Quaternion.identity);
-			}
-		}
+	    if (firstTurret == null)
+	    {
+	        foreach (var turretPlacement in _debugTowerPlacements)
+	        {
+	            var turret =
+	                Object.Instantiate(m_TurretPrefab.gameObject, turretPlacement, Quaternion.identity)
+	                    .GetComponent<Turret>();
+	            if (firstTurret == null)
+	            {
+	                firstTurret = turret;
+	            }
+	        }
+	    }
+	    return firstTurret;
 	}
 	void Start ()
 	{
 		_gameStartedTime = Time.time;
-		SetupTurrets();
-		var firstTurret = Object.FindObjectOfType<Turret>();
-		VRPlayer.TeleportTo(firstTurret.transform);
+		var firstTurret = SetupTurrets();
+        VRPlayer.TeleportTo(firstTurret.transform);
 		
 		GameObject.FindObjectOfType<BaseStats>().OnDie += OnBaseDied;
 	}
