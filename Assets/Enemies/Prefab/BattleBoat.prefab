@@ -203,8 +203,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1751762888535412}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.32, y: 0.65, z: 0.16}
+  m_LocalRotation: {x: -0, y: 0.53343046, z: -0, w: 0.845844}
+  m_LocalPosition: {x: -1.91, y: 0.5, z: -3.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4873230886119302}
@@ -213,7 +213,7 @@ Transform:
   - {fileID: 4471355129811866}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 64.475006, z: 0}
 --- !u!4 &4873230886119302
 Transform:
   m_ObjectHideFlags: 1
@@ -339,7 +339,7 @@ Animator:
   m_GameObject: {fileID: 1135447732131414}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 66f4d942a8d3c434d84462234ad17bc1, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1525b216f4977fd4d9b219c0c4b0ca1c, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -430,7 +430,9 @@ MonoBehaviour:
   rangeVolume: {fileID: 114397357984556852}
   curHealth: 5
   enemyProjectileTag: 
+  attackDelayTime: 0.3
   fireTransform: {fileID: 1232955759459302}
+  animControl: {fileID: 95363619848304136}
 --- !u!135 &135872646674970572
 SphereCollider:
   m_ObjectHideFlags: 1
