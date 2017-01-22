@@ -16,6 +16,7 @@ public abstract class Stats : MonoBehaviour {
 	public Action<Stats> OnDie;
     public GameObject fireTransform = null;
     public Animator animControl = null;
+    public GameObject deathEffect = null;
    
     // Use this for initialization
     protected virtual void Start ()
@@ -78,6 +79,7 @@ public abstract class Stats : MonoBehaviour {
 
             return damageController.DoAttack(gameObject, target, attack);
         }
+
     }
     public IEnumerator DoAttack(float time, GameObject gameObject, GameObject target, AttackType attack) {
         yield return new WaitForSeconds(time);
@@ -88,6 +90,12 @@ public abstract class Stats : MonoBehaviour {
     public virtual void Die()
     {
         Debug.Log("I'm DEAADDD");
+        if(deathEffect != null)
+        {
+            GameObject effect = Instantiate(deathEffect);
+            effect.transform.position = gameObject.transform.position;
+            Destroy(effect, 3.0f);
+        }
 	    if(OnDie != null)
 	    {
 		    OnDie(this);
