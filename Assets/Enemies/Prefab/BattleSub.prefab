@@ -308,7 +308,7 @@ MonoBehaviour:
   damageController: {fileID: 0}
   rangeVolume: {fileID: 114050763767364290}
   curHealth: 0
-  enemyProjectileTag: player
+  enemyProjectileTag: player_depth
   attackDelayTime: 0.1
   fireTransform: {fileID: 0}
   animControl: {fileID: 0}
