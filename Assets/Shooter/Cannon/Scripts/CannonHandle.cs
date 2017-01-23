@@ -70,6 +70,7 @@ public class CannonHandle : MonoBehaviour
 				{
 					m_CannonAmmo--;
 					m_CannonShot.Fire(m_CannonTip.position, m_CannonTip.forward);
+					AudioManager.Play(SOUNDS.CANNON_SHOT);
 				}
 				else
 				{
@@ -81,6 +82,8 @@ public class CannonHandle : MonoBehaviour
 				{
 					m_StartingDepthCargeAmmo--;
 					m_DepthChargeShot.Fire(m_CannonTip.position, m_CannonTip.forward);
+					AudioManager.Play(SOUNDS.DEPTH_CHARGE_DROP);
+
 				}
 				else
 				{
