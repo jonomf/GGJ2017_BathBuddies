@@ -18,9 +18,9 @@ public enum SOUNDS {
     BASE_EXPLOSION,
     SUB_EXPLOSION,
     WAVES,
-    CANNON_EXPLOSION
-
-    
+    CANNON_EXPLOSION,
+	DUCK_QUACK,
+    CANNON_HIT,
     
 }
 

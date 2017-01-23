@@ -6,6 +6,8 @@ public class BaseStats : Stats {
 
     public delegate void ObjectHit(GameObject target, AttackType attack);
     public static event ObjectHit Hit;
+
+
     // Use this for initialization
 	protected override void Start () {
         base.Start();
