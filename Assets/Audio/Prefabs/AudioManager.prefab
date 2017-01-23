@@ -234,4 +234,10 @@ MonoBehaviour:
     frequencyVariance: 0.2
     volumeVariance: 0.3
     volume: 1
+    loop: 0
+  - sound: 12
+    clip: {fileID: 8300000, guid: 70b51436aa9264840b14c243ae7754b1, type: 3}
+    frequencyVariance: 0.2
+    volumeVariance: 0.3
+    volume: 1
     loop: 1
