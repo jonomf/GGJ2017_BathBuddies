@@ -95,4 +95,14 @@ public class CannonHandle : MonoBehaviour
 				break;
 		}
 	}
+
+/*	float lastFire = 0;
+	void Update()
+	{
+		if(Time.time > lastFire+1)
+		{
+			AttemptFire();
+			lastFire = Time.time;
+		}
+	}*/
 }

@@ -2018,7 +2018,7 @@ GameObject:
   - component: {fileID: 1886089056}
   - component: {fileID: 1886089055}
   - component: {fileID: 1886089054}
-  m_Layer: 4
+  m_Layer: 0
   m_Name: Underwater
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -8,7 +8,7 @@ public class SelfDestroy : MonoBehaviour {
 	float selfDestroyTimeout;
 	// Use this for initialization
 	void Start () {
-		this.selfDestroyTimeout = Time.time + this.selfDestroyTimeout;
+		this.selfDestroyTimeout = Time.time + this.selfDestroyDuration;
 
 	}
 	
