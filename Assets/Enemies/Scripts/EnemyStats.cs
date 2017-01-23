@@ -6,7 +6,8 @@ public class EnemyStats : Stats
 {
     public delegate void ObjectHit(GameObject target, AttackType attack);
     public static event ObjectHit Hit;
-   
+   [SerializeField]
+   private SOUNDS hitSound;
 
     // Use this for initialization
 	protected override void Start () {
@@ -54,6 +55,7 @@ public class EnemyStats : Stats
         if (projectile != null)
         {
             attack = projectile.attack;
+			AudioManager.Play(hitSound);
         }
 		ApplyDamage(attack, collision.gameObject);
     }
