@@ -121,7 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf00ab5cf4db4043a4a56e7018ff1b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_DestroyDelay: 1
+  m_DestroyDelay: 2
+  sonarView: {fileID: 1132987450639146, guid: 9958b9c9a8d56453c9417cce410e38c1, type: 2}
 --- !u!135 &135547819188780692
 SphereCollider:
   m_ObjectHideFlags: 1
