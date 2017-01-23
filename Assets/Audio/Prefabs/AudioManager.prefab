@@ -240,4 +240,4 @@ MonoBehaviour:
     frequencyVariance: 0.2
     volumeVariance: 0.3
     volume: 1
-    loop: 1
+    loop: 0
