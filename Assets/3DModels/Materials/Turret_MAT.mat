@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Cannon
+  m_Name: Turret_MAT
   m_Shader: {fileID: 4800000, guid: f5d25459062e91443becac56d585df78, type: 3}
   m_ShaderKeywords: _EMISSION _LIGHTMODE_DEFAULT _USE_M_TEX
   m_LightmapFlags: 1
