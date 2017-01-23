@@ -435,6 +435,7 @@ MonoBehaviour:
   animControl: {fileID: 95363619848304136}
   deathEffect: {fileID: 110790, guid: 0f75f6db4a318f54382e0c98b2226db8, type: 2}
   deathEffectSound: 4
+  hitSound: 13
 --- !u!135 &135872646674970572
 SphereCollider:
   m_ObjectHideFlags: 1

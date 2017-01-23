@@ -20,4 +20,4 @@ MonoBehaviour:
   attackForce: 250
   attackCooldown: 3
   attackSound: 3
-  hitSound: 5
+  hitSound: 12

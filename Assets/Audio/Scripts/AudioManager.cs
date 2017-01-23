@@ -18,9 +18,9 @@ public enum SOUNDS {
     BASE_EXPLOSION,
     SUB_EXPLOSION,
     WAVES,
-    CANNON_EXPLOSION
-
-    
+    CANNON_EXPLOSION,
+	DUCK_QUACK,
+    CANNON_HIT,
     
 }
 
@@ -81,6 +81,7 @@ public class AudioManager : MonoBehaviour //TODO: onValidate to make sure all so
 			var tmpAudioSource = Instantiate(s_Instance.m_templateAudio) as AudioSource;
 			tmpAudioSource.transform.position = pointToPlayAt;
 			tmpAudioSource.clip = clipInfo.clip;
+			tmpAudioSource.volume = clipInfo.volume;
 			tmpAudioSource.volume += Random.Range(-1 * clipInfo.volumeVariance, 0f);
 			tmpAudioSource.pitch += Random.Range(-1 * clipInfo.frequencyVariance, clipInfo.frequencyVariance);
 			tmpAudioSource.loop = clipInfo.loop;

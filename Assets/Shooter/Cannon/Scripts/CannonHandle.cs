@@ -45,7 +45,10 @@ public class CannonHandle : MonoBehaviour
 
 			//m_XPivot.rotation = handStartRotation * Quaternion.Inverse(VRPlayer.rightHand.rotation);
 
-			m_XPivot.rotation = VRPlayer.rightHand.rotation;
+			//m_XPivot.rotation = VRPlayer.rightHand.rotation;
+			
+			m_XPivot.rotation = Quaternion.RotateTowards(m_XPivot.rotation, Quaternion.LookRotation(m_XPivot.position - VRPlayer.rightHand.position),
+				500 * Time.deltaTime);
 
             if (VRPlayer.fire)
             {

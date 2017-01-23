@@ -115,8 +115,11 @@ MonoBehaviour:
   rangeVolume: {fileID: 0}
   curHealth: 0
   enemyProjectileTag: EnemyProjectile
+  attackDelayTime: 0.1
   fireTransform: {fileID: 0}
   animControl: {fileID: 0}
+  deathEffect: {fileID: 0}
+  deathEffectSound: 12
 --- !u!135 &135049682848063544
 SphereCollider:
   m_ObjectHideFlags: 1

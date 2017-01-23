@@ -178,7 +178,7 @@ MonoBehaviour:
   - sound: 6
     clip: {fileID: 8300000, guid: 1f04c45ec3163e44e9f87ed645d68a2f, type: 3}
     frequencyVariance: 0
-    volumeVariance: 0.2
+    volumeVariance: 0
     volume: 0.3
     loop: 1
   - sound: 4
@@ -227,5 +227,17 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: d603808357bd6ac48b90c6f4ddf83b51, type: 3}
     frequencyVariance: 0.2
     volumeVariance: 0
-    volume: 1
+    volume: 0.8
     loop: 1
+  - sound: 13
+    clip: {fileID: 8300000, guid: 3e68f7a3126ae2649b7937b087f2a0d4, type: 3}
+    frequencyVariance: 0.2
+    volumeVariance: 0.3
+    volume: 1
+    loop: 0
+  - sound: 12
+    clip: {fileID: 8300000, guid: 70b51436aa9264840b14c243ae7754b1, type: 3}
+    frequencyVariance: 0.2
+    volumeVariance: 0.3
+    volume: 1
+    loop: 0
