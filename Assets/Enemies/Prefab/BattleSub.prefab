@@ -312,8 +312,10 @@ MonoBehaviour:
   attackDelayTime: 0.1
   fireTransform: {fileID: 0}
   animControl: {fileID: 0}
-  deathEffect: {fileID: 0}
+  deathEffect: {fileID: 1132987450639146, guid: 9958b9c9a8d56453c9417cce410e38c1,
+    type: 2}
   deathEffectSound: 9
+  hitSound: 0
 --- !u!135 &135950956501944530
 SphereCollider:
   m_ObjectHideFlags: 1
