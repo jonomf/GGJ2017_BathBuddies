@@ -83,7 +83,8 @@ public abstract class Stats : MonoBehaviour {
     }
     public IEnumerator DoAttack(float time, GameObject gameObject, GameObject target, AttackType attack) {
         yield return new WaitForSeconds(time);
-        damageController.DoAttack(gameObject, target, attack);
+		if(damageController != null)
+	        damageController.DoAttack(gameObject, target, attack);
     }   
 
 
