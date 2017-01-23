@@ -8,6 +8,8 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/StateManagement/bootstrap.unity
   - enabled: 1
+    path: Assets/bootstrap.unity
+  - enabled: 1
     path: Assets/StateManagement/StartGame.unity
   - enabled: 1
     path: Assets/SonarView/HUD/HUD.unity
