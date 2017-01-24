@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43840638, g: 0.48647386, b: 0.56674844, a: 1}
+  m_IndirectSpecularColor: {r: 0.4384061, g: 0.48647356, b: 0.56674826, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -333,36 +333,6 @@ Prefab:
       propertyPath: m_Name
       value: Turret 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4529261244593592, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4529261244593592, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0.9691371
-      objectReference: {fileID: 0}
-    - target: {fileID: 4529261244593592, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4529261244593592, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.24652265
-      objectReference: {fileID: 0}
-    - target: {fileID: 4529261244593592, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -151.45601
-      objectReference: {fileID: 0}
-    - target: {fileID: 114393352606140872, guid: 96ada484b539cf34f8fdc1c2ad929a21,
-        type: 2}
-      propertyPath: m_Active
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 23622262465890238, guid: 96ada484b539cf34f8fdc1c2ad929a21,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 114a00c319c22154ba80db7d8531e7ff, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
   m_IsPrefabParent: 0
@@ -704,7 +674,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4488418585552000, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1929445044714722, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
       propertyPath: m_Name
