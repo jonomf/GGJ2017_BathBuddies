@@ -83,7 +83,7 @@ public class VRPlayer : MonoBehaviourSingleton<VRPlayer>
             yield return null;
         }
         m_FadeMaterial.color = m_Opaque;
-        targetPosition = targetPosition - transform.InverseTransformPoint(VRPlayer.head.transform.position);
+        //targetPosition = targetPosition - transform.InverseTransformPoint(VRPlayer.head.transform.position);
         transform.position = targetPosition;
         transform.rotation = Quaternion.Euler(direction);
         

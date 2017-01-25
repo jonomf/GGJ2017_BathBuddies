@@ -101,12 +101,12 @@ public abstract class Stats : MonoBehaviour {
         {
             AudioManager.Play(deathEffectSound, gameObject.transform.position);
         }
-	    if(OnDie != null)
+        Destroy(gameObject);
+        if (OnDie != null)
 	    {
 		    OnDie(this);
-            
         }
-        if (gameObject) { Destroy(gameObject); }
+       
         
     }
 
