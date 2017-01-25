@@ -104,8 +104,9 @@ public abstract class Stats : MonoBehaviour {
 	    if(OnDie != null)
 	    {
 		    OnDie(this);
-            Destroy(gameObject);
+            
         }
+        if (gameObject) { Destroy(gameObject); }
         
     }
 

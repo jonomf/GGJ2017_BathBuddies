@@ -16,12 +16,16 @@ public class HealthWorldView : MonoBehaviour {
 	private float lastHealth = 1;
 
 	public GameObject bar;
-
-	public void SetHealth(float healthRatio)
+    private void Start()
+    {
+        SetHealth(1);
+    }
+    public void SetHealth(float healthRatio)
 	{
 		// find the highest state that applies.
 		HealthState currentState;
 		currentState.material = null;
+
 		foreach(var s in healthStates)
 		{
 			if(healthRatio <= s.healthRatioMax)
@@ -45,7 +49,7 @@ public class HealthWorldView : MonoBehaviour {
 	public void Update()
 	{
 		var baseStats = GameObject.FindObjectOfType<BaseStats>();
-
+       // Debug.Log("Base health is " + baseStats.curHealth);
 		if(baseStats != null)
 		{
 			var normalizedHealth = baseStats.curHealth / (float)baseStats.health;
@@ -55,7 +59,7 @@ public class HealthWorldView : MonoBehaviour {
 				SetHealth(newHealth);
 			}
 
-		}
+        }
 	}
 
 }

@@ -350,14 +350,6 @@ Prefab:
       propertyPath: m_Name
       value: Turret 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1929445044714722, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
-      propertyPath: m_TagString
-      value: Tower
-      objectReference: {fileID: 0}
-    - target: {fileID: 1402159232671126, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
-      propertyPath: m_TagString
-      value: Tower
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
   m_IsPrefabParent: 0

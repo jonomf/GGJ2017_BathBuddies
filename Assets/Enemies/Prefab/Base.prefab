@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fd4b7fb6762f2b479816f23996a76f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1000
+  health: 100
   moveSpeed: 5
   attackType: {fileID: 0}
   damageController: {fileID: 0}
