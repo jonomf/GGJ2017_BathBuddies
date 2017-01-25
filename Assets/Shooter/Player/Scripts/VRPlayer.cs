@@ -35,6 +35,15 @@ public class VRPlayer : MonoBehaviourSingleton<VRPlayer>
         
     }
 
+    void Start()
+    {
+        //moved this bit of code from the Teleport function to start to lock in initial offset
+        //and avoid the player moving position in real world every time they are teleported
+        if (m_TransformOffset == Vector3.zero)
+        {
+            m_TransformOffset = transform.InverseTransformPoint(VRPlayer.head.transform.position);
+        }
+    }
     void Update()
     {
         m_LeftHand.localPosition = InputTracking.GetLocalPosition(VRNode.LeftHand);
@@ -86,10 +95,9 @@ public class VRPlayer : MonoBehaviourSingleton<VRPlayer>
         m_FadeMaterial.color = m_Opaque;
         if (m_TransformOffset == Vector3.zero)
         {
-            m_TransformOffset = transform.InverseTransformPoint(VRPlayer.head.transform.position);
-            
+            m_TransformOffset = transform.InverseTransformPoint(VRPlayer.head.transform.position);            
         }
-        targetPosition = m_TransformOffset - m_TransformOffset;
+        targetPosition = targetPosition - m_TransformOffset;
         transform.position = targetPosition;
         transform.rotation = Quaternion.Euler(direction);
         
