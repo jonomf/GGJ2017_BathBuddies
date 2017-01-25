@@ -142,6 +142,15 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 33.000034
       objectReference: {fileID: 0}
+    - target: {fileID: 23794878660626714, guid: d1aa9b3667b89470a849068baea045b2,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: baf46b9bdf7f6482a8809f9f8f1a83e2, type: 2}
+    - target: {fileID: 4863146256266364, guid: d1aa9b3667b89470a849068baea045b2, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d1aa9b3667b89470a849068baea045b2, type: 2}
   m_IsPrefabParent: 0
@@ -217,6 +226,14 @@ Prefab:
         type: 2}
       propertyPath: m_Active
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1929445044714722, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
+      propertyPath: m_TagString
+      value: Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402159232671126, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
+      propertyPath: m_TagString
+      value: Tower
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
@@ -333,6 +350,14 @@ Prefab:
       propertyPath: m_Name
       value: Turret 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1929445044714722, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
+      propertyPath: m_TagString
+      value: Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402159232671126, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
+      propertyPath: m_TagString
+      value: Tower
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
   m_IsPrefabParent: 0
@@ -385,6 +410,14 @@ Prefab:
       propertyPath: m_Name
       value: Turret 11
       objectReference: {fileID: 0}
+    - target: {fileID: 1929445044714722, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
+      propertyPath: m_TagString
+      value: Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402159232671126, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
+      propertyPath: m_TagString
+      value: Tower
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
   m_IsPrefabParent: 0
@@ -430,31 +463,6 @@ Prefab:
     - target: {fileID: 1929445044714722, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
       propertyPath: m_Name
       value: Turret 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4529261244593592, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4529261244593592, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0.42508072
-      objectReference: {fileID: 0}
-    - target: {fileID: 4529261244593592, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4529261244593592, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.9051555
-      objectReference: {fileID: 0}
-    - target: {fileID: 4529261244593592, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -50.312004
-      objectReference: {fileID: 0}
-    - target: {fileID: 114104104968708380, guid: 96ada484b539cf34f8fdc1c2ad929a21,
-        type: 2}
-      propertyPath: m_Active
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
@@ -570,6 +578,14 @@ Prefab:
     - target: {fileID: 1929445044714722, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
       propertyPath: m_Name
       value: Turret 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1929445044714722, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
+      propertyPath: m_TagString
+      value: Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402159232671126, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
+      propertyPath: m_TagString
+      value: Tower
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
@@ -699,6 +715,14 @@ Prefab:
     - target: {fileID: 4529261244593592, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 46.496002
+      objectReference: {fileID: 0}
+    - target: {fileID: 1929445044714722, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
+      propertyPath: m_TagString
+      value: Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402159232671126, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
+      propertyPath: m_TagString
+      value: Tower
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
@@ -997,6 +1021,14 @@ Prefab:
       propertyPath: m_Name
       value: Turret 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1929445044714722, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
+      propertyPath: m_TagString
+      value: Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402159232671126, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
+      propertyPath: m_TagString
+      value: Tower
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
   m_IsPrefabParent: 0
@@ -1068,6 +1100,14 @@ Prefab:
       propertyPath: m_Active
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1929445044714722, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
+      propertyPath: m_TagString
+      value: Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402159232671126, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
+      propertyPath: m_TagString
+      value: Tower
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
   m_IsPrefabParent: 0
@@ -1131,6 +1171,15 @@ Prefab:
     - target: {fileID: 4904066089090884, guid: d1aa9b3667b89470a849068baea045b2, type: 2}
       propertyPath: m_LocalScale.z
       value: 33.000042
+      objectReference: {fileID: 0}
+    - target: {fileID: 23794878660626714, guid: d1aa9b3667b89470a849068baea045b2,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: baf46b9bdf7f6482a8809f9f8f1a83e2, type: 2}
+    - target: {fileID: 4863146256266364, guid: d1aa9b3667b89470a849068baea045b2, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d1aa9b3667b89470a849068baea045b2, type: 2}
@@ -1277,6 +1326,15 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 33.000042
       objectReference: {fileID: 0}
+    - target: {fileID: 23794878660626714, guid: d1aa9b3667b89470a849068baea045b2,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: baf46b9bdf7f6482a8809f9f8f1a83e2, type: 2}
+    - target: {fileID: 4863146256266364, guid: d1aa9b3667b89470a849068baea045b2, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d1aa9b3667b89470a849068baea045b2, type: 2}
   m_IsPrefabParent: 0
@@ -1322,6 +1380,14 @@ Prefab:
     - target: {fileID: 1929445044714722, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
       propertyPath: m_Name
       value: Turret 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1929445044714722, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
+      propertyPath: m_TagString
+      value: Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402159232671126, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
+      propertyPath: m_TagString
+      value: Tower
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
@@ -1388,6 +1454,14 @@ Prefab:
     - target: {fileID: 4529261244593592, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 40.498
+      objectReference: {fileID: 0}
+    - target: {fileID: 1929445044714722, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
+      propertyPath: m_TagString
+      value: Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402159232671126, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
+      propertyPath: m_TagString
+      value: Tower
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 96ada484b539cf34f8fdc1c2ad929a21, type: 2}
