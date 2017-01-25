@@ -87,9 +87,9 @@ public class VRPlayer : MonoBehaviourSingleton<VRPlayer>
         if (m_TransformOffset == Vector3.zero)
         {
             m_TransformOffset = transform.InverseTransformPoint(VRPlayer.head.transform.position);
-            
+
         }
-        targetPosition = m_TransformOffset - m_TransformOffset;
+        targetPosition = targetPosition - m_TransformOffset;
         transform.position = targetPosition;
         transform.rotation = Quaternion.Euler(direction);
         
