@@ -71,7 +71,7 @@ public class CannonHandle : MonoBehaviour
 			case HUDController.CannonMode.Ballistic:
 				if (m_CannonAmmo > 0)
 				{
-					m_CannonAmmo--;
+					//m_CannonAmmo--;
 					m_CannonShot.Fire(m_CannonTip.position, m_CannonTip.forward);
 					AudioManager.Play(SOUNDS.CANNON_SHOT);
 				}
@@ -83,7 +83,7 @@ public class CannonHandle : MonoBehaviour
 			case HUDController.CannonMode.Depth:
 				if (m_StartingDepthCargeAmmo > 0)
 				{
-					m_StartingDepthCargeAmmo--;
+					//m_StartingDepthCargeAmmo--;
 					m_DepthChargeShot.Fire(m_CannonTip.position, m_CannonTip.forward);
 					AudioManager.Play(SOUNDS.DEPTH_CHARGE_DROP);
 

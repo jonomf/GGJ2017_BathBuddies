@@ -26,6 +26,8 @@ public class VRPlayer : MonoBehaviourSingleton<VRPlayer>
     private readonly Color m_Opaque = new Color(0, 0, 0, 1);
     private readonly Color m_Invisible = new Color(0, 0, 0, 0);
     private bool m_TriggerConsumed;
+    //helps to offset the user so no matter where they are standing when they start they are always in the right position.
+   /// private Vector3 m_TransformOffset = new Vector3(-.5f,1.8f,0.65f);
 
     protected override void Awake()
     {
@@ -59,9 +61,11 @@ public class VRPlayer : MonoBehaviourSingleton<VRPlayer>
         }
     }
 
-    public static void TeleportTo(Transform target, System.Action onComplete = null)
+    public static void TeleportTo(Transform target, System.Action onComplete = null, bool resetRotation = false)
     {
-		Instance.StartCoroutine(Instance.TeleportWithFade(target.position, target.forward, onComplete));
+       
+        Instance.StartCoroutine(Instance.TeleportWithFade(target.position, target.forward, onComplete));
+
     }
 
     private static Color FadeToBlack(float alpha)
@@ -79,8 +83,11 @@ public class VRPlayer : MonoBehaviourSingleton<VRPlayer>
             yield return null;
         }
         m_FadeMaterial.color = m_Opaque;
+        targetPosition = targetPosition - transform.InverseTransformPoint(VRPlayer.head.transform.position);
         transform.position = targetPosition;
-		transform.rotation = Quaternion.Euler(direction);
+        transform.rotation = Quaternion.Euler(direction);
+        
+        
         while (t > 0)
         {
             m_FadeMaterial.color = FadeToBlack(t);
@@ -88,10 +95,11 @@ public class VRPlayer : MonoBehaviourSingleton<VRPlayer>
             yield return null;
         }
         m_FadeMaterial.color = m_Invisible;
-
-		if(onComplete != null)
+        if (onComplete != null)
 		{
 			onComplete();
-		}
+
+            
+        }
     }
 }
