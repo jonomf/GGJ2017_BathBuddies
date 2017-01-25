@@ -120,7 +120,8 @@ public class CrossGameState : MonoBehaviour
 		yield return new WaitForSeconds(_timeToShowGameOverScene);
 		UnloadScene(k_GameOverSceneName);
 		LoadScene(k_GameStartSceneName);
-	}
+
+    }
 	[ContextMenu("Start game")]
 	public void OnStartNewGame()
 	{
