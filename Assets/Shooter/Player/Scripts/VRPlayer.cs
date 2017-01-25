@@ -27,11 +27,12 @@ public class VRPlayer : MonoBehaviourSingleton<VRPlayer>
     private readonly Color m_Invisible = new Color(0, 0, 0, 0);
     private bool m_TriggerConsumed;
     //helps to offset the user so no matter where they are standing when they start they are always in the right position.
-   /// private Vector3 m_TransformOffset = new Vector3(-.5f,1.8f,0.65f);
+    private Vector3 m_TransformOffset = Vector3.zero;
 
     protected override void Awake()
     {
         m_FadeMaterial.color = new Color(0,0,0,0);
+        
     }
 
     void Update()
@@ -83,7 +84,12 @@ public class VRPlayer : MonoBehaviourSingleton<VRPlayer>
             yield return null;
         }
         m_FadeMaterial.color = m_Opaque;
-        //targetPosition = targetPosition - transform.InverseTransformPoint(VRPlayer.head.transform.position);
+        if (m_TransformOffset == Vector3.zero)
+        {
+            m_TransformOffset = transform.InverseTransformPoint(VRPlayer.head.transform.position);
+            
+        }
+        targetPosition = m_TransformOffset - m_TransformOffset;
         transform.position = targetPosition;
         transform.rotation = Quaternion.Euler(direction);
         

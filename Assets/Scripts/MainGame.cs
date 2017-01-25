@@ -269,6 +269,7 @@ public class MainGame : MonoBehaviourSingleton<MainGame> {
 				Destroy(projectile.gameObject);
 			//Debug.Log("TriggerLose Destroying:" +stats.gameObject);
 		}
+        Destroy(FindObjectOfType<VRPlayer>().gameObject);
 	}
 	void TriggerLose()
 	{
