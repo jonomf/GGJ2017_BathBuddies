@@ -20,6 +20,8 @@ public class TurretSeat : MonoBehaviour
     [SerializeField]
     private Transform m_XPivot;
     [SerializeField]
+    private float m_XPivotOffset;
+    [SerializeField]
     private Transform m_CannonTip;
 
     private int m_CannonAmmo;
@@ -55,7 +57,13 @@ public class TurretSeat : MonoBehaviour
 
             //m_XPivot.rotation = VRPlayer.rightHand.rotation;
 
-            m_XPivot.rotation = Quaternion.RotateTowards(m_XPivot.rotation, Quaternion.LookRotation(m_XPivot.position - VRPlayer.rightHand.position),
+            //m_XPivot.rotation = Quaternion.RotateTowards(m_XPivot.rotation, Quaternion.LookRotation(m_XPivot.position - VRPlayer.rightHand.position),
+            //    500 * Time.deltaTime);
+
+            //Turret Seat rotation
+            m_YPivot.rotation = Quaternion.RotateTowards(m_YPivot.rotation, Quaternion.LookRotation(Vector3.Scale((VRPlayer.rightHand.position - m_YPivot.position), new Vector3(1,0,1))), 
+                500 * Time.deltaTime);
+            m_XPivot.localRotation = Quaternion.RotateTowards(m_XPivot.localRotation, Quaternion.LookRotation(Vector3.Scale((m_XPivot.position - VRPlayer.rightHand.position), new Vector3(0,1,1))),
                 500 * Time.deltaTime);
 
             if (VRPlayer.fire)
